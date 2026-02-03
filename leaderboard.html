@@ -463,7 +463,7 @@
         // Publish as CSV: File > Share > Publish to web > CSV
         // Replace the URL below with your published CSV URL
 
-        const SHEET_URL = ''; // Add your Google Sheets CSV URL here
+        const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQChUrjw5PJusQ4yKWy7jfiA8Hgs-pX12kGDPxNhRS0wZfdNewbVB8BuT4JRxfenIvqZ5jza1SGJe1K/pub?gid=2139152553&single=true&output=csv';
 
         // Sample data - will be replaced when Google Sheets is connected
         // retention = average months models stay active
@@ -513,10 +513,11 @@
                         return {
                             name: cols[0],
                             emoji: cols[1],
-                            models: parseInt(cols[2]),
-                            retention: parseInt(cols[3]),
-                            avgPerModel: parseInt(cols[4]),
-                            revenue: parseInt(cols[5])
+                            models: parseInt(cols[2]) || 0,
+                            retention: parseInt(cols[3]) || 0,
+                            avgPerModel: parseInt(cols[4]) || 0,
+                            revenue: parseInt(cols[5]) || 0,
+                            code: cols[6]?.trim() || ''
                         };
                     }).filter(d => d.name);
                 } catch (e) {
@@ -589,7 +590,7 @@
 
                 const row = document.createElement('div');
                 row.className = 'leaderboard-row' + (isHighlighted ? ' highlighted' : '');
-                const nameLink = referrer.code ? `<a href="my-referrals.html?code=${referrer.code}" style="color: inherit; text-decoration: none;">${referrer.name}</a>` : referrer.name;
+                const nameLink = referrer.code ? `<a href="/my-referrals?code=${referrer.code}" style="color: inherit; text-decoration: none;">${referrer.name}</a>` : referrer.name;
                 row.innerHTML = `
                     <div class="rank ${rankClass}">${rank}</div>
                     <div class="referrer-info">
