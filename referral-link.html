@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Referral Links - Aruna Talent</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23F4B4C6'/><text x='50' y='68' font-family='Arial' font-size='45' font-weight='bold' fill='white' text-anchor='middle'>A</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 50%, #fbcfe8 100%);
+            min-height: 100vh;
+            color: #1f2937;
+        }
+
+        /* Header */
+        .header {
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 120px;
+            margin-bottom: 16px;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: #6b7280;
+            font-size: 16px;
+        }
+
+        /* Main Content */
+        .content {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+        }
+
+        /* Code Entry Card */
+        .code-entry-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(244, 180, 198, 0.25);
+            margin-bottom: 32px;
+        }
+
+        .code-entry-card h2 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .code-entry-card p {
+            color: #6b7280;
+            font-size: 14px;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .code-input-group {
+            display: flex;
+            gap: 12px;
+        }
+
+        .code-input {
+            flex: 1;
+            padding: 16px 20px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 18px;
+            font-family: inherit;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-align: center;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .code-input:focus {
+            outline: none;
+            border-color: #f472b6;
+            box-shadow: 0 0 0 4px rgba(244, 114, 182, 0.1);
+        }
+
+        .code-input::placeholder {
+            text-transform: none;
+            letter-spacing: normal;
+            font-weight: 400;
+            color: #9ca3af;
+        }
+
+        .access-btn {
+            padding: 16px 32px;
+            background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .access-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(236, 72, 153, 0.4);
+        }
+
+        .access-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Links Section (hidden until code entered) */
+        .links-section {
+            display: none;
+        }
+
+        .links-section.active {
+            display: block;
+        }
+
+        /* Welcome Banner */
+        .welcome-banner {
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+            border-radius: 20px;
+            padding: 32px;
+            text-align: center;
+            color: white;
+            margin-bottom: 24px;
+        }
+
+        .welcome-banner h2 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .welcome-banner p {
+            color: #9ca3af;
+            font-size: 14px;
+        }
+
+        .referrer-code-display {
+            display: inline-block;
+            background: rgba(236, 72, 153, 0.2);
+            border: 1px solid rgba(236, 72, 153, 0.3);
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 18px;
+            letter-spacing: 2px;
+            color: #f9a8d4;
+            margin-top: 16px;
+        }
+
+        /* Link Card */
+        .link-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 20px rgba(244, 180, 198, 0.25);
+            margin-bottom: 16px;
+        }
+
+        .link-card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .link-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .link-card-header h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .link-card-header p {
+            font-size: 13px;
+            color: #6b7280;
+            margin-top: 2px;
+        }
+
+        .link-display {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .link-url {
+            flex: 1;
+            padding: 14px 16px;
+            background: #f9fafb;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 14px;
+            color: #374151;
+            font-family: monospace;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .copy-btn {
+            padding: 14px 24px;
+            background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        .copy-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.4);
+        }
+
+        .copy-btn.copied {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+
+        .link-preview {
+            font-size: 12px;
+            color: #9ca3af;
+        }
+
+        .link-preview a {
+            color: #ec4899;
+            text-decoration: none;
+        }
+
+        .link-preview a:hover {
+            text-decoration: underline;
+        }
+
+        /* Quick Links */
+        .quick-links {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 32px;
+        }
+
+        .quick-link-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            text-decoration: none;
+            color: inherit;
+            box-shadow: 0 4px 20px rgba(244, 180, 198, 0.15);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            text-align: center;
+        }
+
+        .quick-link-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(244, 180, 198, 0.3);
+        }
+
+        .quick-link-card .icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .quick-link-card h4 {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .quick-link-card p {
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        /* Tips Section */
+        .tips-section {
+            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+            border-radius: 16px;
+            padding: 24px;
+            margin-top: 32px;
+        }
+
+        .tips-section h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tips-list {
+            list-style: none;
+        }
+
+        .tips-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #4b5563;
+        }
+
+        .tips-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .tip-icon {
+            color: #ec4899;
+            font-size: 14px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #9ca3af;
+            font-size: 13px;
+        }
+
+        .footer a {
+            color: #ec4899;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Error message */
+        .error-message {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #dc2626;
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-size: 14px;
+            margin-top: 16px;
+            text-align: center;
+            display: none;
+        }
+
+        .error-message.active {
+            display: block;
+        }
+
+        /* Share buttons */
+        .link-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .share-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+            background: white;
+            color: #6b7280;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .share-btn:hover {
+            border-color: #ec4899;
+            color: #ec4899;
+            background: #fdf2f8;
+        }
+
+        /* QR Modal */
+        .qr-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .qr-modal.active {
+            display: flex;
+        }
+
+        .qr-modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 32px;
+            text-align: center;
+            max-width: 320px;
+            width: 90%;
+        }
+
+        .qr-modal-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .qr-code {
+            background: white;
+            padding: 16px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-bottom: 16px;
+        }
+
+        .qr-code img {
+            width: 180px;
+            height: 180px;
+        }
+
+        .qr-modal-close {
+            padding: 12px 24px;
+            background: #f3f4f6;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .qr-modal-close:hover {
+            background: #e5e7eb;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .code-input-group {
+                flex-direction: column;
+            }
+
+            .link-display {
+                flex-direction: column;
+            }
+
+            .quick-links {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 26px;
+            }
+
+            .code-entry-card,
+            .link-card {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <img src="logo.png" alt="Aruna Talent" class="logo">
+        <h1>Your Referral Links</h1>
+        <p>Generate and share your unique referral links</p>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <!-- Code Entry -->
+        <div class="code-entry-card" id="codeEntry">
+            <h2>Enter Your Referrer Code</h2>
+            <p>Use the code you received when you joined the referral program</p>
+            <div class="code-input-group">
+                <input type="text" class="code-input" id="codeInput" placeholder="e.g., SARAH123" maxlength="20">
+                <button class="access-btn" id="accessBtn" onclick="validateCode()">Access Links</button>
+            </div>
+            <div class="error-message" id="errorMessage">
+                Invalid code. Please check your referrer code and try again.
+            </div>
+        </div>
+
+        <!-- Links Section (shown after valid code) -->
+        <div class="links-section" id="linksSection">
+            <!-- Welcome Banner -->
+            <div class="welcome-banner">
+                <h2>Welcome back, <span id="referrerName">Referrer</span>!</h2>
+                <p>Here are your personalized referral links</p>
+                <div class="referrer-code-display" id="codeDisplay">CODE</div>
+            </div>
+
+            <!-- Creator Application Link -->
+            <div class="link-card">
+                <div class="link-card-header">
+                    <div class="link-icon">🌟</div>
+                    <div>
+                        <h3>Creator Application Link</h3>
+                        <p>Share this with potential creators to apply</p>
+                    </div>
+                </div>
+                <div class="link-display">
+                    <div class="link-url" id="applyUrl"></div>
+                    <button class="copy-btn" onclick="copyLink('applyUrl', this)">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                        Copy
+                    </button>
+                </div>
+                <div class="link-actions">
+                    <div class="link-preview">
+                        Preview: <a href="#" id="applyPreview" target="_blank"></a>
+                    </div>
+                    <div class="share-buttons">
+                        <button class="share-btn" onclick="shareToTwitter('applyUrl')" title="Share on X">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </button>
+                        <button class="share-btn" onclick="shareToWhatsApp('applyUrl')" title="Share on WhatsApp">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        </button>
+                        <button class="share-btn" onclick="showQRCode('applyUrl')" title="Show QR Code">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="3" height="3"/><rect x="18" y="14" width="3" height="3"/><rect x="14" y="18" width="3" height="3"/><rect x="18" y="18" width="3" height="3"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Link -->
+            <div class="link-card">
+                <div class="link-card-header">
+                    <div class="link-icon">📊</div>
+                    <div>
+                        <h3>Your Dashboard</h3>
+                        <p>View your referrals and earnings</p>
+                    </div>
+                </div>
+                <div class="link-display">
+                    <div class="link-url" id="dashboardUrl"></div>
+                    <button class="copy-btn" onclick="copyLink('dashboardUrl', this)">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                        Copy
+                    </button>
+                </div>
+                <div class="link-actions">
+                    <div class="link-preview">
+                        Preview: <a href="#" id="dashboardPreview" target="_blank"></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Direct Referral Link -->
+            <div class="link-card">
+                <div class="link-card-header">
+                    <div class="link-icon">🎯</div>
+                    <div>
+                        <h3>Direct Referral Form</h3>
+                        <p>Submit a warm lead directly (pre-fills your code)</p>
+                    </div>
+                </div>
+                <div class="link-display">
+                    <div class="link-url" id="directUrl"></div>
+                    <button class="copy-btn" onclick="copyLink('directUrl', this)">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                        Copy
+                    </button>
+                </div>
+                <div class="link-actions">
+                    <div class="link-preview">
+                        Preview: <a href="#" id="directPreview" target="_blank"></a>
+                    </div>
+                    <div class="share-buttons">
+                        <button class="share-btn" onclick="shareToWhatsApp('directUrl')" title="Share on WhatsApp">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="quick-links">
+                <a href="#" class="quick-link-card" id="dashboardLink">
+                    <div class="icon">📈</div>
+                    <h4>View Dashboard</h4>
+                    <p>See your referrals & earnings</p>
+                </a>
+                <a href="referral.html" class="quick-link-card">
+                    <div class="icon">📋</div>
+                    <h4>Program Details</h4>
+                    <p>Commission structure & tiers</p>
+                </a>
+            </div>
+
+            <!-- Tips -->
+            <div class="tips-section">
+                <h3><span>💡</span> Tips for Success</h3>
+                <ul class="tips-list">
+                    <li><span class="tip-icon">→</span> Share your Creator Application Link on social media with a personal message</li>
+                    <li><span class="tip-icon">→</span> Use the Direct Referral Form when you have a warm lead ready to sign up</li>
+                    <li><span class="tip-icon">→</span> Check your dashboard regularly to track your referrals and earnings</li>
+                    <li><span class="tip-icon">→</span> Reach out to your network personally - warm introductions convert better</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>Need help? <a href="index.html">Contact our team</a></p>
+        <p style="margin-top: 8px;"><a href="dashboard.html">Back to Dashboard</a></p>
+    </div>
+
+    <!-- QR Code Modal -->
+    <div class="qr-modal" id="qrModal" onclick="closeQRModal(event)">
+        <div class="qr-modal-content" onclick="event.stopPropagation()">
+            <div class="qr-modal-title">Scan to Apply</div>
+            <div class="qr-code">
+                <img id="qrCodeImg" src="" alt="QR Code">
+            </div>
+            <p style="font-size: 12px; color: #6b7280; margin-bottom: 16px;">Point your camera at the QR code</p>
+            <button class="qr-modal-close" onclick="closeQRModal()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // Configuration - Google Sheets integration
+        const SHEETS_CONFIG = {
+            useGoogleSheets: false,
+            referrersUrl: 'https://docs.google.com/spreadsheets/d/e/YOUR_SHEET_ID/pub?gid=0&single=true&output=csv'
+        };
+
+        // Demo data for testing
+        const DEMO_REFERRERS = {
+            'SARAH123': { name: 'Sarah M.', joinDate: '2025-04-01' },
+            'JAMES456': { name: 'James K.', joinDate: '2025-05-15' },
+            'ALEX789': { name: 'Alex R.', joinDate: '2025-11-01' },
+            'MORGAN001': { name: 'Morgan L.', joinDate: '2025-06-20' },
+            'CASEY002': { name: 'Casey P.', joinDate: '2025-07-10' },
+            'RILEY003': { name: 'Riley W.', joinDate: '2025-08-05' },
+            'JORDAN004': { name: 'Jordan B.', joinDate: '2025-09-12' },
+            'CHRIS005': { name: 'Chris D.', joinDate: '2025-10-18' }
+        };
+
+        let referrersData = {};
+
+        // Check for code in URL on load
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Load referrer data
+            if (SHEETS_CONFIG.useGoogleSheets) {
+                await loadFromGoogleSheets();
+            } else {
+                referrersData = DEMO_REFERRERS;
+            }
+
+            // Check URL parameter
+            const params = new URLSearchParams(window.location.search);
+            const code = params.get('code');
+            if (code) {
+                document.getElementById('codeInput').value = code.toUpperCase();
+                validateCode();
+            }
+
+            // Enter key support
+            document.getElementById('codeInput').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    validateCode();
+                }
+            });
+        });
+
+        async function loadFromGoogleSheets() {
+            try {
+                const response = await fetch(SHEETS_CONFIG.referrersUrl);
+                const csvText = await response.text();
+
+                const lines = csvText.trim().split('\n');
+                const headers = lines[0].split(',');
+
+                for (let i = 1; i < lines.length; i++) {
+                    const values = parseCSVLine(lines[i]);
+                    const code = values[0]?.trim().toUpperCase();
+                    if (code) {
+                        referrersData[code] = {
+                            name: values[1]?.trim() || 'Referrer',
+                            joinDate: values[2]?.trim() || ''
+                        };
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading from Google Sheets:', error);
+                referrersData = DEMO_REFERRERS;
+            }
+        }
+
+        function parseCSVLine(line) {
+            const values = [];
+            let current = '';
+            let inQuotes = false;
+
+            for (let char of line) {
+                if (char === '"') {
+                    inQuotes = !inQuotes;
+                } else if (char === ',' && !inQuotes) {
+                    values.push(current);
+                    current = '';
+                } else {
+                    current += char;
+                }
+            }
+            values.push(current);
+            return values;
+        }
+
+        function validateCode() {
+            const codeInput = document.getElementById('codeInput');
+            const errorMessage = document.getElementById('errorMessage');
+            const code = codeInput.value.trim().toUpperCase();
+
+            if (!code) {
+                errorMessage.textContent = 'Please enter your referrer code.';
+                errorMessage.classList.add('active');
+                return;
+            }
+
+            if (!referrersData[code]) {
+                errorMessage.textContent = 'Invalid code. Please check your referrer code and try again.';
+                errorMessage.classList.add('active');
+                return;
+            }
+
+            // Valid code - show links
+            errorMessage.classList.remove('active');
+            showLinks(code, referrersData[code]);
+        }
+
+        function showLinks(code, referrer) {
+            // Hide code entry, show links
+            document.getElementById('codeEntry').style.display = 'none';
+            document.getElementById('linksSection').classList.add('active');
+
+            // Update welcome
+            document.getElementById('referrerName').textContent = referrer.name;
+            document.getElementById('codeDisplay').textContent = code;
+
+            // Generate links
+            const baseUrl = window.location.origin + window.location.pathname.replace('referral-link.html', '');
+
+            const applyUrl = `${baseUrl}apply.html?ref=${code}`;
+            const dashboardUrl = `${baseUrl}my-referrals.html?code=${code}`;
+            const directUrl = `${baseUrl}refer-direct.html?ref=${code}`;
+
+            // Set link URLs
+            document.getElementById('applyUrl').textContent = applyUrl;
+            document.getElementById('dashboardUrl').textContent = dashboardUrl;
+            document.getElementById('directUrl').textContent = directUrl;
+
+            // Set preview links
+            document.getElementById('applyPreview').href = applyUrl;
+            document.getElementById('applyPreview').textContent = applyUrl;
+            document.getElementById('dashboardPreview').href = dashboardUrl;
+            document.getElementById('dashboardPreview').textContent = dashboardUrl;
+            document.getElementById('directPreview').href = directUrl;
+            document.getElementById('directPreview').textContent = directUrl;
+
+            // Set dashboard quick link
+            document.getElementById('dashboardLink').href = dashboardUrl;
+
+            // Update URL without reload
+            window.history.replaceState({}, '', `?code=${code}`);
+        }
+
+        function copyLink(elementId, btn) {
+            const url = document.getElementById(elementId).textContent;
+
+            navigator.clipboard.writeText(url).then(() => {
+                // Show copied state
+                const originalHTML = btn.innerHTML;
+                btn.innerHTML = `
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    Copied!
+                `;
+                btn.classList.add('copied');
+
+                setTimeout(() => {
+                    btn.innerHTML = originalHTML;
+                    btn.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+                // Fallback: select text
+                const textArea = document.createElement('textarea');
+                textArea.value = url;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+
+                btn.innerHTML = `Copied!`;
+                setTimeout(() => {
+                    btn.innerHTML = `
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                        Copy
+                    `;
+                }, 2000);
+            });
+        }
+
+        // Social sharing
+        function shareToTwitter(elementId) {
+            const url = document.getElementById(elementId).textContent;
+            const text = "Know someone who'd be perfect for content creation? Check this out:";
+            window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+        }
+
+        function shareToWhatsApp(elementId) {
+            const url = document.getElementById(elementId).textContent;
+            const text = "Hey! I thought you might be interested in this opportunity: " + url;
+            window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+        }
+
+        // QR Code
+        function showQRCode(elementId) {
+            const url = document.getElementById(elementId).textContent;
+            // Using QR Server API for QR code generation
+            const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(url)}`;
+            document.getElementById('qrCodeImg').src = qrUrl;
+            document.getElementById('qrModal').classList.add('active');
+        }
+
+        function closeQRModal(event) {
+            if (!event || event.target === document.getElementById('qrModal')) {
+                document.getElementById('qrModal').classList.remove('active');
+            }
+        }
+
+        // Close on Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeQRModal();
+        });
+    </script>
+</body>
+</html>

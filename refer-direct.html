@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit a Referral - Aruna Talent</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23F4B4C6'/><text x='50' y='68' font-family='Arial' font-size='45' font-weight='bold' fill='white' text-anchor='middle'>A</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 50%, #fbcfe8 100%);
+            min-height: 100vh;
+            padding: 48px 20px;
+            color: #1f2937;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            width: 160px;
+            margin-bottom: 24px;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            color: #6b7280;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .info-banner {
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 32px;
+            color: white;
+        }
+
+        .info-banner h3 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-banner p {
+            font-size: 14px;
+            color: #d1d5db;
+            line-height: 1.6;
+        }
+
+        .form-section {
+            background: white;
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: 0 4px 20px rgba(244, 180, 198, 0.25);
+        }
+
+        .form-section h2 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .section-divider {
+            background: #fdf2f8;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+
+        .section-divider h3 {
+            font-size: 13px;
+            font-weight: 700;
+            color: #be185d;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 6px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 15px;
+            font-family: inherit;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #f472b6;
+            box-shadow: 0 0 0 4px rgba(244, 114, 182, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px 24px;
+            background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            margin-top: 24px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(236, 72, 153, 0.4);
+        }
+
+        .form-note {
+            text-align: center;
+            color: #9ca3af;
+            font-size: 13px;
+            margin-top: 16px;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 32px;
+        }
+
+        .back-link a {
+            color: #ec4899;
+            font-weight: 500;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #9ca3af;
+            font-size: 13px;
+        }
+
+        .footer a {
+            color: #ec4899;
+            text-decoration: none;
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 24px 16px;
+            }
+
+            .header h1 {
+                font-size: 26px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .form-section {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="logo.png" alt="Aruna Talent" class="logo">
+            <h1>Submit a Referral</h1>
+            <p>Got a warm lead? Submit their details below and we'll reach out on your behalf.</p>
+        </div>
+
+        <div class="info-banner">
+            <h3>💡 How this works</h3>
+            <p>You submit their contact info, we reach out and mention you referred them. You earn 5% of their net revenue for 3 months, then 2.5% lifetime once they're signed and earning.</p>
+        </div>
+
+        <div class="form-section">
+            <h2>Referral Details</h2>
+
+            <!-- CLICKUP FORM EMBED: Replace this form with your ClickUp form -->
+            <form id="directReferralForm">
+                <div class="section-divider">
+                    <h3>Your Info (Referrer)</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="referrerName">Your Name *</label>
+                            <input type="text" id="referrerName" name="referrer_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="referrerEmail">Your Email *</label>
+                            <input type="email" id="referrerEmail" name="referrer_email" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-divider">
+                    <h3>Person You're Referring</h3>
+                    <div class="form-group">
+                        <label for="referralName">Their Name *</label>
+                        <input type="text" id="referralName" name="referral_name" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="referralPhone">Their Phone *</label>
+                            <input type="tel" id="referralPhone" name="referral_phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="referralEmail">Their Email *</label>
+                            <input type="email" id="referralEmail" name="referral_email" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="referralInstagram">Their Instagram *</label>
+                        <input type="text" id="referralInstagram" name="referral_instagram" placeholder="@username" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="relationship">How do you know them?</label>
+                    <textarea id="relationship" name="relationship" placeholder="e.g., Friend from college, met at an event, connected on Instagram..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="notes">Anything else we should know?</label>
+                    <textarea id="notes" name="notes" placeholder="e.g., Best time to contact them, their experience level, why you think they'd be a good fit..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Referral</button>
+                <p class="form-note">We'll reach out to them within 24-48 hours and keep you updated.</p>
+            </form>
+            <!-- END CLICKUP FORM EMBED -->
+        </div>
+
+        <div class="back-link">
+            <a href="referral.html">← Back to Referral Program</a>
+        </div>
+
+        <div class="footer">
+            <p>Questions? <a href="index.html">Book a call with our team</a></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('directReferralForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = this.querySelector('.submit-btn');
+            btn.textContent = 'Submitting...';
+            btn.disabled = true;
+
+            // Simulate submission - replace with actual form handling
+            setTimeout(() => {
+                alert('Thanks! We\'ll reach out to your referral within 24-48 hours and keep you posted.');
+                this.reset();
+                btn.textContent = 'Submit Referral';
+                btn.disabled = false;
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

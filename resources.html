@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources - Aruna Talent</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23F4B4C6'/><text x='50' y='68' font-family='Arial' font-size='45' font-weight='bold' fill='white' text-anchor='middle'>A</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 50%, #fbcfe8 100%);
+            min-height: 100vh; color: #1f2937;
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 48px 20px; }
+        .header { text-align: center; margin-bottom: 40px; }
+        .logo { width: 160px; margin-bottom: 24px; }
+        .header h1 {
+            font-size: 32px; font-weight: 700; margin-bottom: 12px;
+            background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .header p { color: #6b7280; font-size: 16px; line-height: 1.6; }
+
+        .section { margin-bottom: 40px; }
+        .section-title {
+            font-size: 14px; font-weight: 600; color: #9ca3af; text-transform: uppercase;
+            letter-spacing: 1px; margin-bottom: 16px; padding-left: 4px;
+        }
+
+        .resource-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+
+        .resource-card {
+            background: white; border-radius: 16px; padding: 24px;
+            box-shadow: 0 4px 20px rgba(244, 180, 198, 0.2); transition: all 0.2s ease;
+            text-decoration: none; color: inherit; display: block;
+        }
+        .resource-card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(244, 180, 198, 0.3); }
+
+        .resource-icon {
+            width: 48px; height: 48px;
+            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+            border-radius: 12px; display: flex; align-items: center; justify-content: center;
+            font-size: 24px; margin-bottom: 16px;
+        }
+        .resource-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; color: #1f2937; }
+        .resource-description { font-size: 13px; color: #6b7280; line-height: 1.5; margin-bottom: 12px; }
+        .resource-tag {
+            display: inline-block; padding: 4px 10px;
+            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+            border-radius: 6px; font-size: 11px; font-weight: 600; color: #be185d; text-transform: uppercase;
+        }
+
+        .featured-card {
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%); color: white;
+        }
+        .featured-card .resource-icon { background: rgba(255,255,255,0.15); }
+        .featured-card .resource-title { color: white; }
+        .featured-card .resource-description { color: #d1d5db; }
+        .featured-card .resource-tag { background: rgba(244, 114, 182, 0.3); color: #f9a8d4; }
+
+        .footer { text-align: center; margin-top: 40px; color: #9ca3af; font-size: 13px; }
+        .footer a { color: #ec4899; text-decoration: none; }
+
+        /* Modal */
+        .modal-overlay {
+            display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal {
+            background: white; border-radius: 20px; padding: 40px; max-width: 400px; text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3); animation: modalIn 0.2s ease;
+        }
+        @keyframes modalIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .modal-icon { font-size: 48px; margin-bottom: 16px; }
+        .modal-title { font-size: 20px; font-weight: 700; margin-bottom: 8px; color: #1f2937; }
+        .modal-text { font-size: 14px; color: #6b7280; line-height: 1.6; margin-bottom: 24px; }
+        .modal-btn {
+            display: inline-block; padding: 12px 24px;
+            background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
+            color: white; border-radius: 10px; font-size: 14px; font-weight: 600;
+            text-decoration: none; cursor: pointer; border: none; transition: all 0.2s ease;
+        }
+        .modal-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(236, 72, 153, 0.4); }
+
+        @media (max-width: 600px) {
+            .container { padding: 24px 16px; }
+            .header h1 { font-size: 26px; }
+            .resource-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="logo.png" alt="Aruna Talent" class="logo">
+            <h1>Resource Library</h1>
+            <p>Guides, templates, and everything you need to succeed</p>
+        </div>
+
+        <!-- Essential Guides -->
+        <div class="section">
+            <div class="section-title">Essential Guides</div>
+            <div class="resource-grid">
+                <a href="sweetheart-persona.html" class="resource-card featured-card">
+                    <div class="resource-icon">💕</div>
+                    <div class="resource-title">The Sweetheart Persona</div>
+                    <div class="resource-description">Master the soft, shy, approachable character that performs best on stream and in messages.</div>
+                    <span class="resource-tag">Must Read</span>
+                </a>
+                <a href="#" class="resource-card featured-card">
+                    <div class="resource-icon">📸</div>
+                    <div class="resource-title">OnlyFans Set Creation Guide</div>
+                    <div class="resource-description">Full blueprint for shooting high-value content that converts. Emotional flow, what to film, what to avoid.</div>
+                    <span class="resource-tag">Must Read</span>
+                </a>
+                <a href="stream-essentials.html" class="resource-card featured-card">
+                    <div class="resource-icon">🎥</div>
+                    <div class="resource-title">Stream Essentials</div>
+                    <div class="resource-description">Lighting, equipment, room setup, audio — everything to create a consistent, feminine streaming environment.</div>
+                    <span class="resource-tag">Must Read</span>
+                </a>
+                <a href="style-guide.html" class="resource-card featured-card">
+                    <div class="resource-icon">👗</div>
+                    <div class="resource-title">7-Day Style Guide</div>
+                    <div class="resource-description">Outfits, colors, hair, makeup, lingerie, accessories — a full week of looks to keep you camera-ready.</div>
+                    <span class="resource-tag">Must Read</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Content Creation -->
+        <div class="section">
+            <div class="section-title">Content Creation</div>
+            <div class="resource-grid">
+                <a href="#" class="resource-card">
+                    <div class="resource-icon">📝</div>
+                    <div class="resource-title">Bio & Caption Templates</div>
+                    <div class="resource-description">Proven bio formulas and caption templates that drive engagement and subscriptions.</div>
+                    <span class="resource-tag">Template</span>
+                </a>
+                <a href="#" class="resource-card">
+                    <div class="resource-icon">📆</div>
+                    <div class="resource-title">Content Calendar Template</div>
+                    <div class="resource-description">Plan your content week by week. Never run out of ideas or fall behind schedule.</div>
+                    <span class="resource-tag">Template</span>
+                </a>
+                <a href="#" class="resource-card">
+                    <div class="resource-icon">💬</div>
+                    <div class="resource-title">DM Scripts & Responses</div>
+                    <div class="resource-description">Pre-written messages for common scenarios — upsells, welcome messages, and re-engagement.</div>
+                    <span class="resource-tag">Template</span>
+                </a>
+                <a href="#" class="resource-card">
+                    <div class="resource-icon">💰</div>
+                    <div class="resource-title">Pricing Strategy Guide</div>
+                    <div class="resource-description">How to price subscriptions, PPV, and customs for maximum earnings without turning off fans.</div>
+                    <span class="resource-tag">Guide</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Streaming -->
+        <div class="section">
+            <div class="section-title">Streaming</div>
+            <div class="resource-grid">
+                <a href="#" class="resource-card">
+                    <div class="resource-icon">🎙️</div>
+                    <div class="resource-title">Stream Conversation Starters</div>
+                    <div class="resource-description">100+ conversation topics and questions to keep chat engaged and flowing naturally.</div>
+                    <span class="resource-tag">Template</span>
+                </a>
+                <a href="#" class="resource-card">
+                    <div class="resource-icon">🎯</div>
+                    <div class="resource-title">Tip Menu Examples</div>
+                    <div class="resource-description">Sample tip menus that encourage tipping without being pushy. Find what works for your style.</div>
+                    <span class="resource-tag">Template</span>
+                </a>
+                <a href="#" class="resource-card">
+                    <div class="resource-icon">⚡</div>
+                    <div class="resource-title">Stream Recovery Guide</div>
+                    <div class="resource-description">What to do when stream goes quiet, how to handle trolls, and recover from awkward moments.</div>
+                    <span class="resource-tag">Guide</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Privacy & Safety -->
+        <div class="section">
+            <div class="section-title">Privacy & Safety</div>
+            <div class="resource-grid">
+                <a href="#" class="resource-card">
+                    <div class="resource-icon">🛡️</div>
+                    <div class="resource-title">Privacy Best Practices</div>
+                    <div class="resource-description">How to stay anonymous online — social media, metadata, location data, and more.</div>
+                    <span class="resource-tag">Guide</span>
+                </a>
+                <a href="#" class="resource-card">
+                    <div class="resource-icon">🚫</div>
+                    <div class="resource-title">Handling Difficult Fans</div>
+                    <div class="resource-description">Scripts and strategies for boundary-setting, blocking, and de-escalation.</div>
+                    <span class="resource-tag">Guide</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Tools & Links -->
+        <div class="section">
+            <div class="section-title">Tools & Quick Links</div>
+            <div class="resource-grid">
+                <a href="https://apps.apple.com/us/app/google-authenticator/id388497605" target="_blank" class="resource-card">
+                    <div class="resource-icon">🔐</div>
+                    <div class="resource-title">Google Authenticator</div>
+                    <div class="resource-description">Required for Chaturbate 2FA setup. Download from the App Store.</div>
+                    <span class="resource-tag">Download</span>
+                </a>
+                <a href="https://www.speedtest.net" target="_blank" class="resource-card">
+                    <div class="resource-icon">📶</div>
+                    <div class="resource-title">Internet Speed Test</div>
+                    <div class="resource-description">Check your upload speed. You need 40+ Mbps for quality streaming.</div>
+                    <span class="resource-tag">Tool</span>
+                </a>
+                <a href="onboarding.html" class="resource-card">
+                    <div class="resource-icon">📋</div>
+                    <div class="resource-title">Onboarding Checklist</div>
+                    <div class="resource-description">Your step-by-step roadmap to launch. Track your progress.</div>
+                    <span class="resource-tag">Checklist</span>
+                </a>
+                <a href="faq.html" class="resource-card">
+                    <div class="resource-icon">❓</div>
+                    <div class="resource-title">FAQ</div>
+                    <div class="resource-description">Answers to common questions about working with Aruna.</div>
+                    <span class="resource-tag">Support</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Can't find what you need? <a href="index.html">Book a call with the team</a></p>
+            <p style="margin-top: 8px;"><a href="dashboard.html">← Back to Dashboard</a></p>
+        </div>
+    </div>
+
+    <!-- Coming Soon Modal -->
+    <div class="modal-overlay" id="comingSoonModal">
+        <div class="modal">
+            <div class="modal-icon">🚧</div>
+            <div class="modal-title">Coming Soon</div>
+            <div class="modal-text">We're putting the finishing touches on this resource. In the meantime, reach out to your manager or book a call — we're happy to walk you through it.</div>
+            <button class="modal-btn" onclick="closeModal()">Got it</button>
+        </div>
+    </div>
+
+    <script>
+        // Handle placeholder links
+        document.querySelectorAll('.resource-card[href="#"]').forEach(card => {
+            card.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.getElementById('comingSoonModal').classList.add('active');
+            });
+        });
+
+        function closeModal() {
+            document.getElementById('comingSoonModal').classList.remove('active');
+        }
+
+        // Close on overlay click
+        document.getElementById('comingSoonModal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) closeModal();
+        });
+
+        // Close on Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creator Onboarding - Aruna Talent</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23F4B4C6'/><text x='50' y='68' font-family='Arial' font-size='45' font-weight='bold' fill='white' text-anchor='middle'>A</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 50%, #fbcfe8 100%);
+            min-height: 100vh;
+            color: #1f2937;
+        }
+        .container { max-width: 800px; margin: 0 auto; padding: 48px 20px; }
+        .header { text-align: center; margin-bottom: 40px; }
+        .logo { width: 160px; margin-bottom: 24px; }
+        .header h1 {
+            font-size: 32px; font-weight: 700; margin-bottom: 12px;
+            background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .header p { color: #6b7280; font-size: 16px; line-height: 1.6; }
+
+        .welcome-banner {
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+            border-radius: 20px; padding: 32px; margin-bottom: 32px; color: white; text-align: center;
+        }
+        .welcome-emoji { font-size: 48px; margin-bottom: 16px; }
+        .welcome-title { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+        .welcome-text { font-size: 15px; color: #d1d5db; max-width: 600px; margin: 0 auto; line-height: 1.6; }
+
+        .values-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-top: 20px; }
+        .value-item {
+            background: rgba(255,255,255,0.1); border-radius: 10px; padding: 12px; text-align: center;
+            font-size: 13px; color: #f9a8d4;
+        }
+        .value-item strong { display: block; color: white; margin-bottom: 4px; }
+
+        .progress-overview {
+            background: white; border-radius: 16px; padding: 24px; margin-bottom: 32px;
+            box-shadow: 0 4px 20px rgba(244, 180, 198, 0.25);
+        }
+        .progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+        .progress-title { font-size: 16px; font-weight: 600; }
+        .progress-percent { font-size: 14px; color: #ec4899; font-weight: 600; }
+        .progress-bar { height: 10px; background: #e5e7eb; border-radius: 5px; overflow: hidden; }
+        .progress-fill {
+            height: 100%; background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
+            border-radius: 5px; transition: width 0.5s ease;
+        }
+
+        .section {
+            background: white; border-radius: 20px; padding: 32px; margin-bottom: 24px;
+            box-shadow: 0 4px 20px rgba(244, 180, 198, 0.25);
+        }
+        .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+        .section-icon {
+            width: 44px; height: 44px;
+            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+            border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px;
+        }
+        .section-title { font-size: 18px; font-weight: 700; }
+        .section-subtitle { font-size: 13px; color: #6b7280; }
+        .time-estimate {
+            display: inline-block; padding: 2px 8px; background: #fdf2f8;
+            border-radius: 10px; font-size: 11px; color: #ec4899; font-weight: 600;
+            margin-left: 8px;
+        }
+
+        .checklist { display: flex; flex-direction: column; gap: 12px; }
+        .checklist-item {
+            display: flex; align-items: flex-start; gap: 14px; padding: 16px;
+            background: #f9fafb; border-radius: 12px; cursor: pointer; transition: all 0.2s ease;
+        }
+        .checklist-item:hover { background: #fdf2f8; }
+        .checklist-item.completed { background: #ecfdf5; }
+        .checkbox {
+            width: 24px; height: 24px; border: 2px solid #d1d5db; border-radius: 6px;
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.2s ease;
+        }
+        .checklist-item.completed .checkbox { background: #10b981; border-color: #10b981; color: white; }
+        .checkbox svg { width: 14px; height: 14px; opacity: 0; }
+        .checklist-item.completed .checkbox svg { opacity: 1; }
+        .checklist-content { flex: 1; }
+        .checklist-title { font-size: 15px; font-weight: 600; color: #1f2937; margin-bottom: 4px; }
+        .checklist-item.completed .checklist-title { text-decoration: line-through; color: #6b7280; }
+        .checklist-description { font-size: 13px; color: #6b7280; line-height: 1.5; }
+        .checklist-link { color: #ec4899; text-decoration: none; font-weight: 500; }
+        .checklist-link:hover { text-decoration: underline; }
+
+        .info-box {
+            background: #fdf2f8; border-left: 4px solid #ec4899; padding: 16px; border-radius: 0 12px 12px 0;
+            margin-top: 16px; font-size: 13px; color: #6b7280; line-height: 1.6;
+        }
+        .info-box strong { color: #be185d; }
+
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
+        .team-card {
+            padding: 20px; background: #f9fafb; border-radius: 12px; text-align: center; transition: all 0.2s ease;
+        }
+        .team-card:hover { background: #fdf2f8; transform: translateY(-2px); }
+        .team-avatar {
+            width: 56px; height: 56px; background: linear-gradient(135deg, #f9a8d4 0%, #f472b6 100%);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 12px; font-size: 24px;
+        }
+        .team-name { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+        .team-role { font-size: 12px; color: #ec4899; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+        .team-description { font-size: 13px; color: #6b7280; margin-bottom: 12px; }
+        .team-book {
+            display: inline-block; padding: 8px 16px; background: white; border: 1px solid #e5e7eb;
+            border-radius: 8px; font-size: 13px; font-weight: 500; color: #374151; text-decoration: none; transition: all 0.2s ease;
+        }
+        .team-book:hover { border-color: #ec4899; color: #ec4899; }
+
+        .quick-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
+        .quick-link {
+            display: flex; align-items: center; gap: 10px; padding: 16px; background: #f9fafb;
+            border-radius: 12px; text-decoration: none; color: #374151; transition: all 0.2s ease;
+        }
+        .quick-link:hover { background: #fdf2f8; transform: translateY(-2px); }
+        .quick-link-icon { font-size: 20px; }
+        .quick-link-text { font-size: 14px; font-weight: 500; }
+
+        .footer { text-align: center; margin-top: 40px; color: #9ca3af; font-size: 13px; }
+        .footer a { color: #ec4899; text-decoration: none; }
+
+        @media (max-width: 600px) {
+            .container { padding: 24px 16px; }
+            .section { padding: 24px; }
+            .header h1 { font-size: 26px; }
+            .team-grid { grid-template-columns: 1fr; }
+            .values-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="logo.png" alt="Aruna Talent" class="logo">
+            <h1>Creator Onboarding</h1>
+            <p>Your step-by-step roadmap to launch</p>
+        </div>
+
+        <div class="welcome-banner">
+            <div class="welcome-emoji">🎉</div>
+            <div class="welcome-title">Welcome<span id="creatorGreeting"></span> to Aruna Talent</div>
+            <div class="welcome-text">This is where your journey officially begins. Follow this page from top to bottom — we'll guide you through everything you need before launch.</div>
+            <div id="managerNotice" style="display: none; margin-top: 16px; padding: 12px 20px; background: rgba(244, 114, 182, 0.3); border-radius: 10px; font-size: 14px;">
+                Your talent manager is <strong id="managerName"></strong> — reach out anytime!
+            </div>
+            <div class="values-grid">
+                <div class="value-item"><strong>Excellence</strong>We set the standard</div>
+                <div class="value-item"><strong>Privacy First</strong>Geo-blocking & alias</div>
+                <div class="value-item"><strong>Partnership</strong>We're in this with you</div>
+                <div class="value-item"><strong>Long-Term</strong>Build something real</div>
+            </div>
+        </div>
+
+        <div class="progress-overview">
+            <div class="progress-header">
+                <span class="progress-title">Your Progress</span>
+                <span class="progress-percent" id="progressPercent">0%</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+            </div>
+        </div>
+
+        <!-- Step 1-2: Forms -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon">📋</div>
+                <div>
+                    <div class="section-title">Step 1-2: Complete Your Forms</div>
+                    <div class="section-subtitle">Identity verification & character building <span class="time-estimate">~20 min</span></div>
+                </div>
+            </div>
+            <div class="checklist" data-section="forms">
+                <div class="checklist-item" data-task="onboarding-form">
+                    <div class="checkbox"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg></div>
+                    <div class="checklist-content">
+                        <div class="checklist-title">Complete Onboarding Form</div>
+                        <div class="checklist-description">Verifies your identity, checks equipment, and gives us everything to set up your accounts. <a href="https://forms.clickup.com/90132166263/f/2ky4qdkq-3773/GVCDA2UA9UH3GDSH55" target="_blank" class="checklist-link">Fill it out here →</a></div>
+                    </div>
+                </div>
+                <div class="checklist-item" data-task="character-sheet">
+                    <div class="checkbox"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg></div>
+                    <div class="checklist-content">
+                        <div class="checklist-title">Complete Character Sheet</div>
+                        <div class="checklist-description">Build your online persona — personality, backstory, interests, boundaries. <a href="https://forms.clickup.com/90132166263/f/2ky4qdkq-4093/G4B50B8KWW7KG5J9PY" target="_blank" class="checklist-link">Fill it out here →</a></div>
+                    </div>
+                </div>
+                <div class="checklist-item" data-task="persona-guide">
+                    <div class="checkbox"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg></div>
+                    <div class="checklist-content">
+                        <div class="checklist-title">Read Sweetheart Persona Guide</div>
+                        <div class="checklist-description">Learn the soft, approachable persona that performs best on stream and in messages. <a href="sweetheart-persona.html" class="checklist-link">Read the Guide →</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 3-4: Content -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon">📸</div>
+                <div>
+                    <div class="section-title">Step 3-4: Content Setup</div>
+                    <div class="section-subtitle">Join Drive & upload your content <span class="time-estimate">~1-2 hours</span></div>
+                </div>
+            </div>
+            <div class="checklist" data-section="content">
+                <div class="checklist-item" data-task="drive-access">
+                    <div class="checkbox"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg></div>
+                    <div class="checklist-content">
+                        <div class="checklist-title">Join Google Drive Folder</div>
+                        <div class="checklist-description">Your Drive is where you'll upload all photos, videos, and customs. Bookmark it once you have access.</div>
+                    </div>
+                </div>
+                <div class="checklist-item" data-task="content-100">
+                    <div class="checkbox"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg></div>
+                    <div class="checklist-content">
+                        <div class="checklist-title">Upload 100+ pieces of content</div>
+                        <div class="checklist-description">Selfies, lifestyle pics, mirror pics — anything usable for your profile and marketing.</div>
+                    </div>
+                </div>
+                <div class="checklist-item" data-task="content-sets">
+                    <div class="checkbox"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg></div>
+                    <div class="checklist-content">
+                        <div class="checklist-title">Upload 2 full sets for upselling</div>
+                        <div class="checklist-description">E.g. home from the gym, watching Netflix, about to shower. <a href="resources.html" class="checklist-link">See Content Creation Resources →</a></div>
+                    </div>
+                </div>
+                <div class="checklist-item" data-task="content-welcome">
+                    <div class="checkbox"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg></div>
+                    <div class="checklist-content">
+                        <div class="checklist-title">Upload Welcome Message content</div>
+                        <div class="checklist-description">5 photos + 2 videos in lingerie/bikinis for your OnlyFans welcome message.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 5: Slack -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon">💬</div>
+                <div>
+                    <div class="section-title">Step 5: Join Slack</div>
+                    <div class="section-subtitle">Our home base for communication <span class="time-estimate">~5 min</span></div>
+                </div>
+            </div>
+            <div class="checklist" data-section="slack">
+                <div class="checklist-item" data-task="slack-join">
+                    <div class="checkbox"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg></div>
+                    <div class="checklist-content">
+                        <div class="checklist-title">Accept Slack Invitation</div>
+                        <div class="checklist-description">Check your email for the invite. You'll be added to #finance, #general, #content, and #live.</div>
+                    </div>
+                </div>
+                <div class="checklist-item" data-task="slack-intro">
+                    <div class="checkbox"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg></div>
+                    <div class="checklist-content">
+                        <div class="checklist-title">Introduce yourself in #general</div>
+                        <div class="checklist-description">Say hi to the team! Let everyone know you're here.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 6-7: Platform Setup -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon">🔐</div>
+                <div>
+                    <div class="section-title">Step 6-7: Platform Verification</div>
+                    <div class="section-subtitle">OnlyFans & Chaturbate setup <span class="time-estimate">~30 min</span></div>
+                </div>
+            </div>
+            <div class="checklist" data-section="platforms">
+                <div class="checklist-item" data-task="of-verify">
+                    <div class="checkbox"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg></div>
+                    <div class="checklist-content">
+                        <div class="checklist-title">Complete OnlyFans Verification</div>
+                        <div class="checklist-description">Log in → More → Become a Creator → Complete Verification + tax form + bank details. Message #general when done.</div>
+                    </div>
+                </div>
+                <div class="checklist-item" data-task="cb-verify">
+                    <div class="checkbox"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg></div>
+                    <div class="checklist-content">
+                        <div class="checklist-title">Complete Chaturbate Verification</div>
+                        <div class="checklist-description">Download Google Authenticator, set up 2FA, then complete age verification. Message #general when done.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="info-box">
+                <strong>Login credentials</strong> for your accounts will be provided in Slack by your manager.
+            </div>
+        </div>
+
+        <!-- Step 8-9: Streaming -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon">🎥</div>
+                <div>
+                    <div class="section-title">Step 8-9: Streaming Setup</div>
+                    <div class="section-subtitle">Equipment & schedule confirmation <span class="time-estimate">~15 min</span></div>
+                </div>
+            </div>
+            <div class="checklist" data-section="streaming">
+                <div class="checklist-item" data-task="equipment">
+                    <div class="checkbox"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg></div>
+                    <div class="checklist-content">
+                        <div class="checklist-title">Confirm Streaming Equipment</div>
+                        <div class="checklist-description">2022+ MacBook (M2), 40+ Mbps upload, ring light, good webcam, quiet space, clean room. <a href="stream-essentials.html" class="checklist-link">See Stream Essentials →</a></div>
+                    </div>
+                </div>
+                <div class="checklist-item" data-task="schedule">
+                    <div class="checkbox"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg></div>
+                    <div class="checklist-content">
+                        <div class="checklist-title">Confirm Streaming Hours</div>
+                        <div class="checklist-description">Commit to 20-24 hours/week. Post your availability in #general with your timezone.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 10-11: Privacy -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon">🛡️</div>
+                <div>
+                    <div class="section-title">Step 10-11: Privacy Protection</div>
+                    <div class="section-subtitle">Protect your identity <span class="time-estimate">~15 min</span></div>
+                </div>
+            </div>
+            <div class="checklist" data-section="privacy">
+                <div class="checklist-item" data-task="socials-private">
+                    <div class="checkbox"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg></div>
+                    <div class="checklist-content">
+                        <div class="checklist-title">Private All Social Media</div>
+                        <div class="checklist-description">Instagram, TikTok, Twitter, LinkedIn → all private. Remove full name & traceable photos.</div>
+                    </div>
+                </div>
+                <div class="checklist-item" data-task="privacy-form">
+                    <div class="checkbox"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg></div>
+                    <div class="checklist-content">
+                        <div class="checklist-title">Complete Privacy Intake Form</div>
+                        <div class="checklist-description">Allows us to build your alias, block regions, and secure your identity. <a href="https://forms.clickup.com/90132166263/f/2ky4qdkq-4113/TQYHA7TUS38QXAF4OC" target="_blank" class="checklist-link">Fill it out here →</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 12: Training -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon">📞</div>
+                <div>
+                    <div class="section-title">Step 12: Final Training Call</div>
+                    <div class="section-subtitle">Compass AI + Dress Rehearsal <span class="time-estimate">~45 min</span></div>
+                </div>
+            </div>
+            <div class="checklist" data-section="training">
+                <div class="checklist-item" data-task="style-guide">
+                    <div class="checkbox"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg></div>
+                    <div class="checklist-content">
+                        <div class="checklist-title">Review 7-Day Style Guide</div>
+                        <div class="checklist-description">Outfits, colors, hair, makeup — everything to look camera-ready. <a href="style-guide.html" class="checklist-link">View Style Guide →</a></div>
+                    </div>
+                </div>
+                <div class="checklist-item" data-task="final-call">
+                    <div class="checkbox"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg></div>
+                    <div class="checklist-content">
+                        <div class="checklist-title">Book Final Checks Call</div>
+                        <div class="checklist-description">Compass AI training + live dress rehearsal + final checks before launch. <a href="https://tidycal.com/team/final-checks/call" target="_blank" class="checklist-link">Book your call →</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Launch Ready -->
+        <div class="section" style="background: linear-gradient(135deg, #1f2937 0%, #374151 100%); color: white;">
+            <div class="section-header">
+                <div class="section-icon" style="background: rgba(255,255,255,0.2);">🚀</div>
+                <div>
+                    <div class="section-title" style="color: white;">Ready to Launch</div>
+                    <div class="section-subtitle" style="color: #d1d5db;">Final confirmation</div>
+                </div>
+            </div>
+            <div class="checklist" data-section="launch">
+                <div class="checklist-item" data-task="all-complete" style="background: rgba(255,255,255,0.1);">
+                    <div class="checkbox"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg></div>
+                    <div class="checklist-content">
+                        <div class="checklist-title" style="color: white;">Message: "All onboarding tasks completed — ready to start!"</div>
+                        <div class="checklist-description" style="color: #d1d5db;">Once everything above is done, post this in #general. Then we scale you.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Your Team -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon">👥</div>
+                <div>
+                    <div class="section-title">Your Team</div>
+                    <div class="section-subtitle">Who to contact for what</div>
+                </div>
+            </div>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-avatar">🦁</div>
+                    <div class="team-name">Mitch</div>
+                    <div class="team-role">Co-founder</div>
+                    <div class="team-description">Growth & strategy</div>
+                    <a href="https://cal.com/arunatalent/mitch-15" target="_blank" class="team-book">Book</a>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">🦊</div>
+                    <div class="team-name">Sangev</div>
+                    <div class="team-role">Co-founder</div>
+                    <div class="team-description">Platform & tech</div>
+                    <a href="https://cal.com/arunatalent/sangev-15" target="_blank" class="team-book">Book</a>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">🐨</div>
+                    <div class="team-name">Imari</div>
+                    <div class="team-role">Finance</div>
+                    <div class="team-description">Payouts & earnings</div>
+                    <a href="https://cal.com/arunatalent/imari-15" target="_blank" class="team-book">Book</a>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">🐼</div>
+                    <div class="team-name">Adrian</div>
+                    <div class="team-role">Operations</div>
+                    <div class="team-description">Chat & performance</div>
+                    <a href="https://cal.com/arunatalent/adrian-15" target="_blank" class="team-book">Book</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon">🔗</div>
+                <div>
+                    <div class="section-title">Quick Links</div>
+                    <div class="section-subtitle">Everything in one place</div>
+                </div>
+            </div>
+            <div class="quick-links">
+                <a href="index.html" class="quick-link"><span class="quick-link-icon">📞</span><span class="quick-link-text">Book a Call</span></a>
+                <a href="resources.html" class="quick-link"><span class="quick-link-icon">📖</span><span class="quick-link-text">Resources</span></a>
+                <a href="faq.html" class="quick-link"><span class="quick-link-icon">❓</span><span class="quick-link-text">FAQ</span></a>
+                <a href="dashboard.html" class="quick-link"><span class="quick-link-icon">🏠</span><span class="quick-link-text">Dashboard</span></a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>You're not doing this alone. We're here for every step, question, doubt, and win.</p>
+            <p style="margin-top: 8px;"><a href="dashboard.html">← Back to Dashboard</a></p>
+        </div>
+    </div>
+
+    <script>
+        // URL Parameters for personalization
+        const params = new URLSearchParams(window.location.search);
+        const creatorName = params.get('creator');
+        const managerParam = params.get('manager');
+
+        // Talent Manager data
+        const talentManagers = {
+            astrid: { name: 'Astrid', emoji: '🌸', whatsapp: 'https://wa.me/31683990757' },
+            viivi: { name: 'Viivi', emoji: '🌷', whatsapp: 'https://wa.me/358443367374' },
+            gabi: { name: 'Gabi', emoji: '🌺', whatsapp: 'https://wa.me/447365902243' }
+        };
+
+        // Personalize greeting
+        if (creatorName) {
+            document.getElementById('creatorGreeting').textContent = ', ' + creatorName;
+            document.title = creatorName + ' - Creator Onboarding';
+        }
+
+        // Show assigned talent manager
+        if (managerParam && talentManagers[managerParam.toLowerCase()]) {
+            const tm = talentManagers[managerParam.toLowerCase()];
+            document.getElementById('managerNotice').style.display = 'block';
+            document.getElementById('managerName').innerHTML = tm.emoji + ' ' + tm.name +
+                ' <a href="' + tm.whatsapp + '" target="_blank" style="color: white; margin-left: 8px;">Message on WhatsApp →</a>';
+        }
+
+        // Progress storage per creator (or default)
+        const storageKey = creatorName ? 'onboarding_' + creatorName.toLowerCase().replace(/\s+/g, '_') : 'onboardingProgress';
+        const savedProgress = JSON.parse(localStorage.getItem(storageKey) || '{}');
+
+        document.querySelectorAll('.checklist-item').forEach(item => {
+            const task = item.dataset.task;
+            if (savedProgress[task]) item.classList.add('completed');
+        });
+        document.querySelectorAll('.checklist-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') return;
+                item.classList.toggle('completed');
+                const task = item.dataset.task;
+                savedProgress[task] = item.classList.contains('completed');
+                localStorage.setItem(storageKey, JSON.stringify(savedProgress));
+                updateProgress();
+            });
+        });
+        function updateProgress() {
+            const total = document.querySelectorAll('.checklist-item').length;
+            const completed = document.querySelectorAll('.checklist-item.completed').length;
+            const percent = Math.round((completed / total) * 100);
+            document.getElementById('progressPercent').textContent = percent + '%';
+            document.getElementById('progressFill').style.width = percent + '%';
+        }
+        updateProgress();
+    </script>
+</body>
+</html>

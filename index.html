@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creator Support - Aruna Talent</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23F4B4C6'/><text x='50' y='68' font-family='Arial' font-size='45' font-weight='bold' fill='white' text-anchor='middle'>A</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 50%, #fbcfe8 100%);
+            min-height: 100vh;
+            padding: 48px 20px;
+        }
+
+        .container {
+            max-width: 580px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            width: 200px;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 12px;
+        }
+
+        .header p {
+            color: #6b7280;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .card-list {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(244, 180, 198, 0.25);
+            overflow: hidden;
+        }
+
+        .card {
+            padding: 20px 24px;
+            border-bottom: 1px solid #fce7f3;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            color: inherit;
+        }
+
+        .card:last-child {
+            border-bottom: none;
+        }
+
+        .card:hover {
+            background-color: #fdf2f8;
+            transform: translateX(4px);
+        }
+
+        .avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f9a8d4 0%, #f472b6 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 28px;
+        }
+
+        .card-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 2px;
+        }
+
+        .card-role {
+            font-size: 13px;
+            color: #ec4899;
+            font-weight: 600;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .card-description {
+            font-size: 14px;
+            color: #6b7280;
+            line-height: 1.4;
+        }
+
+        .card-arrow {
+            color: #d1d5db;
+            transition: color 0.2s ease;
+        }
+
+        .card:hover .card-arrow {
+            color: #ec4899;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 6px 12px;
+            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+            border-radius: 20px;
+            font-size: 12px;
+            color: #be185d;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+
+        .tag svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 24px 16px;
+            }
+
+            .card {
+                padding: 16px;
+            }
+
+            .avatar {
+                width: 48px;
+                height: 48px;
+                font-size: 24px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .logo {
+                width: 160px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="logo.png" alt="Aruna Talent" class="logo">
+            <h1>Creator Support</h1>
+            <p>Book a 15-minute call with our management team.<br>Choose the team member based on what you need help with.</p>
+        </div>
+
+        <div class="card-list">
+            <a href="https://cal.com/arunatalent/mitch-15" target="_blank" class="card">
+                <div class="avatar">🦁</div>
+                <div class="card-content">
+                    <div class="card-title">Mitch</div>
+                    <div class="card-role">Co-founder</div>
+                    <div class="card-description">Profile optimization, growth strategy, and creator experience.</div>
+                    <span class="tag">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        15 min
+                    </span>
+                </div>
+                <svg class="card-arrow" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                </svg>
+            </a>
+
+            <a href="https://cal.com/arunatalent/sangev-15" target="_blank" class="card">
+                <div class="avatar">🦊</div>
+                <div class="card-content">
+                    <div class="card-title">Sangev</div>
+                    <div class="card-role">Co-founder</div>
+                    <div class="card-description">Back-end support, platform issues, and technical optimization.</div>
+                    <span class="tag">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        15 min
+                    </span>
+                </div>
+                <svg class="card-arrow" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                </svg>
+            </a>
+
+            <a href="https://cal.com/arunatalent/imari-15" target="_blank" class="card">
+                <div class="avatar">🐨</div>
+                <div class="card-content">
+                    <div class="card-title">Imari</div>
+                    <div class="card-role">Finance</div>
+                    <div class="card-description">Earnings, payouts, banking, and invoices.</div>
+                    <span class="tag">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        15 min
+                    </span>
+                </div>
+                <svg class="card-arrow" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                </svg>
+            </a>
+
+            <a href="https://cal.com/arunatalent/adrian-15" target="_blank" class="card">
+                <div class="avatar">🐼</div>
+                <div class="card-content">
+                    <div class="card-title">Adrian</div>
+                    <div class="card-role">Operations</div>
+                    <div class="card-description">Chat optimization, response quality, and team performance.</div>
+                    <span class="tag">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        15 min
+                    </span>
+                </div>
+                <svg class="card-arrow" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                </svg>
+            </a>
+
+            <a href="https://cal.com/arunatalent/joy-15" target="_blank" class="card">
+                <div class="avatar">🦋</div>
+                <div class="card-content">
+                    <div class="card-title">Joy</div>
+                    <div class="card-role">Streaming</div>
+                    <div class="card-description">Stream performance, viewer engagement, and audience growth.</div>
+                    <span class="tag">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        15 min
+                    </span>
+                </div>
+                <svg class="card-arrow" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                </svg>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

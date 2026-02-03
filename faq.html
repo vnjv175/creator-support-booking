@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Aruna Talent</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23F4B4C6'/><text x='50' y='68' font-family='Arial' font-size='45' font-weight='bold' fill='white' text-anchor='middle'>A</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 50%, #fbcfe8 100%);
+            min-height: 100vh;
+            color: #1f2937;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 48px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            width: 160px;
+            margin-bottom: 24px;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            color: #6b7280;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* Search */
+        .search-container {
+            margin-bottom: 32px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 16px 20px 16px 52px;
+            border: 2px solid #e5e7eb;
+            border-radius: 14px;
+            font-size: 16px;
+            font-family: inherit;
+            background: white;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239ca3af' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: 18px center;
+            background-size: 22px;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #f472b6;
+            box-shadow: 0 0 0 4px rgba(244, 114, 182, 0.1);
+        }
+
+        /* Category Tabs */
+        .category-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+
+        .category-tab {
+            padding: 10px 18px;
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #6b7280;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .category-tab:hover {
+            border-color: #f9a8d4;
+            color: #ec4899;
+        }
+
+        .category-tab.active {
+            background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
+            border-color: transparent;
+            color: white;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin-bottom: 32px;
+        }
+
+        .faq-section-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #9ca3af;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            padding-left: 4px;
+        }
+
+        /* FAQ Item */
+        .faq-item {
+            background: white;
+            border-radius: 14px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 10px rgba(244, 180, 198, 0.15);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px 24px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            transition: background 0.2s ease;
+        }
+
+        .faq-question:hover {
+            background: #fdf2f8;
+        }
+
+        .faq-question-text {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1f2937;
+            line-height: 1.4;
+        }
+
+        .faq-icon {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+            color: #9ca3af;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.open .faq-icon {
+            transform: rotate(180deg);
+            color: #ec4899;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-answer-content {
+            padding: 0 24px 20px;
+            font-size: 15px;
+            color: #4b5563;
+            line-height: 1.7;
+        }
+
+        .faq-answer-content a {
+            color: #ec4899;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .faq-answer-content a:hover {
+            text-decoration: underline;
+        }
+
+        .faq-answer-content ul {
+            margin: 12px 0;
+            padding-left: 20px;
+        }
+
+        .faq-answer-content li {
+            margin-bottom: 8px;
+        }
+
+        /* No Results */
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: #6b7280;
+        }
+
+        .no-results-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .no-results-text {
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .no-results-subtext {
+            font-size: 14px;
+            color: #9ca3af;
+        }
+
+        /* Contact CTA */
+        .contact-cta {
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+            border-radius: 20px;
+            padding: 32px;
+            text-align: center;
+            color: white;
+            margin-top: 40px;
+        }
+
+        .contact-cta h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .contact-cta p {
+            color: #d1d5db;
+            font-size: 15px;
+            margin-bottom: 20px;
+        }
+
+        .contact-cta-btn {
+            display: inline-block;
+            padding: 14px 28px;
+            background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .contact-cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(236, 72, 153, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #9ca3af;
+            font-size: 13px;
+        }
+
+        .footer a {
+            color: #ec4899;
+            text-decoration: none;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 24px 16px;
+            }
+
+            .header h1 {
+                font-size: 26px;
+            }
+
+            .faq-question {
+                padding: 16px 20px;
+            }
+
+            .faq-answer-content {
+                padding: 0 20px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="logo.png" alt="Aruna Talent" class="logo">
+            <h1>Frequently Asked Questions</h1>
+            <p>Find answers to common questions about working with Aruna Talent</p>
+        </div>
+
+        <div class="search-container">
+            <input type="text" class="search-input" id="searchInput" placeholder="Search for answers...">
+        </div>
+
+        <div class="category-tabs">
+            <div class="category-tab active" data-category="all">All</div>
+            <div class="category-tab" data-category="getting-started">Getting Started</div>
+            <div class="category-tab" data-category="earnings">Earnings</div>
+            <div class="category-tab" data-category="privacy">Privacy & Safety</div>
+            <div class="category-tab" data-category="referrals">Referrals</div>
+        </div>
+
+        <div id="faqContainer">
+            <!-- Getting Started -->
+            <div class="faq-section" data-category="getting-started">
+                <div class="faq-section-title">Getting Started</div>
+
+                <div class="faq-item" data-category="getting-started">
+                    <div class="faq-question">
+                        <span class="faq-question-text">How long does it take to become a successful model?</span>
+                        <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Similar to any other enterprise, the output is directly proportional to the input. This is not an instant solution — it's an opportunity to establish a business that can potentially earn you a significant fortune within a relatively brief period, but only if you put in the effort. The return on investment of your time here is exceptionally substantial. However, we can only provide you with the opportunity; it's up to you to seize it.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="getting-started">
+                    <div class="faq-question">
+                        <span class="faq-question-text">What do I need to bring to the table?</span>
+                        <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            To work with us, you must be at least 18 years of age and completely dedicated to achieving success. You should be able to devote a minimum of three hours per day to the business. Though we prioritize your privacy, you'll need to show your face on camera, as it's what the highest-earning models do. Nevertheless, we'll take all measures to block your desired regions and protect your identity.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="getting-started">
+                    <div class="faq-question">
+                        <span class="faq-question-text">What kind of creators do you work with?</span>
+                        <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Collaborating with models is a significant investment for us, since we handle everything except content creation. Hence, we're genuinely seeking the cream of the crop. Additionally, we're interested in partnering with models who are committed to working with us over the long haul. This way, we can expand your business to much greater heights, and you can earn significantly more! If this resonates with you, please complete the <a href="apply.html">application form</a>.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="getting-started">
+                    <div class="faq-question">
+                        <span class="faq-question-text">I have zero followers and no experience. Can I still do this?</span>
+                        <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Absolutely! Many of our most successful creators started from zero. We handle marketing, fan engagement, and growth strategy — you just focus on creating content. Your work ethic and commitment matter far more than your current following.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="getting-started">
+                    <div class="faq-question">
+                        <span class="faq-question-text">Will this work around my schedule?</span>
+                        <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes! Many of our creators work this alongside school, a job, or other commitments. You set your own schedule for content creation. Our chat team handles fan engagement 24/7, so you're not tied to your phone all day. The more time you invest, the faster you'll grow — but flexibility is built in.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="getting-started">
+                    <div class="faq-question">
+                        <span class="faq-question-text">What if I want to stop? Am I locked into a contract?</span>
+                        <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            We want creators who want to be here. While we do have agreements in place to protect both parties, we're not in the business of holding anyone hostage. If it's not working out, we'll have an honest conversation and find the best path forward.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Earnings -->
+            <div class="faq-section" data-category="earnings">
+                <div class="faq-section-title">Earnings & Payments</div>
+
+                <div class="faq-item" data-category="earnings">
+                    <div class="faq-question">
+                        <span class="faq-question-text">How much do I have to pay?</span>
+                        <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Our services are entirely free of cost. All we require is that you make us your business partner, and we receive a percentage of your earnings each time money is generated. In exchange, we expect you to be dependable, responsible, and professional.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="earnings">
+                    <div class="faq-question">
+                        <span class="faq-question-text">How much money can I realistically make?</span>
+                        <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Earnings vary widely based on your commitment, content quality, and consistency. Some creators earn a few hundred dollars in their first month, while top performers make $10K–$50K+ monthly. We're transparent: this isn't a get-rich-quick scheme, but creators who put in the work consistently see life-changing income.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="earnings">
+                    <div class="faq-question">
+                        <span class="faq-question-text">How and when do I get paid?</span>
+                        <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Payouts are processed weekly or bi-weekly depending on your preference. We support bank transfers and PayPal. Contact <a href="https://cal.com/arunatalent/imari-15" target="_blank">Imari</a> to set up or change your payment method.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content & Streaming -->
+            <div class="faq-section" data-category="getting-started">
+                <div class="faq-section-title">Content & Streaming</div>
+
+                <div class="faq-item" data-category="getting-started">
+                    <div class="faq-question">
+                        <span class="faq-question-text">How many hours do I need to stream?</span>
+                        <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            We recommend 20-24 hours per week for optimal growth. Consistency matters more than marathon sessions — four 5-hour days beats one 20-hour binge. You set your own schedule, but more time = more money.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="getting-started">
+                    <div class="faq-question">
+                        <span class="faq-question-text">What equipment do I need?</span>
+                        <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            The basics: MacBook (2022+ with M2), 40+ Mbps upload speed, ring light, HD webcam, quiet space, and a clean room. Check out our <a href="stream-essentials.html">Stream Essentials Guide</a> for the full breakdown.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Privacy & Safety -->
+            <div class="faq-section" data-category="privacy">
+                <div class="faq-section-title">Privacy & Safety</div>
+
+                <div class="faq-item" data-category="privacy">
+                    <div class="faq-question">
+                        <span class="faq-question-text">Will anyone I know find out?</span>
+                        <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            This is literally the number one fear — and we have spent 4+ years building the solution. We geoblock your entire campus, your hometown, anywhere you want. We monitor 200+ piracy sites around the clock and get takedowns done within hours. Zero leaks in 4+ years. Your roommate could be sitting right next to you and never know.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="privacy">
+                    <div class="faq-question">
+                        <span class="faq-question-text">How do I know this is not another scam agency?</span>
+                        <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            We understand the skepticism — there are a lot of bad actors in this space. Here's what sets us apart: we never ask for money upfront, we have a 4+ year track record, and we're happy to connect you with current models who can share their experience. We only succeed when you succeed.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- About Aruna -->
+            <div class="faq-section" data-category="getting-started">
+                <div class="faq-section-title">About Aruna Talent</div>
+
+                <div class="faq-item" data-category="getting-started">
+                    <div class="faq-question">
+                        <span class="faq-question-text">What does Aruna Talent do?</span>
+                        <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            We're a full-service agency that helps creators scale their earnings and build a strong personal brand. Besides that, you're not just a model — you're part of our family, which is why we also help our models invest their income in different businesses. We provide tailored strategies, content management, and fan engagement techniques to maximize your monthly income and take your profile to the next level.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="getting-started">
+                    <div class="faq-question">
+                        <span class="faq-question-text">What makes Aruna Talent different from other agencies?</span>
+                        <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            We treat our creators like partners, not products. Our 4+ year track record with zero leaks speaks for itself. We handle everything — marketing, chatting, content strategy, piracy protection — so you can focus on what you do best. Plus, we invest in your long-term success, including helping you diversify your income beyond content creation.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Referrals -->
+            <div class="faq-section" data-category="referrals">
+                <div class="faq-section-title">Referral Program</div>
+
+                <div class="faq-item" data-category="referrals">
+                    <div class="faq-question">
+                        <span class="faq-question-text">How does the referral program work?</span>
+                        <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Refer creators to Aruna and earn commission on their revenue:
+                            <ul>
+                                <li><strong>5% intro rate</strong> for each creator's first 3 months</li>
+                                <li><strong>2.5-3% lifetime</strong> after that, based on your tier:
+                                    <ul>
+                                        <li>Base (2.5%): &lt;$500K monthly revenue</li>
+                                        <li>Gold (2.75%): $500K - $2M monthly revenue</li>
+                                        <li>Diamond (3%): $2M+ monthly revenue</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <a href="referral.html">Apply to become a referrer</a> and we'll send you a unique link to share.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="referrals">
+                    <div class="faq-question">
+                        <span class="faq-question-text">Who can be a referrer?</span>
+                        <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Anyone can apply — current Aruna creators, appointment setters, affiliate marketers, or anyone with access to potential creators. <a href="referral.html">Apply here</a>. Once approved, you can access your <a href="referral-link.html">personalized referral links</a> anytime.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="referrals">
+                    <div class="faq-question">
+                        <span class="faq-question-text">When do I get paid for referrals?</span>
+                        <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Referral commissions are paid monthly. Once your referred creator starts earning, you'll see commissions in your next payout cycle.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="referrals">
+                    <div class="faq-question">
+                        <span class="faq-question-text">How do I view my referral earnings and get my links?</span>
+                        <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Once approved as a referrer, you'll receive a unique access code. Use it to:
+                            <ul>
+                                <li><strong><a href="my-referrals.html">View your dashboard</a></strong> — track all your referrals, monthly revenue, tier status, and total earnings</li>
+                                <li><strong><a href="referral-link.html">Get your referral links</a></strong> — generate personalized links to share with potential creators</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="no-results" id="noResults" style="display: none;">
+            <div class="no-results-icon">🔍</div>
+            <div class="no-results-text">No results found</div>
+            <div class="no-results-subtext">Try different keywords or browse by category</div>
+        </div>
+
+        <div class="contact-cta">
+            <h3>Still have questions?</h3>
+            <p>Can't find what you're looking for? Book a call with our team.</p>
+            <a href="index.html" class="contact-cta-btn">Book a Call</a>
+        </div>
+
+        <div class="footer">
+            <p><a href="dashboard.html">← Back to Dashboard</a></p>
+        </div>
+    </div>
+
+    <script>
+        // FAQ accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                const wasOpen = item.classList.contains('open');
+
+                // Close all items
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+
+                // Open clicked item if it wasn't open
+                if (!wasOpen) {
+                    item.classList.add('open');
+                }
+            });
+        });
+
+        // Category filtering
+        const categoryTabs = document.querySelectorAll('.category-tab');
+        const faqSections = document.querySelectorAll('.faq-section');
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        categoryTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const category = tab.dataset.category;
+
+                // Update active tab
+                categoryTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+
+                // Filter
+                if (category === 'all') {
+                    faqSections.forEach(section => section.style.display = 'block');
+                    faqItems.forEach(item => item.style.display = 'block');
+                } else {
+                    faqSections.forEach(section => {
+                        const hasMatchingItems = section.querySelectorAll(`.faq-item[data-category="${category}"]`).length > 0;
+                        section.style.display = hasMatchingItems ? 'block' : 'none';
+                    });
+                    faqItems.forEach(item => {
+                        item.style.display = item.dataset.category === category ? 'block' : 'none';
+                    });
+                }
+
+                // Clear search
+                document.getElementById('searchInput').value = '';
+                document.getElementById('noResults').style.display = 'none';
+                document.getElementById('faqContainer').style.display = 'block';
+            });
+        });
+
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        const noResults = document.getElementById('noResults');
+        const faqContainer = document.getElementById('faqContainer');
+
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+
+            if (!query) {
+                faqItems.forEach(item => item.style.display = 'block');
+                faqSections.forEach(section => section.style.display = 'block');
+                noResults.style.display = 'none';
+                faqContainer.style.display = 'block';
+                categoryTabs.forEach(t => t.classList.remove('active'));
+                categoryTabs[0].classList.add('active');
+                return;
+            }
+
+            let hasResults = false;
+
+            faqItems.forEach(item => {
+                const questionText = item.querySelector('.faq-question-text').textContent.toLowerCase();
+                const answerText = item.querySelector('.faq-answer-content').textContent.toLowerCase();
+
+                if (questionText.includes(query) || answerText.includes(query)) {
+                    item.style.display = 'block';
+                    hasResults = true;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            faqSections.forEach(section => {
+                const visibleItems = section.querySelectorAll('.faq-item[style="display: block"]');
+                section.style.display = visibleItems.length > 0 ? 'block' : 'none';
+            });
+
+            noResults.style.display = hasResults ? 'none' : 'block';
+            faqContainer.style.display = hasResults ? 'block' : 'none';
+
+            categoryTabs.forEach(t => t.classList.remove('active'));
+            categoryTabs[0].classList.add('active');
+        });
+    </script>
+</body>
+</html>

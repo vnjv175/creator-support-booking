@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7-Day Style Guide - Aruna Talent</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23F4B4C6'/><text x='50' y='68' font-family='Arial' font-size='45' font-weight='bold' fill='white' text-anchor='middle'>A</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #fdf2f8;
+            color: #1f2937;
+            line-height: 1.6;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+            padding: 80px 20px;
+            text-align: center;
+            color: white;
+        }
+        .hero-tag {
+            display: inline-block; padding: 6px 16px; background: rgba(244, 114, 182, 0.3);
+            border-radius: 20px; font-size: 12px; font-weight: 600; color: #f9a8d4;
+            text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px;
+        }
+        .hero h1 {
+            font-size: 48px; font-weight: 800; margin-bottom: 16px;
+            background: linear-gradient(135deg, #f9a8d4 0%, #ec4899 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .hero p { color: #d1d5db; font-size: 18px; max-width: 600px; margin: 0 auto; }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 60px 20px; }
+
+        .section { margin-bottom: 48px; }
+        .section-title {
+            font-size: 28px; font-weight: 800; margin-bottom: 16px; color: #1f2937;
+        }
+        .section-title span { color: #ec4899; }
+        .section-text { font-size: 16px; color: #4b5563; margin-bottom: 24px; }
+
+        .day-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .day-card {
+            background: white; border-radius: 20px; padding: 28px;
+            box-shadow: 0 4px 20px rgba(244, 180, 198, 0.2);
+            border-top: 4px solid #ec4899;
+        }
+        .day-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+        .day-number {
+            width: 44px; height: 44px; border-radius: 50%;
+            background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-weight: 700; font-size: 18px;
+        }
+        .day-title { font-size: 18px; font-weight: 700; }
+        .day-theme { font-size: 13px; color: #ec4899; font-weight: 600; }
+        .day-content { margin-top: 16px; }
+        .day-item {
+            display: flex; align-items: flex-start; gap: 10px;
+            margin-bottom: 10px; font-size: 14px; color: #4b5563;
+        }
+        .day-emoji { font-size: 16px; flex-shrink: 0; }
+
+        .color-section { margin-bottom: 48px; }
+        .color-palette {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px;
+        }
+        .color-card {
+            background: white; border-radius: 16px; padding: 20px; text-align: center;
+            box-shadow: 0 4px 20px rgba(244, 180, 198, 0.2);
+        }
+        .color-swatch {
+            width: 60px; height: 60px; border-radius: 50%; margin: 0 auto 12px;
+        }
+        .color-name { font-size: 14px; font-weight: 600; }
+        .color-desc { font-size: 12px; color: #6b7280; margin-top: 4px; }
+
+        .tips-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .tip-card {
+            background: white; border-radius: 16px; padding: 24px;
+            box-shadow: 0 4px 20px rgba(244, 180, 198, 0.2);
+        }
+        .tip-icon { font-size: 28px; margin-bottom: 12px; }
+        .tip-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+        .tip-text { font-size: 14px; color: #6b7280; }
+
+        .essentials-list {
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+            border-radius: 20px; padding: 32px; color: white;
+        }
+        .essentials-title { font-size: 20px; font-weight: 700; margin-bottom: 20px; }
+        .essentials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+        .essential-item {
+            display: flex; align-items: center; gap: 10px; padding: 12px 16px;
+            background: rgba(255,255,255,0.1); border-radius: 10px;
+            font-size: 14px;
+        }
+
+        .cta {
+            background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
+            border-radius: 20px; padding: 40px; text-align: center; color: white;
+        }
+        .cta h3 { font-size: 24px; font-weight: 700; margin-bottom: 12px; }
+        .cta p { font-size: 16px; opacity: 0.9; margin-bottom: 24px; }
+        .cta-btn {
+            display: inline-block; padding: 14px 32px; background: white; color: #be185d;
+            border-radius: 12px; font-weight: 600; text-decoration: none;
+            transition: transform 0.2s ease;
+        }
+        .cta-btn:hover { transform: translateY(-2px); }
+
+        .footer { text-align: center; padding: 40px 20px; color: #9ca3af; font-size: 13px; }
+        .footer a { color: #ec4899; text-decoration: none; }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 32px; }
+            .tips-grid { grid-template-columns: 1fr; }
+            .container { padding: 40px 16px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <span class="hero-tag">Essential Guide</span>
+        <h1>7-Day Style Guide</h1>
+        <p>A full week of camera-ready looks to keep your content fresh and engaging</p>
+    </div>
+
+    <div class="container">
+        <!-- Intro -->
+        <div class="section">
+            <h2 class="section-title">Why <span>Variety</span> Matters</h2>
+            <p class="section-text">
+                Viewers come back for consistency in personality but novelty in appearance.
+                Having a rotation of looks keeps your content fresh, gives viewers something new to
+                compliment, and makes your streams feel special each time.
+            </p>
+        </div>
+
+        <!-- The 7 Days -->
+        <div class="section">
+            <h2 class="section-title">The <span>7 Days</span></h2>
+            <div class="day-grid">
+                <!-- Day 1 -->
+                <div class="day-card">
+                    <div class="day-header">
+                        <div class="day-number">1</div>
+                        <div>
+                            <div class="day-title">Soft & Natural</div>
+                            <div class="day-theme">The Girl Next Door</div>
+                        </div>
+                    </div>
+                    <div class="day-content">
+                        <div class="day-item"><span class="day-emoji">👗</span> White or cream colored top</div>
+                        <div class="day-item"><span class="day-emoji">💄</span> Minimal makeup, glossy lips</div>
+                        <div class="day-item"><span class="day-emoji">💇</span> Hair down, natural waves</div>
+                        <div class="day-item"><span class="day-emoji">💅</span> Nude or light pink nails</div>
+                    </div>
+                </div>
+
+                <!-- Day 2 -->
+                <div class="day-card">
+                    <div class="day-header">
+                        <div class="day-number">2</div>
+                        <div>
+                            <div class="day-title">Cozy & Cute</div>
+                            <div class="day-theme">Lazy Sunday Vibes</div>
+                        </div>
+                    </div>
+                    <div class="day-content">
+                        <div class="day-item"><span class="day-emoji">👗</span> Oversized sweater or hoodie</div>
+                        <div class="day-item"><span class="day-emoji">💄</span> Fresh-faced, dewy skin</div>
+                        <div class="day-item"><span class="day-emoji">💇</span> Messy bun or ponytail</div>
+                        <div class="day-item"><span class="day-emoji">🧦</span> Cute socks or bare legs</div>
+                    </div>
+                </div>
+
+                <!-- Day 3 -->
+                <div class="day-card">
+                    <div class="day-header">
+                        <div class="day-number">3</div>
+                        <div>
+                            <div class="day-title">Sporty & Fit</div>
+                            <div class="day-theme">Post-Workout Glow</div>
+                        </div>
+                    </div>
+                    <div class="day-content">
+                        <div class="day-item"><span class="day-emoji">👗</span> Sports bra or tank top</div>
+                        <div class="day-item"><span class="day-emoji">💄</span> No makeup or very light</div>
+                        <div class="day-item"><span class="day-emoji">💇</span> High ponytail or braids</div>
+                        <div class="day-item"><span class="day-emoji">💪</span> Headband optional</div>
+                    </div>
+                </div>
+
+                <!-- Day 4 -->
+                <div class="day-card">
+                    <div class="day-header">
+                        <div class="day-number">4</div>
+                        <div>
+                            <div class="day-title">Romantic & Feminine</div>
+                            <div class="day-theme">Date Night Ready</div>
+                        </div>
+                    </div>
+                    <div class="day-content">
+                        <div class="day-item"><span class="day-emoji">👗</span> Pink or floral dress/top</div>
+                        <div class="day-item"><span class="day-emoji">💄</span> Soft pink eyeshadow, pink lips</div>
+                        <div class="day-item"><span class="day-emoji">💇</span> Curled or styled hair</div>
+                        <div class="day-item"><span class="day-emoji">💎</span> Delicate jewelry</div>
+                    </div>
+                </div>
+
+                <!-- Day 5 -->
+                <div class="day-card">
+                    <div class="day-header">
+                        <div class="day-number">5</div>
+                        <div>
+                            <div class="day-title">Sultry & Dark</div>
+                            <div class="day-theme">Mysterious Energy</div>
+                        </div>
+                    </div>
+                    <div class="day-content">
+                        <div class="day-item"><span class="day-emoji">👗</span> Black lace or satin</div>
+                        <div class="day-item"><span class="day-emoji">💄</span> Smoky eyes, nude or red lips</div>
+                        <div class="day-item"><span class="day-emoji">💇</span> Sleek straight or tousled waves</div>
+                        <div class="day-item"><span class="day-emoji">💅</span> Dark or red nails</div>
+                    </div>
+                </div>
+
+                <!-- Day 6 -->
+                <div class="day-card">
+                    <div class="day-header">
+                        <div class="day-number">6</div>
+                        <div>
+                            <div class="day-title">Fun & Playful</div>
+                            <div class="day-theme">Good Vibes Only</div>
+                        </div>
+                    </div>
+                    <div class="day-content">
+                        <div class="day-item"><span class="day-emoji">👗</span> Colorful or printed outfit</div>
+                        <div class="day-item"><span class="day-emoji">💄</span> Fun lip color, winged liner</div>
+                        <div class="day-item"><span class="day-emoji">💇</span> Pigtails, space buns, or clips</div>
+                        <div class="day-item"><span class="day-emoji">✨</span> Glitter or fun accessories</div>
+                    </div>
+                </div>
+
+                <!-- Day 7 -->
+                <div class="day-card">
+                    <div class="day-header">
+                        <div class="day-number">7</div>
+                        <div>
+                            <div class="day-title">Classic & Elegant</div>
+                            <div class="day-theme">Timeless Beauty</div>
+                        </div>
+                    </div>
+                    <div class="day-content">
+                        <div class="day-item"><span class="day-emoji">👗</span> Simple black or white piece</div>
+                        <div class="day-item"><span class="day-emoji">💄</span> Classic red lip, subtle eyes</div>
+                        <div class="day-item"><span class="day-emoji">💇</span> Blown out or old Hollywood waves</div>
+                        <div class="day-item"><span class="day-emoji">💎</span> Pearl or gold jewelry</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Color Palette -->
+        <div class="color-section">
+            <h2 class="section-title">Best <span>Colors</span> On Camera</h2>
+            <p class="section-text">
+                Some colors photograph better than others. Here are the most flattering options:
+            </p>
+            <div class="color-palette">
+                <div class="color-card">
+                    <div class="color-swatch" style="background: linear-gradient(135deg, #fff 0%, #fafafa 100%); border: 1px solid #e5e7eb;"></div>
+                    <div class="color-name">White</div>
+                    <div class="color-desc">Fresh, clean, angelic</div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background: linear-gradient(135deg, #1f2937 0%, #374151 100%);"></div>
+                    <div class="color-name">Black</div>
+                    <div class="color-desc">Slimming, elegant</div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);"></div>
+                    <div class="color-name">Soft Pink</div>
+                    <div class="color-desc">Feminine, warm</div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);"></div>
+                    <div class="color-name">Red</div>
+                    <div class="color-desc">Bold, attention-grabbing</div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);"></div>
+                    <div class="color-name">Light Blue</div>
+                    <div class="color-desc">Calming, trustworthy</div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background: linear-gradient(135deg, #f5f5dc 0%, #ede9d5 100%); border: 1px solid #e5e7eb;"></div>
+                    <div class="color-name">Cream/Beige</div>
+                    <div class="color-desc">Soft, approachable</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tips -->
+        <div class="section">
+            <h2 class="section-title">Pro <span>Tips</span></h2>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <div class="tip-icon">🪞</div>
+                    <div class="tip-title">Always Preview</div>
+                    <div class="tip-text">Check your outfit on camera before going live. Some patterns strobe, some colors wash out.</div>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">👙</div>
+                    <div class="tip-title">Lingerie Rotation</div>
+                    <div class="tip-text">Have 5-7 sets in different colors and styles. Never wear the same one twice in a week.</div>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">💅</div>
+                    <div class="tip-title">Nails Matter</div>
+                    <div class="tip-text">Your hands are on camera constantly. Keep nails clean and polished, even if short.</div>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">✨</div>
+                    <div class="tip-title">Highlighter is Key</div>
+                    <div class="tip-text">A little highlighter on cheekbones, nose bridge, and cupid's bow catches the light beautifully.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Essentials -->
+        <div class="section">
+            <div class="essentials-list">
+                <div class="essentials-title">Wardrobe Essentials Checklist</div>
+                <div class="essentials-grid">
+                    <div class="essential-item"><span>✓</span> 3-5 basic crop tops (white, black, pink)</div>
+                    <div class="essential-item"><span>✓</span> 2-3 oversized sweaters/hoodies</div>
+                    <div class="essential-item"><span>✓</span> 5-7 lingerie sets (varied colors)</div>
+                    <div class="essential-item"><span>✓</span> 2-3 cute dresses or skirts</div>
+                    <div class="essential-item"><span>✓</span> 1-2 sports bras/workout sets</div>
+                    <div class="essential-item"><span>✓</span> 2-3 pairs of cute shorts</div>
+                    <div class="essential-item"><span>✓</span> 1-2 silk/satin robes or slips</div>
+                    <div class="essential-item"><span>✓</span> Hair clips, scrunchies, headbands</div>
+                    <div class="essential-item"><span>✓</span> Delicate jewelry (gold & silver)</div>
+                    <div class="essential-item"><span>✓</span> 2-3 pairs of cute socks/stockings</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta">
+            <h3>Need styling advice?</h3>
+            <p>Book a call with your manager to discuss what works best for your look</p>
+            <a href="index.html" class="cta-btn">Book a Call</a>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p><a href="resources.html">Back to Resources</a> · <a href="dashboard.html">Dashboard</a></p>
+    </div>
+</body>
+</html>

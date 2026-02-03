@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stream Essentials - Aruna Talent</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23F4B4C6'/><text x='50' y='68' font-family='Arial' font-size='45' font-weight='bold' fill='white' text-anchor='middle'>A</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #fdf2f8;
+            color: #1f2937;
+            line-height: 1.6;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+            padding: 80px 20px;
+            text-align: center;
+            color: white;
+        }
+        .hero-tag {
+            display: inline-block; padding: 6px 16px; background: rgba(244, 114, 182, 0.3);
+            border-radius: 20px; font-size: 12px; font-weight: 600; color: #f9a8d4;
+            text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px;
+        }
+        .hero h1 {
+            font-size: 48px; font-weight: 800; margin-bottom: 16px;
+            background: linear-gradient(135deg, #f9a8d4 0%, #ec4899 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .hero p { color: #d1d5db; font-size: 18px; max-width: 600px; margin: 0 auto; }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 60px 20px; }
+
+        .section { margin-bottom: 48px; }
+        .section-title {
+            font-size: 28px; font-weight: 800; margin-bottom: 16px; color: #1f2937;
+        }
+        .section-title span { color: #ec4899; }
+
+        .card {
+            background: white; border-radius: 20px; padding: 32px;
+            box-shadow: 0 4px 20px rgba(244, 180, 198, 0.2); margin-bottom: 24px;
+        }
+        .card-dark {
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%); color: white;
+        }
+        .card-dark h3 { color: white; }
+        .card h3 { font-size: 20px; font-weight: 700; margin-bottom: 16px; color: #1f2937; }
+
+        .requirement-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
+        }
+        .requirement {
+            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+            border-radius: 16px; padding: 24px; text-align: center;
+        }
+        .requirement-icon { font-size: 32px; margin-bottom: 12px; }
+        .requirement-title { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+        .requirement-detail { font-size: 13px; color: #6b7280; }
+
+        .checklist { display: flex; flex-direction: column; gap: 12px; }
+        .check-item {
+            display: flex; align-items: flex-start; gap: 14px; padding: 16px;
+            background: rgba(255,255,255,0.1); border-radius: 12px;
+        }
+        .check-icon {
+            width: 24px; height: 24px; background: #10b981; border-radius: 6px;
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+            color: white; font-size: 14px;
+        }
+        .check-text { font-size: 15px; color: #d1d5db; }
+
+        .tip-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 24px; }
+        .tip {
+            background: white; border-radius: 12px; padding: 20px;
+            border-left: 4px solid #ec4899;
+        }
+        .tip-title { font-size: 14px; font-weight: 700; color: #be185d; margin-bottom: 8px; }
+        .tip-text { font-size: 14px; color: #4b5563; }
+
+        .do-dont-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        .do-box, .dont-box {
+            background: white; border-radius: 16px; padding: 24px;
+        }
+        .do-box { border-top: 4px solid #10b981; }
+        .dont-box { border-top: 4px solid #ef4444; }
+        .do-title, .dont-title { font-size: 16px; font-weight: 700; margin-bottom: 16px; }
+        .do-title { color: #10b981; }
+        .dont-title { color: #ef4444; }
+        .do-list, .dont-list { list-style: none; }
+        .do-list li, .dont-list li {
+            display: flex; align-items: flex-start; gap: 10px;
+            margin-bottom: 10px; font-size: 14px; color: #4b5563;
+        }
+
+        .cta {
+            background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
+            border-radius: 20px; padding: 40px; text-align: center; color: white;
+        }
+        .cta h3 { font-size: 24px; font-weight: 700; margin-bottom: 12px; }
+        .cta p { font-size: 16px; opacity: 0.9; margin-bottom: 24px; }
+        .cta-btn {
+            display: inline-block; padding: 14px 32px; background: white; color: #be185d;
+            border-radius: 12px; font-weight: 600; text-decoration: none;
+            transition: transform 0.2s ease;
+        }
+        .cta-btn:hover { transform: translateY(-2px); }
+
+        .footer { text-align: center; padding: 40px 20px; color: #9ca3af; font-size: 13px; }
+        .footer a { color: #ec4899; text-decoration: none; }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 32px; }
+            .requirement-grid { grid-template-columns: 1fr; }
+            .do-dont-grid { grid-template-columns: 1fr; }
+            .tip-grid { grid-template-columns: 1fr; }
+            .container { padding: 40px 16px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <span class="hero-tag">Essential Guide</span>
+        <h1>Stream Essentials</h1>
+        <p>Everything you need to create a professional, feminine streaming environment</p>
+    </div>
+
+    <div class="container">
+        <!-- Equipment Requirements -->
+        <div class="section">
+            <h2 class="section-title">Minimum <span>Requirements</span></h2>
+            <div class="requirement-grid">
+                <div class="requirement">
+                    <div class="requirement-icon">💻</div>
+                    <div class="requirement-title">MacBook (2022+)</div>
+                    <div class="requirement-detail">M2 chip or newer recommended</div>
+                </div>
+                <div class="requirement">
+                    <div class="requirement-icon">📶</div>
+                    <div class="requirement-title">40+ Mbps Upload</div>
+                    <div class="requirement-detail">Test at speedtest.net</div>
+                </div>
+                <div class="requirement">
+                    <div class="requirement-icon">💡</div>
+                    <div class="requirement-title">Ring Light</div>
+                    <div class="requirement-detail">18" with adjustable brightness</div>
+                </div>
+                <div class="requirement">
+                    <div class="requirement-icon">🎥</div>
+                    <div class="requirement-title">HD Webcam</div>
+                    <div class="requirement-detail">1080p minimum, Logitech C920+</div>
+                </div>
+                <div class="requirement">
+                    <div class="requirement-icon">🔇</div>
+                    <div class="requirement-title">Quiet Space</div>
+                    <div class="requirement-detail">No background noise or interruptions</div>
+                </div>
+                <div class="requirement">
+                    <div class="requirement-icon">🛏️</div>
+                    <div class="requirement-title">Clean Background</div>
+                    <div class="requirement-detail">Tidy room, neutral or aesthetic setup</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lighting Setup -->
+        <div class="section">
+            <h2 class="section-title">Lighting <span>Setup</span></h2>
+            <div class="card card-dark">
+                <h3>The 3-Point Lighting Rule</h3>
+                <div class="checklist">
+                    <div class="check-item">
+                        <div class="check-icon">1</div>
+                        <div class="check-text"><strong>Key Light (Ring Light):</strong> Position directly in front of your face, at eye level. This is your main light source.</div>
+                    </div>
+                    <div class="check-item">
+                        <div class="check-icon">2</div>
+                        <div class="check-text"><strong>Fill Light:</strong> A secondary lamp on the opposite side to reduce shadows. Can be softer than your key light.</div>
+                    </div>
+                    <div class="check-item">
+                        <div class="check-icon">3</div>
+                        <div class="check-text"><strong>Back Light (Optional):</strong> LED strip or lamp behind you to create depth and separate you from the background.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tip-grid">
+                <div class="tip">
+                    <div class="tip-title">Warm vs Cool Light</div>
+                    <div class="tip-text">Warm light (3000K) is softer and more flattering for skin. Avoid harsh daylight bulbs.</div>
+                </div>
+                <div class="tip">
+                    <div class="tip-title">Natural Light</div>
+                    <div class="tip-text">Great during the day but inconsistent. Always have your ring light as backup.</div>
+                </div>
+                <div class="tip">
+                    <div class="tip-title">Avoid Overhead</div>
+                    <div class="tip-text">Ceiling lights create unflattering shadows under your eyes and chin. Turn them off.</div>
+                </div>
+                <div class="tip">
+                    <div class="tip-title">Test Before Streaming</div>
+                    <div class="tip-text">Always check your lighting setup in a preview before going live.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Camera Positioning -->
+        <div class="section">
+            <h2 class="section-title">Camera <span>Angles</span></h2>
+            <div class="card">
+                <h3>The Most Flattering Setup</h3>
+                <p style="color: #6b7280; margin-bottom: 20px;">Your camera angle can make or break your stream. Here's what works:</p>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="display: flex; gap: 12px; margin-bottom: 16px; align-items: flex-start;">
+                        <span style="color: #ec4899; font-weight: 700;">1.</span>
+                        <div><strong>Eye Level or Slightly Above:</strong> Position your webcam at eye level or a few inches higher. This is universally flattering.</div>
+                    </li>
+                    <li style="display: flex; gap: 12px; margin-bottom: 16px; align-items: flex-start;">
+                        <span style="color: #ec4899; font-weight: 700;">2.</span>
+                        <div><strong>Arms Length Distance:</strong> You should fill most of the frame but have some breathing room. Not too close, not too far.</div>
+                    </li>
+                    <li style="display: flex; gap: 12px; margin-bottom: 16px; align-items: flex-start;">
+                        <span style="color: #ec4899; font-weight: 700;">3.</span>
+                        <div><strong>Look at the Camera:</strong> Make eye contact with the lens, not the screen. Put a small sticker next to your webcam as a reminder.</div>
+                    </li>
+                    <li style="display: flex; gap: 12px; align-items: flex-start;">
+                        <span style="color: #ec4899; font-weight: 700;">4.</span>
+                        <div><strong>Slight Tilt:</strong> Tilting your head slightly looks more natural and approachable than facing straight-on.</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Room Setup -->
+        <div class="section">
+            <h2 class="section-title">Room <span>Setup</span></h2>
+            <div class="do-dont-grid">
+                <div class="do-box">
+                    <div class="do-title">DO</div>
+                    <ul class="do-list">
+                        <li><span style="color: #10b981;">✓</span> Make your bed with clean, aesthetic bedding</li>
+                        <li><span style="color: #10b981;">✓</span> Add fairy lights or LED strips for ambiance</li>
+                        <li><span style="color: #10b981;">✓</span> Keep plants or minimal decor visible</li>
+                        <li><span style="color: #10b981;">✓</span> Use a neutral or soft-colored backdrop</li>
+                        <li><span style="color: #10b981;">✓</span> Hide cables and clutter</li>
+                        <li><span style="color: #10b981;">✓</span> Lock your door</li>
+                    </ul>
+                </div>
+                <div class="dont-box">
+                    <div class="dont-title">DON'T</div>
+                    <ul class="dont-list">
+                        <li><span style="color: #ef4444;">✕</span> Show dirty laundry or mess</li>
+                        <li><span style="color: #ef4444;">✕</span> Have identifiable items (mail, ID, photos)</li>
+                        <li><span style="color: #ef4444;">✕</span> Stream near windows without curtains</li>
+                        <li><span style="color: #ef4444;">✕</span> Have loud AC/fan directly near mic</li>
+                        <li><span style="color: #ef4444;">✕</span> Use cluttered or busy backgrounds</li>
+                        <li><span style="color: #ef4444;">✕</span> Forget to silence your phone</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Audio -->
+        <div class="section">
+            <h2 class="section-title">Audio <span>Quality</span></h2>
+            <div class="card">
+                <h3>Sound Matters More Than You Think</h3>
+                <p style="color: #6b7280; margin-bottom: 20px;">Viewers will tolerate mediocre video but terrible audio is an instant turn-off.</p>
+                <div class="checklist" style="background: transparent;">
+                    <div class="check-item" style="background: #f9fafb;">
+                        <div class="check-icon">✓</div>
+                        <div class="check-text" style="color: #374151;"><strong>Use AirPods or a Lapel Mic:</strong> Built-in laptop mics pick up room echo. External mics sound much better.</div>
+                    </div>
+                    <div class="check-item" style="background: #f9fafb;">
+                        <div class="check-icon">✓</div>
+                        <div class="check-text" style="color: #374151;"><strong>Eliminate Echo:</strong> Soft furnishings (rugs, curtains, pillows) absorb sound and reduce echo.</div>
+                    </div>
+                    <div class="check-item" style="background: #f9fafb;">
+                        <div class="check-icon">✓</div>
+                        <div class="check-text" style="color: #374151;"><strong>Background Music:</strong> Play soft lo-fi or ambient music at low volume. It fills silence and sets the mood.</div>
+                    </div>
+                    <div class="check-item" style="background: #f9fafb;">
+                        <div class="check-icon">✓</div>
+                        <div class="check-text" style="color: #374151;"><strong>Test Everything:</strong> Do a test recording before every stream to check audio levels.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pre-Stream Checklist -->
+        <div class="section">
+            <div class="card card-dark">
+                <h3>Pre-Stream Checklist</h3>
+                <div class="checklist">
+                    <div class="check-item">
+                        <div class="check-icon">✓</div>
+                        <div class="check-text">Ring light on and positioned correctly</div>
+                    </div>
+                    <div class="check-item">
+                        <div class="check-icon">✓</div>
+                        <div class="check-text">Camera at eye level, frame looks good</div>
+                    </div>
+                    <div class="check-item">
+                        <div class="check-icon">✓</div>
+                        <div class="check-text">Room is clean, no identifiable items visible</div>
+                    </div>
+                    <div class="check-item">
+                        <div class="check-icon">✓</div>
+                        <div class="check-text">Audio tested, external mic connected</div>
+                    </div>
+                    <div class="check-item">
+                        <div class="check-icon">✓</div>
+                        <div class="check-text">Phone on silent, notifications off</div>
+                    </div>
+                    <div class="check-item">
+                        <div class="check-icon">✓</div>
+                        <div class="check-text">Door locked, no interruptions expected</div>
+                    </div>
+                    <div class="check-item">
+                        <div class="check-icon">✓</div>
+                        <div class="check-text">Background music ready at low volume</div>
+                    </div>
+                    <div class="check-item">
+                        <div class="check-icon">✓</div>
+                        <div class="check-text">Water bottle nearby</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta">
+            <h3>Ready to set up your space?</h3>
+            <p>Book a call with your manager to get personalized setup advice</p>
+            <a href="index.html" class="cta-btn">Book a Call</a>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p><a href="resources.html">Back to Resources</a> · <a href="dashboard.html">Dashboard</a></p>
+    </div>
+</body>
+</html>
