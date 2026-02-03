@@ -672,7 +672,7 @@
 
                 <div class="form-group">
                     <label for="background">What's your background? *</label>
-                    <select id="background" name="background" required>
+                    <select id="background" name="background" required onchange="toggleOtherField('background', 'backgroundOther')">
                         <option value="" disabled selected>Select an option</option>
                         <option value="creator">Current Aruna Creator</option>
                         <option value="other_creator">Creator (other agency/independent)</option>
@@ -681,11 +681,12 @@
                         <option value="recruiter">Recruiter / Talent Scout</option>
                         <option value="other">Other</option>
                     </select>
+                    <input type="text" id="backgroundOther" name="background_other" placeholder="Please specify..." style="display: none; margin-top: 10px;">
                 </div>
 
                 <div class="form-group">
                     <label for="howHeard">How did you hear about our referral program?</label>
-                    <select id="howHeard" name="how_heard">
+                    <select id="howHeard" name="how_heard" onchange="toggleOtherField('howHeard', 'howHeardOther')">
                         <option value="" disabled selected>Select an option</option>
                         <option value="current_creator">From a current creator</option>
                         <option value="social_media">Social media</option>
@@ -693,6 +694,7 @@
                         <option value="search">Google / Search</option>
                         <option value="other">Other</option>
                     </select>
+                    <input type="text" id="howHeardOther" name="how_heard_other" placeholder="Please specify..." style="display: none; margin-top: 10px;">
                 </div>
 
                 <div class="form-group">
@@ -723,6 +725,19 @@
     <script>
         const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwLpcZoh8zDB8tEZerxL-r9ydzE3JWsDYgvJ3-UFSpHx4jVlILbp5UX2lci9lEFSQg/exec';
 
+        function toggleOtherField(selectId, inputId) {
+            var select = document.getElementById(selectId);
+            var input = document.getElementById(inputId);
+            if (select.value === 'other') {
+                input.style.display = 'block';
+                input.required = true;
+            } else {
+                input.style.display = 'none';
+                input.required = false;
+                input.value = '';
+            }
+        }
+
         document.getElementById('referrerForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             const btn = this.querySelector('.submit-btn');
@@ -731,14 +746,23 @@
 
             const params = new URLSearchParams(window.location.search);
 
+            var backgroundVal = document.getElementById('background').value;
+            var howHeardVal = document.getElementById('howHeard').value;
+            if (backgroundVal === 'other') {
+                backgroundVal = 'Other: ' + document.getElementById('backgroundOther').value;
+            }
+            if (howHeardVal === 'other') {
+                howHeardVal = 'Other: ' + document.getElementById('howHeardOther').value;
+            }
+
             const data = {
                 formType: 'referrer_application',
                 fullName: document.getElementById('fullName').value,
                 email: document.getElementById('email').value,
                 phone: document.getElementById('phone').value,
                 instagram: document.getElementById('instagram').value,
-                background: document.getElementById('background').value,
-                howHeard: document.getElementById('howHeard').value,
+                background: backgroundVal,
+                howHeard: howHeardVal,
                 network: document.getElementById('network').value,
                 refCode: params.get('ref') || ''
             };
