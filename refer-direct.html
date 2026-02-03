@@ -305,19 +305,51 @@
     </div>
 
     <script>
-        document.getElementById('directReferralForm').addEventListener('submit', function(e) {
+        const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwLpcZoh8zDB8tEZerxL-r9ydzE3JWsDYgvJ3-UFSpHx4jVlILbp5UX2lci9lEFSQg/exec';
+
+        // Pre-fill referrer code from URL
+        const params = new URLSearchParams(window.location.search);
+        const refCode = params.get('ref');
+        if (refCode) {
+            const nameField = document.getElementById('referrerName');
+            if (nameField) nameField.placeholder = 'Your name (Code: ' + refCode + ')';
+        }
+
+        document.getElementById('directReferralForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             const btn = this.querySelector('.submit-btn');
             btn.textContent = 'Submitting...';
             btn.disabled = true;
 
-            // Simulate submission - replace with actual form handling
-            setTimeout(() => {
+            const data = {
+                formType: 'direct_referral',
+                referrerName: document.getElementById('referrerName').value,
+                referrerEmail: document.getElementById('referrerEmail').value,
+                referralName: document.getElementById('referralName').value,
+                referralPhone: document.getElementById('referralPhone').value,
+                referralEmail: document.getElementById('referralEmail').value,
+                referralInstagram: document.getElementById('referralInstagram').value,
+                relationship: document.getElementById('relationship').value,
+                notes: document.getElementById('notes').value
+            };
+
+            try {
+                await fetch(FORM_ENDPOINT, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
                 alert('Thanks! We\'ll reach out to your referral within 24-48 hours and keep you posted.');
                 this.reset();
-                btn.textContent = 'Submit Referral';
-                btn.disabled = false;
-            }, 1000);
+            } catch (error) {
+                alert('Something went wrong. Please try again or email us directly.');
+                console.error(error);
+            }
+
+            btn.textContent = 'Submit Referral';
+            btn.disabled = false;
         });
     </script>
 </body>
