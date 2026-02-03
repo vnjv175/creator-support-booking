@@ -1,11 +1,11 @@
 {
   "rewrites": [
     {
-      "source": "/",
-      "destination": "/referral.html"
+      "source": "/referral",
+      "destination": "/index.html"
     },
     {
-      "source": "/book",
+      "source": "/referral.html",
       "destination": "/index.html"
     }
   ]

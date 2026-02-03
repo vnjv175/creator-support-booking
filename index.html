@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creator Support - Aruna Talent</title>
+    <title>Become a Referrer - Aruna Talent</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23F4B4C6'/><text x='50' y='68' font-family='Arial' font-size='45' font-weight='bold' fill='white' text-anchor='middle'>A</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,255 +19,722 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 50%, #fbcfe8 100%);
             min-height: 100vh;
-            padding: 48px 20px;
+            color: #1f2937;
         }
 
-        .container {
-            max-width: 580px;
+        /* Hero Section */
+        .hero {
+            padding: 60px 20px 40px;
+            text-align: center;
+            max-width: 800px;
             margin: 0 auto;
         }
 
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
         .logo {
-            width: 200px;
-            margin-bottom: 20px;
+            width: 160px;
+            margin-bottom: 32px;
         }
 
-        .header h1 {
-            font-size: 28px;
+        .hero h1 {
+            font-size: 42px;
             font-weight: 700;
-            color: #1f2937;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
         }
 
-        .header p {
+        .hero p {
             color: #6b7280;
-            font-size: 15px;
+            font-size: 18px;
             line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        .card-list {
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(244, 180, 198, 0.25);
+        /* VSL Section */
+        .vsl-section {
+            max-width: 800px;
+            margin: 0 auto 48px;
+            padding: 0 20px;
+        }
+
+        .vsl-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+            border-radius: 20px;
             overflow: hidden;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
         }
 
-        .card {
-            padding: 20px 24px;
-            border-bottom: 1px solid #fce7f3;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            text-decoration: none;
+        .vsl-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 16px;
-            color: inherit;
+            justify-content: center;
+            color: white;
         }
 
-        .card:last-child {
-            border-bottom: none;
-        }
-
-        .card:hover {
-            background-color: #fdf2f8;
-            transform: translateX(4px);
-        }
-
-        .avatar {
-            width: 56px;
-            height: 56px;
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
             border-radius: 50%;
-            background: linear-gradient(135deg, #f9a8d4 0%, #f472b6 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-shrink: 0;
-            font-size: 28px;
+            margin-bottom: 16px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .card-content {
-            flex: 1;
-            min-width: 0;
+        .play-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(236, 72, 153, 0.5);
         }
 
-        .card-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: #1f2937;
-            margin-bottom: 2px;
+        .play-button svg {
+            width: 32px;
+            height: 32px;
+            margin-left: 4px;
         }
 
-        .card-role {
-            font-size: 13px;
-            color: #ec4899;
-            font-weight: 600;
-            margin-bottom: 6px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .card-description {
+        .vsl-placeholder p {
+            color: #9ca3af;
             font-size: 14px;
-            color: #6b7280;
-            line-height: 1.4;
         }
 
-        .card-arrow {
-            color: #d1d5db;
-            transition: color 0.2s ease;
+        /* Content Section */
+        .content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
         }
 
-        .card:hover .card-arrow {
-            color: #ec4899;
-        }
-
-        .tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            padding: 6px 12px;
-            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+        /* Commission Card */
+        .commission-card {
+            background: white;
             border-radius: 20px;
-            font-size: 12px;
-            color: #be185d;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 20px rgba(244, 180, 198, 0.25);
+            text-align: center;
+        }
+
+        .commission-card h2 {
+            font-size: 14px;
             font-weight: 600;
+            color: #9ca3af;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .commission-tiers {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+
+        .tier {
+            flex: 1;
+            min-width: 160px;
+            max-width: 200px;
+            padding: 32px 24px;
+            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+            border-radius: 16px;
+        }
+
+        .tier-percent {
+            font-size: 56px;
+            font-weight: 700;
+            color: #ec4899;
+            line-height: 1;
+        }
+
+        .tier-label {
+            font-size: 16px;
+            color: #374151;
+            margin-top: 8px;
+            font-weight: 600;
+        }
+
+        .tier-sublabel {
+            font-size: 13px;
+            color: #9ca3af;
+            margin-top: 4px;
+        }
+
+        .commission-note {
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        /* Two Column Layout */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: 0 4px 20px rgba(244, 180, 198, 0.25);
+        }
+
+        .info-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1f2937;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-card h3 span {
+            font-size: 24px;
+        }
+
+        .info-list {
+            list-style: none;
+        }
+
+        .info-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: #4b5563;
+            line-height: 1.5;
+        }
+
+        .info-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .check-icon {
+            color: #10b981;
+            font-size: 16px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* Steps */
+        .steps-card {
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+            color: white;
+        }
+
+        .steps-card h3 {
+            color: white;
+        }
+
+        .step {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .step:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-number {
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(135deg, #f9a8d4 0%, #f472b6 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 13px;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .step-content p {
+            font-size: 13px;
+            color: #9ca3af;
+            line-height: 1.5;
+        }
+
+        /* Form Section */
+        .form-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(244, 180, 198, 0.25);
+        }
+
+        .form-section h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .form-subtitle {
+            text-align: center;
+            color: #6b7280;
+            font-size: 15px;
+            margin-bottom: 32px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 15px;
+            font-family: inherit;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            background: white;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #f472b6;
+            box-shadow: 0 0 0 4px rgba(244, 114, 182, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-group select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            background-size: 20px;
+            padding-right: 48px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px 24px;
+            background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
             margin-top: 8px;
         }
 
-        .tag svg {
-            width: 14px;
-            height: 14px;
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(236, 72, 153, 0.4);
         }
 
-        @media (max-width: 480px) {
-            body {
-                padding: 24px 16px;
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .form-note {
+            text-align: center;
+            color: #9ca3af;
+            font-size: 13px;
+            margin-top: 16px;
+        }
+
+        /* Alternative Link */
+        .alt-link {
+            text-align: center;
+            margin-top: 32px;
+            padding-top: 32px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .alt-link p {
+            color: #6b7280;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .alt-link a {
+            color: #ec4899;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .alt-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #9ca3af;
+            font-size: 13px;
+        }
+
+        .footer a {
+            color: #ec4899;
+            text-decoration: none;
+        }
+
+        /* Tier cards */
+        .tier-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+        .tier-card-item {
+            background: linear-gradient(180deg, #f9fafb 0%, #ffffff 100%);
+            border: 2px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+        }
+        .tier-gold-card {
+            background: linear-gradient(180deg, #fffbeb 0%, #ffffff 100%);
+            border-color: #f59e0b;
+        }
+        .tier-diamond-card {
+            background: linear-gradient(180deg, #fdf2f8 0%, #ffffff 100%);
+            border-color: #ec4899;
+        }
+
+        /* Commission header */
+        .commission-header-rates {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+        .commission-rate-box {
+            text-align: center;
+        }
+        .commission-rate {
+            font-size: 64px;
+            font-weight: 800;
+            line-height: 1;
+            background: linear-gradient(135deg, #f9a8d4 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .commission-arrow {
+            font-size: 24px;
+            color: #4b5563;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
             }
 
-            .card {
-                padding: 16px;
+            .hero p {
+                font-size: 16px;
             }
 
-            .avatar {
-                width: 48px;
-                height: 48px;
-                font-size: 24px;
+            .two-col {
+                grid-template-columns: 1fr;
             }
 
-            .header h1 {
-                font-size: 24px;
+            .commission-tiers {
+                flex-direction: column;
+                align-items: center;
             }
 
-            .logo {
-                width: 160px;
+            .tier {
+                min-width: 100%;
+                max-width: 100%;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .form-section {
+                padding: 24px;
+            }
+
+            .commission-card {
+                padding: 24px;
+            }
+
+            .commission-header-rates {
+                flex-direction: column;
+                gap: 16px;
+            }
+            .commission-rate {
+                font-size: 48px;
+            }
+            .commission-arrow {
+                transform: rotate(90deg);
+            }
+            .tier-cards-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <img src="logo.png" alt="Aruna Talent" class="logo">
-            <h1>Creator Support</h1>
-            <p>Book a 15-minute call with our management team.<br>Choose the team member based on what you need help with.</p>
-        </div>
+    <!-- Hero -->
+    <div class="hero">
+        <img src="logo.png" alt="Aruna Talent" class="logo">
+        <h1>Earn Money Referring Creators</h1>
+        <p>Know someone who'd be perfect for our roster? Join our referral program and earn commissions on every creator you bring in.</p>
+    </div>
 
-        <div class="card-list">
-            <a href="https://cal.com/arunatalent/mitch-15" target="_blank" class="card">
-                <div class="avatar">🦁</div>
-                <div class="card-content">
-                    <div class="card-title">Mitch</div>
-                    <div class="card-role">Co-founder</div>
-                    <div class="card-description">Profile optimization, growth strategy, and creator experience.</div>
-                    <span class="tag">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        15 min
-                    </span>
+    <!-- VSL -->
+    <div class="vsl-section">
+        <div class="vsl-container">
+            <div class="vsl-placeholder">
+                <div class="play-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
                 </div>
-                <svg class="card-arrow" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                </svg>
-            </a>
-
-            <a href="https://cal.com/arunatalent/sangev-15" target="_blank" class="card">
-                <div class="avatar">🦊</div>
-                <div class="card-content">
-                    <div class="card-title">Sangev</div>
-                    <div class="card-role">Co-founder</div>
-                    <div class="card-description">Back-end support, platform issues, and technical optimization.</div>
-                    <span class="tag">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        15 min
-                    </span>
-                </div>
-                <svg class="card-arrow" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                </svg>
-            </a>
-
-            <a href="https://cal.com/arunatalent/imari-15" target="_blank" class="card">
-                <div class="avatar">🐨</div>
-                <div class="card-content">
-                    <div class="card-title">Imari</div>
-                    <div class="card-role">Finance</div>
-                    <div class="card-description">Earnings, payouts, banking, and invoices.</div>
-                    <span class="tag">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        15 min
-                    </span>
-                </div>
-                <svg class="card-arrow" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                </svg>
-            </a>
-
-            <a href="https://cal.com/arunatalent/adrian-15" target="_blank" class="card">
-                <div class="avatar">🐼</div>
-                <div class="card-content">
-                    <div class="card-title">Adrian</div>
-                    <div class="card-role">Operations</div>
-                    <div class="card-description">Chat optimization, response quality, and team performance.</div>
-                    <span class="tag">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        15 min
-                    </span>
-                </div>
-                <svg class="card-arrow" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                </svg>
-            </a>
-
-            <a href="https://cal.com/arunatalent/joy-15" target="_blank" class="card">
-                <div class="avatar">🦋</div>
-                <div class="card-content">
-                    <div class="card-title">Joy</div>
-                    <div class="card-role">Streaming</div>
-                    <div class="card-description">Stream performance, viewer engagement, and audience growth.</div>
-                    <span class="tag">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        15 min
-                    </span>
-                </div>
-                <svg class="card-arrow" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                </svg>
-            </a>
+                <p>Video coming soon</p>
+            </div>
+            <!-- Replace the above with your video embed:
+            <iframe src="YOUR_YOUTUBE_OR_VIMEO_EMBED_URL" frameborder="0" allow="autoplay; fullscreen" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+            -->
         </div>
     </div>
+
+    <!-- Content -->
+    <div class="content">
+        <!-- Commission Section -->
+        <div style="background: white; border-radius: 24px; overflow: hidden; margin-bottom: 40px; box-shadow: 0 4px 20px rgba(244, 180, 198, 0.25);">
+            <!-- Header -->
+            <div style="background: linear-gradient(135deg, #1f2937 0%, #374151 100%); padding: 32px; text-align: center; color: white;">
+                <div style="font-size: 12px; font-weight: 600; color: #9ca3af; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px;">Your Commission</div>
+                <div class="commission-header-rates">
+                    <div class="commission-rate-box">
+                        <div class="commission-rate">5%</div>
+                        <div style="font-size: 14px; color: #d1d5db; margin-top: 8px;">Each creator's first 3 months</div>
+                    </div>
+                    <div class="commission-arrow">→</div>
+                    <div class="commission-rate-box">
+                        <div class="commission-rate">2.5-3%</div>
+                        <div style="font-size: 14px; color: #d1d5db; margin-top: 8px;">Lifetime (based on your tier)</div>
+                    </div>
+                </div>
+                <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 14px; color: #9ca3af;">
+                    Paid monthly · No cap on earnings<br>Higher volume = higher rate
+                </div>
+            </div>
+
+            <!-- Tier Cards -->
+            <div style="padding: 32px;">
+                <div style="text-align: center; margin-bottom: 24px;">
+                    <div style="font-size: 18px; font-weight: 700; color: #1f2937;">Lifetime Tier Structure</div>
+                    <div style="font-size: 13px; color: #6b7280; margin-top: 4px;">Based on total monthly revenue from your referrals</div>
+                </div>
+                <div class="tier-cards-grid">
+                    <!-- Base -->
+                    <div class="tier-card-item">
+                        <div style="font-size: 36px; margin-bottom: 12px;">🥉</div>
+                        <div style="font-size: 13px; font-weight: 700; color: #6b7280; text-transform: uppercase; letter-spacing: 1px;">Base</div>
+                        <div style="font-size: 40px; font-weight: 800; color: #ec4899; margin: 8px 0;">2.5%</div>
+                        <div style="font-size: 13px; color: #6b7280;">&lt; $500K revenue</div>
+                    </div>
+                    <!-- Gold -->
+                    <div class="tier-card-item tier-gold-card">
+                        <div style="font-size: 36px; margin-bottom: 12px;">🥇</div>
+                        <div style="font-size: 13px; font-weight: 700; color: #b45309; text-transform: uppercase; letter-spacing: 1px;">Gold</div>
+                        <div style="font-size: 40px; font-weight: 800; color: #ec4899; margin: 8px 0;">2.75%</div>
+                        <div style="font-size: 13px; color: #6b7280;">$500K - $2M revenue</div>
+                    </div>
+                    <!-- Diamond -->
+                    <div class="tier-card-item tier-diamond-card">
+                        <div style="font-size: 36px; margin-bottom: 12px;">💎</div>
+                        <div style="font-size: 13px; font-weight: 700; color: #be185d; text-transform: uppercase; letter-spacing: 1px;">Diamond</div>
+                        <div style="font-size: 40px; font-weight: 800; color: #ec4899; margin: 8px 0;">3%</div>
+                        <div style="font-size: 13px; color: #6b7280;">$2M+ revenue</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Two Column Info -->
+        <div class="two-col">
+            <div class="info-card">
+                <h3><span>👤</span> Who Can Join</h3>
+                <ul class="info-list">
+                    <li><span class="check-icon">✓</span> Current Aruna creators</li>
+                    <li><span class="check-icon">✓</span> Appointment setters</li>
+                    <li><span class="check-icon">✓</span> Affiliate marketers</li>
+                    <li><span class="check-icon">✓</span> Anyone with the right network</li>
+                </ul>
+            </div>
+
+            <div class="info-card steps-card">
+                <h3><span>⚡</span> How It Works</h3>
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Apply Below</h4>
+                        <p>Tell us about yourself and your network</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Get Your Link</h4>
+                        <p>We'll send you a unique application link to share</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Earn Commissions</h4>
+                        <p>Get paid when your referrals start earning</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Section -->
+        <div class="form-section" id="apply">
+            <h2>Apply to Become a Referrer</h2>
+            <p class="form-subtitle">Fill out the form below and we'll get back to you with your unique referral link.</p>
+
+            <!-- CLICKUP FORM EMBED: Replace this form with your ClickUp form -->
+            <form id="referrerForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fullName">Full Name *</label>
+                        <input type="text" id="fullName" name="full_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="instagram">Instagram Handle</label>
+                        <input type="text" id="instagram" name="instagram" placeholder="@username">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="background">What's your background? *</label>
+                    <select id="background" name="background" required>
+                        <option value="" disabled selected>Select an option</option>
+                        <option value="creator">Current Aruna Creator</option>
+                        <option value="other_creator">Creator (other agency/independent)</option>
+                        <option value="appointment_setter">Appointment Setter</option>
+                        <option value="affiliate">Affiliate Marketer</option>
+                        <option value="recruiter">Recruiter / Talent Scout</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="howHeard">How did you hear about our referral program?</label>
+                    <select id="howHeard" name="how_heard">
+                        <option value="" disabled selected>Select an option</option>
+                        <option value="current_creator">From a current creator</option>
+                        <option value="social_media">Social media</option>
+                        <option value="friend">Friend / Word of mouth</option>
+                        <option value="search">Google / Search</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="network">Tell us about your network and how you plan to refer creators *</label>
+                    <textarea id="network" name="network" placeholder="e.g., I know several models from my previous work, I have a large social media following, I'm part of creator communities..." required></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Application</button>
+                <p class="form-note">We'll review your application and get back to you within 24-48 hours.</p>
+            </form>
+            <!-- END CLICKUP FORM EMBED -->
+
+            <div class="alt-link">
+                <p>Already a referrer?</p>
+                <a href="referral-link.html">Get your referral links →</a>
+                <p style="margin-top: 12px; font-size: 13px;">Have a warm lead? <a href="refer-direct.html">Submit a direct referral</a></p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>Questions? <a href="book.html">Book a call with our team</a></p>
+        <p style="margin-top: 8px;"><a href="dashboard.html">← Back to Dashboard</a></p>
+    </div>
+
+    <script>
+        document.getElementById('referrerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = this.querySelector('.submit-btn');
+            btn.textContent = 'Submitting...';
+            btn.disabled = true;
+
+            // Simulate submission - replace with actual form handling
+            setTimeout(() => {
+                alert('Thanks for applying! We\'ll be in touch within 24-48 hours.');
+                this.reset();
+                btn.textContent = 'Submit Application';
+                btn.disabled = false;
+            }, 1000);
+        });
+    </script>
 </body>
 </html>
