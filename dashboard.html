@@ -132,22 +132,22 @@
 
         <!-- Quick Actions -->
         <div class="quick-actions">
-            <a href="book.html" class="quick-action primary">
+            <a href="/book" class="quick-action primary">
                 <div class="quick-action-icon">📞</div>
                 <div class="quick-action-title">Book a Call</div>
                 <div class="quick-action-description">15-min with any team member</div>
             </a>
-            <a href="onboarding.html" class="quick-action">
+            <a href="/onboarding" class="quick-action">
                 <div class="quick-action-icon">🚀</div>
                 <div class="quick-action-title">Onboarding</div>
                 <div class="quick-action-description">Your launch checklist</div>
             </a>
-            <a href="resources.html" class="quick-action">
+            <a href="/resources" class="quick-action">
                 <div class="quick-action-icon">📚</div>
                 <div class="quick-action-title">Resources</div>
                 <div class="quick-action-description">Guides & templates</div>
             </a>
-            <a href="faq.html" class="quick-action">
+            <a href="/faq" class="quick-action">
                 <div class="quick-action-icon">❓</div>
                 <div class="quick-action-title">FAQ</div>
                 <div class="quick-action-description">Common questions</div>
@@ -168,7 +168,7 @@
                 <div class="referrer-banner-title">Know someone who'd be a great fit?</div>
                 <div class="referrer-banner-text">Earn 5% for 3 months + 2.5-3% lifetime on every creator you refer.</div>
             </div>
-            <a href="index.html" class="referrer-banner-btn">Learn More</a>
+            <a href="/" class="referrer-banner-btn">Learn More</a>
         </div>
 
         <!-- Referrer Tools (if applicable) -->
@@ -178,14 +178,14 @@
                 <div class="referrer-banner-title" style="color: white;">Referrer Tools</div>
                 <div class="referrer-banner-text" style="color: #d1d5db;">Access your dashboard and generate referral links</div>
             </div>
-            <a href="referral-link.html" class="referrer-banner-btn">Get Your Links</a>
+            <a href="/referral-link" class="referrer-banner-btn">Get Your Links</a>
         </div>
 
         <!-- Your Team -->
         <div class="section">
             <div class="section-header">
                 <span class="section-title">Your Team</span>
-                <a href="book.html" class="section-link">Book a call →</a>
+                <a href="/book" class="section-link">Book a call →</a>
             </div>
             <div class="team-row">
                 <a href="https://cal.com/arunatalent/mitch-15" target="_blank" class="team-card">
@@ -222,23 +222,23 @@
                 <span class="section-title">Quick Links</span>
             </div>
             <div class="link-grid">
-                <a href="apply.html" class="link-card">
+                <a href="/apply" class="link-card">
                     <div class="link-card-icon">📝</div>
                     <div class="link-card-title">Creator Application</div>
                 </a>
-                <a href="index.html" class="link-card">
+                <a href="/" class="link-card">
                     <div class="link-card-icon">🤝</div>
                     <div class="link-card-title">Referral Program</div>
                 </a>
-                <a href="refer-direct.html" class="link-card">
+                <a href="/refer-direct" class="link-card">
                     <div class="link-card-icon">📤</div>
                     <div class="link-card-title">Submit Referral</div>
                 </a>
-                <a href="referral-link.html" class="link-card">
+                <a href="/referral-link" class="link-card">
                     <div class="link-card-icon">🔗</div>
                     <div class="link-card-title">Get Referral Links</div>
                 </a>
-                <a href="leaderboard.html" class="link-card">
+                <a href="/leaderboard" class="link-card">
                     <div class="link-card-icon">🏆</div>
                     <div class="link-card-title">Leaderboard</div>
                 </a>
@@ -261,22 +261,22 @@
         <div class="section">
             <div class="section-header">
                 <span class="section-title">Essential Resources</span>
-                <a href="resources.html" class="section-link">View all →</a>
+                <a href="/resources" class="section-link">View all →</a>
             </div>
             <div class="link-grid">
-                <a href="sweetheart-persona.html" class="link-card">
+                <a href="/sweetheart-persona" class="link-card">
                     <div class="link-card-icon">💕</div>
                     <div class="link-card-title">Sweetheart Persona</div>
                 </a>
-                <a href="resources.html" class="link-card">
+                <a href="/resources" class="link-card">
                     <div class="link-card-icon">📸</div>
                     <div class="link-card-title">Set Creation Guide</div>
                 </a>
-                <a href="stream-essentials.html" class="link-card">
+                <a href="/stream-essentials" class="link-card">
                     <div class="link-card-icon">🎥</div>
                     <div class="link-card-title">Stream Essentials</div>
                 </a>
-                <a href="style-guide.html" class="link-card">
+                <a href="/style-guide" class="link-card">
                     <div class="link-card-icon">👗</div>
                     <div class="link-card-title">7-Day Style Guide</div>
                 </a>
@@ -284,7 +284,7 @@
         </div>
 
         <div class="footer">
-            <p>Need help? <a href="book.html">Book a call</a> or check the <a href="faq.html">FAQ</a></p>
+            <p>Need help? <a href="/book">Book a call</a> or check the <a href="/faq">FAQ</a></p>
         </div>
     </div>
 
@@ -300,7 +300,7 @@
             document.title = creatorName + ' - Creator Hub';
 
             // Update onboarding link to carry params
-            const onboardingLink = document.querySelector('a[href="onboarding.html"]');
+            const onboardingLink = document.querySelector('a[href="/onboarding"]');
             if (onboardingLink) {
                 let newUrl = 'onboarding.html?creator=' + encodeURIComponent(creatorName);
                 if (managerParam) newUrl += '&manager=' + encodeURIComponent(managerParam);
