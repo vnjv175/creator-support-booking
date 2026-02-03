@@ -2,6 +2,11 @@
   "cleanUrls": true,
   "rewrites": [
     {
+      "source": "/",
+      "has": [{ "type": "host", "value": "apply.arunatalent.com" }],
+      "destination": "/apply.html"
+    },
+    {
       "source": "/referral",
       "destination": "/index.html"
     }
