@@ -641,6 +641,7 @@
     </div>
 
     <script>
+        const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwLpcZoh8zDB8tEZerxL-r9ydzE3JWsDYgvJ3-UFSpHx4jVlILbp5UX2lci9lEFSQg/exec';
         const totalSteps = 11;
         let currentStep = 1;
         const formData = {};
@@ -813,9 +814,36 @@
 
             if (currentStep === totalSteps) {
                 // Submit form
-                console.log('Form data:', formData);
-                // Here you would send formData to your backend
-                showStep('success');
+                btnNext.textContent = 'Submitting...';
+                btnNext.disabled = true;
+
+                const submitData = {
+                    formType: 'creator_application',
+                    fullName: formData.fullName || '',
+                    instagram: formData.instagram || '',
+                    age: formData.age || '',
+                    experience: formData.experience || '',
+                    platforms: formData.platforms || '',
+                    photo: formData.photo || '',
+                    streaming: formData.streaming || '',
+                    incomeGoal: formData.incomeGoal || '',
+                    phone: (formData.countryCode || '') + ' ' + (formData.phone || ''),
+                    referrer: formData.referrer || ''
+                };
+
+                fetch(FORM_ENDPOINT, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(submitData)
+                }).then(() => {
+                    showStep('success');
+                }).catch((error) => {
+                    console.error(error);
+                    showStep('success');
+                });
+
+                return;
             } else {
                 currentStep++;
                 showStep(currentStep);

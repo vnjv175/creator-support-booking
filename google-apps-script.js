@@ -11,6 +11,8 @@ function doPost(e) {
       handleReferrerApplication(ss, data);
     } else if (data.formType === 'direct_referral') {
       handleDirectReferral(ss, data);
+    } else if (data.formType === 'creator_application') {
+      handleCreatorApplication(ss, data);
     }
 
     return ContentService.createTextOutput(JSON.stringify({success: true}))
@@ -87,6 +89,43 @@ function handleDirectReferral(ss, data) {
     'Relationship: ' + data.relationship + '\n' +
     'Notes: ' + data.notes + '\n\n' +
     'View all referrals: https://docs.google.com/spreadsheets/d/' + SHEET_ID;
+
+  MailApp.sendEmail(NOTIFY_EMAIL, subject, body);
+}
+
+function handleCreatorApplication(ss, data) {
+  var sheet = ss.getSheetByName('Creator Applications');
+  if (!sheet) {
+    sheet = ss.insertSheet('Creator Applications');
+    sheet.appendRow(['Timestamp', 'Name', 'Instagram', 'Age', 'Experience', 'Platforms', 'Photo', 'Streaming', 'Income Goal', 'Phone', 'Referred By']);
+  }
+
+  sheet.appendRow([
+    new Date(),
+    data.fullName,
+    data.instagram,
+    data.age,
+    data.experience,
+    data.platforms,
+    data.photo,
+    data.streaming,
+    data.incomeGoal,
+    data.phone,
+    data.referrer || ''
+  ]);
+
+  var subject = 'New Creator Application: ' + data.fullName;
+  var body = 'New creator application received!\n\n' +
+    'Name: ' + data.fullName + '\n' +
+    'Instagram: ' + data.instagram + '\n' +
+    'Age: ' + data.age + '\n' +
+    'Experience: ' + data.experience + '\n' +
+    'Platforms: ' + data.platforms + '\n' +
+    'Streaming: ' + data.streaming + '\n' +
+    'Income Goal: ' + data.incomeGoal + '\n' +
+    'Phone: ' + data.phone + '\n' +
+    (data.referrer ? 'Referred by: ' + data.referrer : '') + '\n\n' +
+    'View all applications: https://docs.google.com/spreadsheets/d/' + SHEET_ID;
 
   MailApp.sendEmail(NOTIFY_EMAIL, subject, body);
 }
