@@ -3,7 +3,7 @@
 // ============================================
 var SHEET_ID = '1kCFAavAsfbb3p-cNTxudFh6eMd3uOHxkYJrAZqgCpRE';
 var NOTIFY_EMAIL = 'intake@arunatalent.com';
-var DASHBOARD_BASE_URL = 'https://yourdomain.com/my-referrals.html';
+var DASHBOARD_BASE_URL = 'https://refer.arunatalent.com/my-referrals.html';
 var APPLY_URL = 'https://apply.arunatalent.com';
 var REFER_URL = 'https://refer.arunatalent.com';
 

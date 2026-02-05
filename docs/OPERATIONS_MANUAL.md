@@ -195,3 +195,5 @@ The Google Apps Script (`google-apps-script.js`) handles:
 - [Checklists](checklists.md) - Daily/weekly/monthly task lists
 - [Troubleshooting](troubleshooting.md) - Common issues and fixes
 - [SOPs](sops/) - Step-by-step procedures for all processes
+- [Deployment Guide](DEPLOYMENT_GUIDE.md) - How to deploy the Google Apps Script automations
+- [Handoff Checklist](HANDOFF_CHECKLIST.md) - Onboarding checklist for new team members
