@@ -244,8 +244,14 @@ function sendWelcomeEmailToReferrer(code, name) {
     '👥 Referrer Recruitment Link: ' + REFER_URL + '?ref=' + code + '\n\n' +
     'HOW IT WORKS:\n' +
     '1. Share your creator link with people who might want to join our agency\n' +
-    '2. When they sign up and start earning, you earn 10% of their revenue - for life\n' +
+    '2. When they sign up and start earning, you earn commission on their revenue\n' +
     '3. Track everything in real-time on your dashboard\n\n' +
+    'YOUR COMMISSION:\n' +
+    '• 5% of each creator\'s revenue for their first 3 months\n' +
+    '• 2.5% lifetime after that (Base tier)\n' +
+    '• Hit $500K+ monthly portfolio revenue → Gold tier (2.75%)\n' +
+    '• Hit $2M+ monthly portfolio revenue → Diamond tier (3%)\n\n' +
+    'Paid monthly. No cap on earnings. The more creators you refer, the more you earn.\n\n' +
     'Questions? Just reply to this email.\n\n' +
     'Welcome aboard!\n' +
     'The Aruna Talent Team';
@@ -405,9 +411,10 @@ function notifyReferrerOfNewModel(referrerCode, modelName, referrerData) {
   var body = 'Hi ' + referrerName.split(' ')[0] + ',\n\n' +
     'Exciting update - ' + modelName + ' has officially started with Aruna Talent and has been added to your referral account!\n\n' +
     'What this means:\n' +
-    '• You\'ll earn 10% of ' + modelName + '\'s revenue\n' +
+    '• You\'ll earn 5% of ' + modelName + '\'s revenue for their first 3 months\n' +
+    '• Then your tier rate (2.5%+) on their revenue for life\n' +
     '• Track their earnings on your dashboard: ' + DASHBOARD_BASE_URL + '?code=' + referrerCode + '\n' +
-    '• Commissions are calculated monthly\n\n' +
+    '• Commissions are calculated and paid monthly\n\n' +
     'Keep up the great work with your referrals!\n\n' +
     '- The Aruna Talent Team';
 

@@ -8,7 +8,7 @@
 | **Creator Application** | apply.arunatalent.com |
 | **Google Sheet** | [Aruna Talent - Referral Data](https://docs.google.com/spreadsheets/d/1kCFAavAsfbb3p-cNTxudFh6eMd3uOHxkYJrAZqgCpRE) |
 | **Notification Email** | intake@arunatalent.com |
-| **Commission Rate** | 10% of model revenue (lifetime) |
+| **Commission Rate** | 5% first 3 months, then 2.5% lifetime (Base); 2.75% (Gold $500K+); 3% (Diamond $2M+) |
 
 ---
 

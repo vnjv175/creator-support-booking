@@ -29,7 +29,7 @@ YOUR REFERRAL LINKS:
 
 HOW IT WORKS:
 1. Share your creator link with people who might want to join our agency
-2. When they sign up and start earning, you earn 10% of their revenue - for life
+2. When they sign up and start earning, you earn 5% of their revenue for the first 3 months, then 2.5%+ lifetime based on your tier
 3. Track everything in real-time on your dashboard
 
 TIPS FOR SUCCESS:
@@ -111,7 +111,7 @@ QUICK LINKS:
 🔗 Creator Referral Link: apply.arunatalent.com?ref=[CODE]
 👥 Referrer Recruitment Link: refer.arunatalent.com?ref=[CODE]
 
-You earn 10% of every creator's revenue that you refer - for their entire time with us.
+You earn 5% of every creator's revenue for their first 3 months, then your tier rate (2.5%+) lifetime. Higher volume = higher rate.
 
 Start sharing your links and watch your earnings grow!
 
@@ -185,9 +185,9 @@ Hi [REFERRER NAME],
 Exciting update - [MODEL NAME] has officially started with Aruna Talent and has been added to your referral account!
 
 What this means:
-• You'll earn 10% of [MODEL NAME]'s revenue
+• You'll earn 5% of [MODEL NAME]'s revenue for their first 3 months, then your tier rate (2.5%+) lifetime
 • Track their earnings on your dashboard: my-referrals.html?code=[CODE]
-• Commissions are calculated monthly
+• Commissions are calculated and paid monthly
 
 Keep up the great work with your referrals!
 
