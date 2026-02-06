@@ -128,10 +128,10 @@ Have the new team member read these documents in order:
 
 | Issue | Contact | Method |
 |-------|---------|--------|
-| Technical problems | [Developer] | [Contact method] |
-| Referrer disputes | CEO | [Contact method] |
-| Payment questions | Finance | [Contact method] |
-| Policy questions | CEO | [Contact method] |
+| Technical problems | Mitchell McConachy (CEO) | admin@arunatalent.com |
+| Referrer disputes | Mitchell McConachy (CEO) | admin@arunatalent.com |
+| Payment questions | Mitchell McConachy (CEO) | admin@arunatalent.com |
+| Policy questions | Mitchell McConachy (CEO) | admin@arunatalent.com |
 
 ---
 

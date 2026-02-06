@@ -64,10 +64,10 @@ When approved, add to Referrers sheet:
 ### 6. Communicate to Referrer
 Send welcome email with:
 - Their unique code
-- Link to their dashboard: `my-referrals.html?code=SARAH123`
+- Link to their dashboard: `https://refer.arunatalent.com/my-referrals?code=SARAH123`
 - Their shareable referral links:
-  - Creator referral: `apply.arunatalent.com?ref=SARAH123`
-  - Referrer recruitment: `refer.arunatalent.com?ref=SARAH123`
+  - Creator referral: `https://apply.arunatalent.com?ref=SARAH123`
+  - Referrer recruitment: `https://refer.arunatalent.com?ref=SARAH123`
 
 See [Email Templates - Welcome Email](../email-templates.md#referrer-welcome)
 
@@ -112,6 +112,6 @@ If "Sarah" already exists:
 ## Testing the Code
 After adding to the sheet, test by visiting:
 ```
-my-referrals.html?code=NEWCODE
+https://refer.arunatalent.com/my-referrals?code=NEWCODE
 ```
 Should show the referrer's empty dashboard (no models yet).

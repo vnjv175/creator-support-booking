@@ -20,12 +20,12 @@ Here's everything you need to get started:
 YOUR REFERRER CODE: [CODE]
 
 YOUR DASHBOARD:
-https://my-referrals.html?code=[CODE]
+https://refer.arunatalent.com/my-referrals?code=[CODE]
 (Bookmark this - it shows your referrals, earnings, and stats)
 
 YOUR REFERRAL LINKS:
-• For potential creators: apply.arunatalent.com?ref=[CODE]
-• To recruit other referrers: refer.arunatalent.com?ref=[CODE]
+• For potential creators: https://apply.arunatalent.com?ref=[CODE]
+• To recruit other referrers: https://refer.arunatalent.com?ref=[CODE]
 
 HOW IT WORKS:
 1. Share your creator link with people who might want to join our agency
@@ -97,7 +97,7 @@ Aruna Talent
 
 ### Referrer Welcome (Auto-sent) {#referrer-welcome}
 
-**Subject:** Your Aruna Talent Referral Links Are Ready!
+**Subject:** Welcome to Aruna Talent's Referral Program!
 
 ```
 Hi [NAME],
@@ -107,9 +107,9 @@ Welcome to the Aruna Talent referral program!
 YOUR CODE: [CODE]
 
 QUICK LINKS:
-📊 Your Dashboard: my-referrals.html?code=[CODE]
-🔗 Creator Referral Link: apply.arunatalent.com?ref=[CODE]
-👥 Referrer Recruitment Link: refer.arunatalent.com?ref=[CODE]
+📊 Your Dashboard: https://refer.arunatalent.com/my-referrals?code=[CODE]
+🔗 Creator Referral Link: https://apply.arunatalent.com?ref=[CODE]
+👥 Referrer Recruitment Link: https://refer.arunatalent.com?ref=[CODE]
 
 You earn 5% of every creator's revenue for their first 3 months, then your tier rate (2.5%+) lifetime. Higher volume = higher rate.
 
@@ -140,7 +140,7 @@ What we offer:
 • 24/7 support team
 
 Interested in learning more? You can:
-• Apply directly: apply.arunatalent.com
+• Apply directly: https://apply.arunatalent.com
 • Reply to this email with questions
 • Schedule a quick call: [CALENDLY LINK if available]
 
@@ -186,7 +186,7 @@ Exciting update - [MODEL NAME] has officially started with Aruna Talent and has 
 
 What this means:
 • You'll earn 5% of [MODEL NAME]'s revenue for their first 3 months, then your tier rate (2.5%+) lifetime
-• Track their earnings on your dashboard: my-referrals.html?code=[CODE]
+• Track their earnings on your dashboard: https://refer.arunatalent.com/my-referrals?code=[CODE]
 • Commissions are calculated and paid monthly
 
 Keep up the great work with your referrals!
@@ -210,7 +210,7 @@ Log in to your dashboard to see:
 • Your commission earnings
 • Lifetime totals
 
-View Dashboard: my-referrals.html?code=[CODE]
+View Dashboard: https://refer.arunatalent.com/my-referrals?code=[CODE]
 
 Questions about your earnings? Just reply to this email.
 

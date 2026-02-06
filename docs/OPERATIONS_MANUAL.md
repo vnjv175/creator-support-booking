@@ -181,11 +181,11 @@ The Google Apps Script (`google-apps-script.js`) handles:
 
 ## Emergency Contacts
 
-| Issue | Contact |
-|-------|---------|
-| Technical problems | [Developer contact] |
-| Referrer disputes | CEO |
-| Payment questions | Finance team |
+| Issue | Contact | Email |
+|-------|---------|-------|
+| Technical problems | Mitchell McConachy (CEO) | admin@arunatalent.com |
+| Referrer disputes | Mitchell McConachy (CEO) | admin@arunatalent.com |
+| Payment questions | Mitchell McConachy (CEO) | admin@arunatalent.com |
 
 ---
 

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found - Aruna Talent</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23F4B4C6'/><text x='50' y='68' font-family='Arial' font-size='45' font-weight='bold' fill='white' text-anchor='middle'>A</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 50%, #fbcfe8 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1f2937;
+            padding: 20px;
+        }
+        .container {
+            text-align: center;
+            max-width: 480px;
+        }
+        .logo { width: 120px; margin-bottom: 32px; }
+        h1 {
+            font-size: 72px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+        }
+        h2 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        p {
+            color: #6b7280;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+        .links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+        }
+        .links a {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .links a:hover {
+            transform: translateY(-2px);
+        }
+        .links a.primary {
+            background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
+            color: white;
+        }
+        .links a.primary:hover {
+            box-shadow: 0 8px 25px rgba(236, 72, 153, 0.4);
+        }
+        .links a.secondary {
+            background: white;
+            color: #be185d;
+            border: 2px solid #f9a8d4;
+        }
+        .links a.secondary:hover {
+            box-shadow: 0 4px 15px rgba(244, 180, 198, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="/logo.png" alt="Aruna Talent" class="logo">
+        <h1>404</h1>
+        <h2>Page not found</h2>
+        <p>The page you're looking for doesn't exist or has moved. Here are some helpful links:</p>
+        <div class="links">
+            <a href="/" class="primary">Referral Program</a>
+            <a href="/apply" class="secondary">Apply as Creator</a>
+            <a href="/dashboard" class="secondary">Creator Hub</a>
+            <a href="/leaderboard" class="secondary">Leaderboard</a>
+        </div>
+    </div>
+</body>
+</html>
