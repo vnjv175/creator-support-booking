@@ -27,8 +27,8 @@
         }
 
         .logo {
-            width: 160px;
-            margin-bottom: 24px;
+            width: 220px;
+            margin-bottom: 28px;
         }
 
         .hero h1 {
@@ -231,15 +231,26 @@
         }
 
         .tier-dollar-example {
-            font-size: 13px;
+            font-size: 14px;
             color: var(--accent-champagne);
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .tier-scenario {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.5;
             margin-bottom: 8px;
-            font-weight: 500;
+            padding: 8px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
         }
 
         .tier-revenue {
-            font-size: 13px;
+            font-size: 12px;
             color: var(--text-muted);
+            opacity: 0.7;
         }
 
         /* Two Column Layout */
@@ -411,6 +422,11 @@
                 grid-template-columns: 1fr;
             }
 
+            .math-grid-responsive {
+                grid-template-columns: 1fr !important;
+                gap: 16px !important;
+            }
+
             .proof-grid {
                 grid-template-columns: 1fr;
             }
@@ -431,7 +447,7 @@
                 <span class="gradient-text dollar-highlight">Earn $5,000+/mo</span>
                 Referring Creators You Already Know
             </h1>
-            <p class="text-secondary">Refer one creator earning $100K/mo and pocket $5,000/mo for their first 3 months &mdash; then $2,500+/mo for life. No selling. No calls. Just introductions.</p>
+            <p class="text-secondary">One introduction to a creator earning $100K/mo puts $5,000/mo in your pocket &mdash; and $2,500+/mo after that, forever. No selling. No calls. No content. Just introduce people you already know.</p>
             <div class="hero-cta-row">
                 <a href="#apply" class="cta-btn">Apply Now &rarr;</a>
                 <a href="#tiers" class="btn-secondary">See Commission Tiers</a>
@@ -494,8 +510,8 @@
                     </div>
                 </div>
                 <div class="commission-footer-note" style="font-size: 15px; color: var(--accent-champagne);">
-                    One creator earning $100K/mo = <strong>$5,000/mo</strong> in your pocket for 3 months, then <strong>$2,500+/mo for life</strong><br>
-                    <span style="color: var(--text-muted); font-size: 13px;">Paid monthly &middot; No cap on referrals or earnings &middot; Stack multiple creators</span>
+                    One creator earning $100K/mo = <strong>$5,000/mo</strong> for the first 3 months, then <strong>$2,500&ndash;$3,000/mo for life</strong><br>
+                    <span style="color: var(--text-muted); font-size: 13px;">Paid monthly &middot; No cap &middot; Commissions grow as your referrals grow</span>
                 </div>
             </div>
 
@@ -513,35 +529,53 @@
                         <div class="tier-emoji">&#129353;</div>
                         <div class="tier-label-badge badge-base">Base</div>
                         <div class="tier-percent">2.5%</div>
-                        <div class="tier-dollar-example">$100K/mo creator = $2,500/mo</div>
-                        <div class="tier-revenue">&lt; $500K total revenue</div>
+                        <div class="tier-dollar-example">$2,500/mo per $100K creator</div>
+                        <div class="tier-scenario">1 creator earning $50K/mo<br>= <strong style="color: var(--text-primary);">$1,250/mo</strong> in your pocket</div>
+                        <div class="tier-revenue">Unlock: &lt; $500K total referred revenue</div>
                     </div>
                     <!-- Gold -->
                     <div class="tier-card-item tier-gold">
                         <div class="tier-emoji">&#129351;</div>
                         <div class="tier-label-badge badge-gold">Gold</div>
                         <div class="tier-percent">2.75%</div>
-                        <div class="tier-dollar-example">$100K/mo creator = $2,750/mo</div>
-                        <div class="tier-revenue">$500K - $2M total revenue</div>
+                        <div class="tier-dollar-example">$4,125/mo from 3 creators</div>
+                        <div class="tier-scenario">3 creators averaging $50K/mo<br>= <strong style="color: var(--text-primary);">$4,125/mo</strong> &middot; $49K/yr passive</div>
+                        <div class="tier-revenue">Unlock: $500K&ndash;$2M total referred revenue</div>
                     </div>
                     <!-- Diamond -->
                     <div class="tier-card-item tier-diamond">
                         <div class="tier-emoji">&#128142;</div>
                         <div class="tier-label-badge badge-diamond">Diamond</div>
                         <div class="tier-percent">3%</div>
-                        <div class="tier-dollar-example">$100K/mo creator = $3,000/mo</div>
-                        <div class="tier-revenue">$2M+ total revenue</div>
+                        <div class="tier-dollar-example">$6,000/mo from your portfolio</div>
+                        <div class="tier-scenario">5 creators earning $200K/mo combined<br>= <strong style="color: var(--text-primary);">$6,000/mo</strong> &middot; $72K/yr passive</div>
+                        <div class="tier-revenue">Unlock: $2M+ total referred revenue</div>
                     </div>
                 </div>
 
-                <!-- Stacking Scenario -->
-                <div style="margin-top: 24px; padding: 20px 24px; background: rgba(249, 109, 204, 0.04); border: 1px solid rgba(249, 109, 204, 0.1); border-radius: 12px; text-align: center;">
-                    <div style="font-size: 13px; color: var(--text-muted); margin-bottom: 8px;">The real power? It stacks.</div>
-                    <div style="font-size: 18px; font-weight: 700; color: var(--text-primary); line-height: 1.5;">
-                        Refer <span style="color: var(--accent-pink);">3 creators</span> averaging $50K/mo each<br>
-                        = <span style="color: var(--accent-champagne); font-size: 24px; font-weight: 800;">$7,500/mo</span> intro &rarr; <span style="color: var(--accent-champagne); font-size: 24px; font-weight: 800;">$3,750/mo</span> for life
+                <!-- The Math Section -->
+                <div style="margin-top: 24px; padding: 24px; background: rgba(249, 109, 204, 0.04); border: 1px solid rgba(249, 109, 204, 0.1); border-radius: 12px;">
+                    <div style="font-size: 14px; font-weight: 700; color: var(--text-primary); text-align: center; margin-bottom: 16px;">Here's what it actually looks like over time</div>
+                    <div class="math-grid-responsive" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; text-align: center;">
+                        <div>
+                            <div style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">Month 1-3 (Intro)</div>
+                            <div style="font-size: 24px; font-weight: 800; color: var(--accent-pink);">$5,000</div>
+                            <div style="font-size: 12px; color: var(--text-muted);">/mo from one $100K creator</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">Month 4+ (Lifetime)</div>
+                            <div style="font-size: 24px; font-weight: 800; color: var(--accent-champagne);">$2,500</div>
+                            <div style="font-size: 12px; color: var(--text-muted);">/mo &mdash; every month, forever</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">Year 1 Total</div>
+                            <div style="font-size: 24px; font-weight: 800; color: #10b981;">$37,500</div>
+                            <div style="font-size: 12px; color: var(--text-muted);">from a single referral</div>
+                        </div>
                     </div>
-                    <div style="font-size: 13px; color: var(--text-muted); margin-top: 8px;">Every new referral adds another passive income stream.</div>
+                    <div style="text-align: center; margin-top: 16px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.06);">
+                        <span style="font-size: 14px; color: var(--text-secondary);">Now imagine 3 referrals. Or 5. <strong style="color: var(--accent-pink);">It compounds.</strong></span>
+                    </div>
                 </div>
 
                 <div class="cta-row">
@@ -619,12 +653,12 @@
         <div class="proof-grid">
             <div class="proof-quote glass-card-static">
                 <div class="quote-mark">&ldquo;</div>
-                <div class="quote-text">I referred two girls I knew from Twitter. One of them is doing $80K/mo now. I literally get paid thousands every month for a 5-minute introduction I made months ago.</div>
+                <div class="quote-text">I sent one DM to a girl I knew from Twitter. She signed up, started earning, and now I get a commission check every single month. I've referred two more since then &mdash; the income stacks and I literally do nothing.</div>
                 <div class="quote-author">Active Referrer <span class="quote-role">&middot; Affiliate Marketer</span></div>
             </div>
             <div class="proof-quote glass-card-static">
                 <div class="quote-mark">&ldquo;</div>
-                <div class="quote-text">I'm already a creator with Aruna so I just told my friends about it. Three of them signed up. That's an extra income stream on top of my own content &mdash; completely passive.</div>
+                <div class="quote-text">I'm already a creator with Aruna, so referring friends was obvious. Three of them signed up. Now I have a second income stream on top of my own content earnings &mdash; and it's completely passive. Best decision I made.</div>
                 <div class="quote-author">Active Referrer <span class="quote-role">&middot; Current Aruna Creator</span></div>
             </div>
         </div>
