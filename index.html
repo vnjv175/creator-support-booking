@@ -677,8 +677,10 @@
                     <label class="form-label" for="howHeard">How did you hear about our referral program?</label>
                     <select class="form-input" id="howHeard" name="how_heard" onchange="toggleOtherField('howHeard', 'howHeardOther')">
                         <option value="" disabled selected>Select an option</option>
+                        <option value="instagram_dm">Instagram DM / ManyChat</option>
+                        <option value="instagram_ad">Instagram / Facebook Ad</option>
                         <option value="current_creator">From a current creator</option>
-                        <option value="social_media">Social media</option>
+                        <option value="social_media">Social media (organic)</option>
                         <option value="friend">Friend / Word of mouth</option>
                         <option value="search">Google / Search</option>
                         <option value="other">Other</option>
@@ -757,7 +759,10 @@
                 background: backgroundVal,
                 howHeard: howHeardVal,
                 network: document.getElementById('network').value,
-                refCode: params.get('ref') || ''
+                refCode: params.get('ref') || '',
+                utm_source: params.get('utm_source') || '',
+                utm_medium: params.get('utm_medium') || '',
+                utm_campaign: params.get('utm_campaign') || ''
             };
 
             try {
@@ -778,6 +783,18 @@
             btn.textContent = 'Submit Application';
             btn.disabled = false;
         });
+
+        // Auto-select "how heard" based on UTM params
+        (function() {
+            const p = new URLSearchParams(window.location.search);
+            const src = p.get('utm_source');
+            const med = p.get('utm_medium');
+            if (src === 'manychat' || src === 'instagram_dm') {
+                document.getElementById('howHeard').value = 'instagram_dm';
+            } else if (src === 'facebook' || src === 'instagram' || med === 'paid' || med === 'cpc') {
+                document.getElementById('howHeard').value = 'instagram_ad';
+            }
+        })();
 
         // Hide sticky CTA when form is visible
         const stickyEl = document.querySelector('.sticky-mobile-cta');
