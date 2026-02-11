@@ -4,28 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apply - Aruna Talent</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23F4B4C6'/><text x='50' y='68' font-family='Arial' font-size='45' font-weight='bold' fill='white' text-anchor='middle'>A</text></svg>">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23f96dcc'/><text x='50' y='68' font-family='Arial' font-size='45' font-weight='bold' fill='white' text-anchor='middle'>A</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/theme.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 50%, #fbcfe8 100%);
-            min-height: 100vh;
-            color: #1f2937;
-        }
-
-        .container {
+        /* Page-specific layout */
+        .apply-container {
             max-width: 600px;
             margin: 0 auto;
             padding: 48px 20px;
+            position: relative;
+            z-index: 1;
         }
 
         .header {
@@ -42,14 +33,10 @@
             font-size: 32px;
             font-weight: 700;
             margin-bottom: 12px;
-            background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
 
         .header p {
-            color: #6b7280;
+            color: var(--text-secondary);
             font-size: 16px;
             line-height: 1.6;
         }
@@ -67,19 +54,18 @@
             align-items: center;
             gap: 10px;
             padding: 12px 20px;
-            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
-            border: 1px solid rgba(236, 72, 153, 0.15);
+            background: rgba(249, 109, 204, 0.08);
+            border: 1px solid rgba(249, 109, 204, 0.15);
             border-radius: 50px;
             font-size: 13px;
             font-weight: 600;
-            color: #1f2937;
-            box-shadow: 0 4px 15px rgba(244, 180, 198, 0.25);
+            color: var(--text-primary);
             transition: all 0.2s ease;
         }
 
         .trust-badge:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(244, 180, 198, 0.35);
+            background: rgba(249, 109, 204, 0.12);
         }
 
         .trust-badge .badge-icon {
@@ -88,10 +74,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: white;
+            background: var(--dark-3);
             border-radius: 50%;
             font-size: 14px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
         }
 
         /* Progress Bar */
@@ -99,34 +84,16 @@
             margin-bottom: 32px;
         }
 
-        .progress-bar {
-            height: 6px;
-            background: #e5e7eb;
-            border-radius: 3px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
-            border-radius: 3px;
-            transition: width 0.3s ease;
-            width: 0%;
-        }
-
         .progress-text {
             text-align: center;
             font-size: 13px;
-            color: #9ca3af;
+            color: var(--text-muted);
             margin-top: 8px;
         }
 
         /* Form Card */
         .form-card {
-            background: white;
-            border-radius: 20px;
             padding: 40px;
-            box-shadow: 0 4px 20px rgba(244, 180, 198, 0.25);
         }
 
         /* Steps */
@@ -147,14 +114,14 @@
         .step-question {
             font-size: 20px;
             font-weight: 600;
-            color: #1f2937;
+            color: var(--text-primary);
             margin-bottom: 8px;
             line-height: 1.4;
         }
 
         .step-description {
             font-size: 14px;
-            color: #6b7280;
+            color: var(--text-secondary);
             margin-bottom: 24px;
             word-wrap: break-word;
             overflow-wrap: break-word;
@@ -164,7 +131,9 @@
         .text-input {
             width: 100%;
             padding: 16px 20px;
-            border: 2px solid #e5e7eb;
+            background: var(--dark-3);
+            color: var(--text-primary);
+            border: 1px solid var(--border-subtle);
             border-radius: 12px;
             font-size: 16px;
             font-family: inherit;
@@ -173,8 +142,12 @@
 
         .text-input:focus {
             outline: none;
-            border-color: #f472b6;
-            box-shadow: 0 0 0 4px rgba(244, 114, 182, 0.1);
+            border-color: var(--accent-pink);
+            box-shadow: 0 0 0 3px rgba(249, 109, 204, 0.15);
+        }
+
+        .text-input::placeholder {
+            color: var(--text-muted);
         }
 
         /* Choice Buttons */
@@ -186,23 +159,24 @@
 
         .choice {
             padding: 16px 20px;
-            border: 2px solid #e5e7eb;
+            border: 1px solid var(--border-subtle);
             border-radius: 12px;
             cursor: pointer;
             transition: all 0.2s ease;
             font-size: 15px;
             text-align: left;
-            background: white;
+            background: rgba(20, 20, 23, 0.6);
+            color: var(--text-primary);
         }
 
         .choice:hover {
-            border-color: #f9a8d4;
-            background: #fdf2f8;
+            border-color: rgba(249, 109, 204, 0.3);
+            background: rgba(249, 109, 204, 0.06);
         }
 
         .choice.selected {
-            border-color: #ec4899;
-            background: #fdf2f8;
+            border-color: var(--accent-pink);
+            background: rgba(249, 109, 204, 0.1);
         }
 
         .choice-letter {
@@ -211,40 +185,40 @@
             justify-content: center;
             width: 24px;
             height: 24px;
-            background: #f3f4f6;
+            background: var(--dark-4);
             border-radius: 6px;
             font-size: 12px;
             font-weight: 600;
-            color: #6b7280;
+            color: var(--text-muted);
             margin-right: 12px;
             transition: all 0.2s ease;
         }
 
         .choice.selected .choice-letter {
-            background: #ec4899;
+            background: var(--accent-pink);
             color: white;
         }
 
         /* File Upload */
         .file-upload {
             display: block;
-            border: 2px dashed #e5e7eb;
+            border: 2px dashed var(--border-subtle);
             border-radius: 12px;
             padding: 40px 20px;
             text-align: center;
             cursor: pointer;
             transition: all 0.2s ease;
-            background: white;
+            background: rgba(20, 20, 23, 0.4);
         }
 
         .file-upload:hover {
-            border-color: #f9a8d4;
-            background: #fdf2f8;
+            border-color: rgba(249, 109, 204, 0.3);
+            background: rgba(249, 109, 204, 0.04);
         }
 
         .file-upload.has-file {
             border-color: #10b981;
-            background: #ecfdf5;
+            background: rgba(16, 185, 129, 0.08);
         }
 
         .file-upload-icon {
@@ -254,11 +228,11 @@
 
         .file-upload-text {
             font-size: 15px;
-            color: #6b7280;
+            color: var(--text-secondary);
         }
 
         .file-upload-text span {
-            color: #ec4899;
+            color: var(--accent-pink);
             font-weight: 600;
         }
 
@@ -281,10 +255,11 @@
 
         .country-select {
             padding: 16px;
-            border: 2px solid #e5e7eb;
+            background: var(--dark-3);
+            color: var(--text-primary);
+            border: 1px solid var(--border-subtle);
             border-radius: 12px;
             font-size: 16px;
-            background: white;
             cursor: pointer;
         }
 
@@ -308,26 +283,30 @@
             cursor: pointer;
             transition: all 0.2s ease;
             border: none;
+            font-family: var(--font-body);
         }
 
         .btn-back {
-            background: #f3f4f6;
-            color: #6b7280;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-subtle);
         }
 
         .btn-back:hover {
-            background: #e5e7eb;
+            background: rgba(255, 255, 255, 0.08);
         }
 
         .btn-next {
-            background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
+            background: linear-gradient(135deg, var(--accent-pink) 0%, #d44fa0 100%);
             color: white;
             flex: 1;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 20px rgba(249, 109, 204, 0.3);
         }
 
         .btn-next:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(236, 72, 153, 0.4);
+            box-shadow: 0 0 30px rgba(249, 109, 204, 0.5);
         }
 
         .btn-next:disabled {
@@ -351,13 +330,13 @@
         .interstitial-text {
             font-size: 20px;
             font-weight: 600;
-            color: #1f2937;
+            color: var(--text-primary);
             margin-bottom: 8px;
         }
 
         .interstitial-subtext {
             font-size: 14px;
-            color: #6b7280;
+            color: var(--text-secondary);
         }
 
         /* Success State */
@@ -381,42 +360,26 @@
         .success-title {
             font-size: 24px;
             font-weight: 700;
-            color: #1f2937;
+            color: var(--text-primary);
             margin-bottom: 12px;
         }
 
         .success-text {
             font-size: 15px;
-            color: #6b7280;
+            color: var(--text-secondary);
             line-height: 1.6;
             margin-bottom: 24px;
         }
 
-        .success-cta {
-            display: inline-block;
-            padding: 14px 28px;
-            background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 12px;
-            font-weight: 600;
-            transition: all 0.2s ease;
-        }
-
-        .success-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(236, 72, 153, 0.4);
-        }
-
         /* Referral Tag */
         .referral-tag {
-            background: #fdf2f8;
-            border: 1px solid #f9a8d4;
+            background: rgba(249, 109, 204, 0.1);
+            border: 1px solid rgba(249, 109, 204, 0.25);
             border-radius: 8px;
             padding: 12px 16px;
             margin-bottom: 24px;
             font-size: 14px;
-            color: #be185d;
+            color: var(--accent-pink);
         }
 
         .referral-tag strong {
@@ -424,7 +387,7 @@
         }
 
         @media (max-width: 480px) {
-            .container {
+            .apply-container {
                 padding: 24px 16px;
             }
 
@@ -450,16 +413,16 @@
         }
     </style>
 </head>
-<body>
-    <div class="container">
+<body class="noise-bg">
+    <div class="apply-container">
         <div class="header">
             <img src="logo.png" alt="Aruna Talent" class="logo">
-            <h1>Creator Application</h1>
+            <h1 class="gradient-text">Creator Application</h1>
             <p>Join the world's #1 creator consulting agency</p>
             <div class="trust-badges">
-                <div class="trust-badge"><div class="badge-icon">👤</div> Dedicated Personal Manager</div>
-                <div class="trust-badge"><div class="badge-icon">✨</div> Full Marketing Done For You</div>
-                <div class="trust-badge"><div class="badge-icon">✅</div> No Upfront Costs</div>
+                <div class="trust-badge"><div class="badge-icon">&#128100;</div> Dedicated Personal Manager</div>
+                <div class="trust-badge"><div class="badge-icon">&#10024;</div> Full Marketing Done For You</div>
+                <div class="trust-badge"><div class="badge-icon">&#9989;</div> No Upfront Costs</div>
             </div>
         </div>
 
@@ -470,7 +433,7 @@
             <div class="progress-text"><span id="currentStep">1</span> of <span id="totalSteps">10</span></div>
         </div>
 
-        <div class="form-card">
+        <div class="form-card glass-card-static">
             <div id="referralTag" class="referral-tag" style="display: none;">
                 Referred by: <strong id="referrerName"></strong>
             </div>
@@ -532,7 +495,7 @@
             <!-- Step 5: Interstitial -->
             <div class="step" data-step="5">
                 <div class="interstitial">
-                    <div class="interstitial-emoji">✨</div>
+                    <div class="interstitial-emoji">&#10024;</div>
                     <div class="interstitial-text">Perfect — just a few more quick questions</div>
                     <div class="interstitial-subtext">This will only take about 30 seconds</div>
                 </div>
@@ -567,7 +530,7 @@
                 <div class="step-question">Upload a recent photo of yourself</div>
                 <div class="step-description">Makeup or no makeup is totally fine - we just want to see you!</div>
                 <label class="file-upload" id="fileUpload">
-                    <div class="file-upload-icon">📸</div>
+                    <div class="file-upload-icon">&#128248;</div>
                     <div class="file-upload-text"><span>Click to upload</span> or drag and drop</div>
                     <div class="file-name" id="fileName"></div>
                     <input type="file" id="photoUpload" accept="image/*">
@@ -638,14 +601,14 @@
             <!-- Success State -->
             <div class="step" data-step="success">
                 <div class="success-state">
-                    <div class="success-icon">✓</div>
+                    <div class="success-icon">&#10003;</div>
                     <div class="success-title">Application Submitted!</div>
                     <div class="success-text">
                         Thanks for applying! Our team will review your application and reach out within 24-48 hours.
                         <br><br>
                         Keep an eye on your phone — we'll text or call you soon.
                     </div>
-                    <a href="/book" class="success-cta">Back to Home</a>
+                    <a href="/book" class="cta-btn">Back to Home</a>
                 </div>
             </div>
 
@@ -789,7 +752,7 @@
 
         photoUpload.addEventListener('change', (e) => {
             if (e.target.files.length) {
-                fileName.textContent = '✓ ' + e.target.files[0].name;
+                fileName.textContent = '\u2713 ' + e.target.files[0].name;
                 fileUpload.classList.add('has-file');
             }
         });
@@ -797,19 +760,19 @@
         // Drag and drop
         fileUpload.addEventListener('dragover', (e) => {
             e.preventDefault();
-            fileUpload.style.borderColor = '#ec4899';
+            fileUpload.style.borderColor = 'var(--accent-pink)';
         });
 
         fileUpload.addEventListener('dragleave', () => {
-            fileUpload.style.borderColor = '#e5e7eb';
+            fileUpload.style.borderColor = '';
         });
 
         fileUpload.addEventListener('drop', (e) => {
             e.preventDefault();
-            fileUpload.style.borderColor = '#e5e7eb';
+            fileUpload.style.borderColor = '';
             if (e.dataTransfer.files.length) {
                 photoUpload.files = e.dataTransfer.files;
-                fileName.textContent = '✓ ' + e.dataTransfer.files[0].name;
+                fileName.textContent = '\u2713 ' + e.dataTransfer.files[0].name;
                 fileUpload.classList.add('has-file');
             }
         });

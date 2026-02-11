@@ -4,28 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FAQ - Aruna Talent</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23F4B4C6'/><text x='50' y='68' font-family='Arial' font-size='45' font-weight='bold' fill='white' text-anchor='middle'>A</text></svg>">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23f96dcc'/><text x='50' y='68' font-family='Arial' font-size='45' font-weight='bold' fill='white' text-anchor='middle'>A</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/theme.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 50%, #fbcfe8 100%);
-            min-height: 100vh;
-            color: #1f2937;
-        }
-
-        .container {
+        /* Page-specific layout */
+        .faq-container {
             max-width: 800px;
             margin: 0 auto;
             padding: 48px 20px;
+            position: relative;
+            z-index: 1;
         }
 
         .header {
@@ -42,14 +33,10 @@
             font-size: 32px;
             font-weight: 700;
             margin-bottom: 12px;
-            background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
 
         .header p {
-            color: #6b7280;
+            color: var(--text-secondary);
             font-size: 16px;
             line-height: 1.6;
         }
@@ -62,12 +49,13 @@
         .search-input {
             width: 100%;
             padding: 16px 20px 16px 52px;
-            border: 2px solid #e5e7eb;
+            background: var(--dark-3);
+            color: var(--text-primary);
+            border: 1px solid var(--border-subtle);
             border-radius: 14px;
             font-size: 16px;
             font-family: inherit;
-            background: white;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239ca3af' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23999999' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: 18px center;
             background-size: 22px;
@@ -76,8 +64,12 @@
 
         .search-input:focus {
             outline: none;
-            border-color: #f472b6;
-            box-shadow: 0 0 0 4px rgba(244, 114, 182, 0.1);
+            border-color: var(--accent-pink);
+            box-shadow: 0 0 0 3px rgba(249, 109, 204, 0.15);
+        }
+
+        .search-input::placeholder {
+            color: var(--text-muted);
         }
 
         /* Category Tabs */
@@ -90,23 +82,23 @@
 
         .category-tab {
             padding: 10px 18px;
-            background: white;
-            border: 2px solid #e5e7eb;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-subtle);
             border-radius: 10px;
             font-size: 14px;
             font-weight: 500;
-            color: #6b7280;
+            color: var(--text-secondary);
             cursor: pointer;
             transition: all 0.2s ease;
         }
 
         .category-tab:hover {
-            border-color: #f9a8d4;
-            color: #ec4899;
+            border-color: rgba(249, 109, 204, 0.3);
+            color: var(--accent-pink);
         }
 
         .category-tab.active {
-            background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
+            background: linear-gradient(135deg, var(--accent-pink) 0%, #d44fa0 100%);
             border-color: transparent;
             color: white;
         }
@@ -119,7 +111,7 @@
         .faq-section-title {
             font-size: 14px;
             font-weight: 600;
-            color: #9ca3af;
+            color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 16px;
@@ -128,10 +120,8 @@
 
         /* FAQ Item */
         .faq-item {
-            background: white;
             border-radius: 14px;
             margin-bottom: 12px;
-            box-shadow: 0 2px 10px rgba(244, 180, 198, 0.15);
             overflow: hidden;
         }
 
@@ -146,13 +136,13 @@
         }
 
         .faq-question:hover {
-            background: #fdf2f8;
+            background: rgba(255, 255, 255, 0.03);
         }
 
         .faq-question-text {
             font-size: 16px;
             font-weight: 600;
-            color: #1f2937;
+            color: var(--text-primary);
             line-height: 1.4;
         }
 
@@ -160,13 +150,13 @@
             width: 24px;
             height: 24px;
             flex-shrink: 0;
-            color: #9ca3af;
-            transition: transform 0.3s ease;
+            color: var(--text-muted);
+            transition: transform 0.3s ease, color 0.3s ease;
         }
 
         .faq-item.open .faq-icon {
             transform: rotate(180deg);
-            color: #ec4899;
+            color: var(--accent-pink);
         }
 
         .faq-answer {
@@ -182,18 +172,8 @@
         .faq-answer-content {
             padding: 0 24px 20px;
             font-size: 15px;
-            color: #4b5563;
+            color: var(--text-secondary);
             line-height: 1.7;
-        }
-
-        .faq-answer-content a {
-            color: #ec4899;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .faq-answer-content a:hover {
-            text-decoration: underline;
         }
 
         .faq-answer-content ul {
@@ -209,7 +189,7 @@
         .no-results {
             text-align: center;
             padding: 60px 20px;
-            color: #6b7280;
+            color: var(--text-secondary);
         }
 
         .no-results-icon {
@@ -224,16 +204,14 @@
 
         .no-results-subtext {
             font-size: 14px;
-            color: #9ca3af;
+            color: var(--text-muted);
         }
 
         /* Contact CTA */
         .contact-cta {
-            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
             border-radius: 20px;
             padding: 32px;
             text-align: center;
-            color: white;
             margin-top: 40px;
         }
 
@@ -244,42 +222,13 @@
         }
 
         .contact-cta p {
-            color: #d1d5db;
+            color: var(--text-secondary);
             font-size: 15px;
             margin-bottom: 20px;
         }
 
-        .contact-cta-btn {
-            display: inline-block;
-            padding: 14px 28px;
-            background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 12px;
-            font-weight: 600;
-            transition: all 0.2s ease;
-        }
-
-        .contact-cta-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(236, 72, 153, 0.4);
-        }
-
-        /* Footer */
-        .footer {
-            text-align: center;
-            margin-top: 40px;
-            color: #9ca3af;
-            font-size: 13px;
-        }
-
-        .footer a {
-            color: #ec4899;
-            text-decoration: none;
-        }
-
         @media (max-width: 600px) {
-            .container {
+            .faq-container {
                 padding: 24px 16px;
             }
 
@@ -297,11 +246,11 @@
         }
     </style>
 </head>
-<body>
-    <div class="container">
+<body class="noise-bg">
+    <div class="faq-container">
         <div class="header">
             <img src="logo.png" alt="Aruna Talent" class="logo">
-            <h1>Frequently Asked Questions</h1>
+            <h1 class="gradient-text">Frequently Asked Questions</h1>
             <p>Find answers to common questions about working with Aruna Talent</p>
         </div>
 
@@ -322,7 +271,7 @@
             <div class="faq-section" data-category="getting-started">
                 <div class="faq-section-title">Getting Started</div>
 
-                <div class="faq-item" data-category="getting-started">
+                <div class="faq-item glass-card-static" data-category="getting-started">
                     <div class="faq-question">
                         <span class="faq-question-text">How long does it take to become a successful model?</span>
                         <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -336,7 +285,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item" data-category="getting-started">
+                <div class="faq-item glass-card-static" data-category="getting-started">
                     <div class="faq-question">
                         <span class="faq-question-text">What do I need to bring to the table?</span>
                         <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -350,7 +299,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item" data-category="getting-started">
+                <div class="faq-item glass-card-static" data-category="getting-started">
                     <div class="faq-question">
                         <span class="faq-question-text">What kind of creators do you work with?</span>
                         <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -364,7 +313,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item" data-category="getting-started">
+                <div class="faq-item glass-card-static" data-category="getting-started">
                     <div class="faq-question">
                         <span class="faq-question-text">I have zero followers and no experience. Can I still do this?</span>
                         <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -378,7 +327,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item" data-category="getting-started">
+                <div class="faq-item glass-card-static" data-category="getting-started">
                     <div class="faq-question">
                         <span class="faq-question-text">Will this work around my schedule?</span>
                         <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -392,7 +341,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item" data-category="getting-started">
+                <div class="faq-item glass-card-static" data-category="getting-started">
                     <div class="faq-question">
                         <span class="faq-question-text">What if I want to stop? Am I locked into a contract?</span>
                         <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -411,7 +360,7 @@
             <div class="faq-section" data-category="earnings">
                 <div class="faq-section-title">Earnings & Payments</div>
 
-                <div class="faq-item" data-category="earnings">
+                <div class="faq-item glass-card-static" data-category="earnings">
                     <div class="faq-question">
                         <span class="faq-question-text">How much do I have to pay?</span>
                         <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -425,7 +374,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item" data-category="earnings">
+                <div class="faq-item glass-card-static" data-category="earnings">
                     <div class="faq-question">
                         <span class="faq-question-text">How much money can I realistically make?</span>
                         <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -439,7 +388,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item" data-category="earnings">
+                <div class="faq-item glass-card-static" data-category="earnings">
                     <div class="faq-question">
                         <span class="faq-question-text">How and when do I get paid?</span>
                         <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -458,7 +407,7 @@
             <div class="faq-section" data-category="getting-started">
                 <div class="faq-section-title">Content & Streaming</div>
 
-                <div class="faq-item" data-category="getting-started">
+                <div class="faq-item glass-card-static" data-category="getting-started">
                     <div class="faq-question">
                         <span class="faq-question-text">How many hours do I need to stream?</span>
                         <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -472,7 +421,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item" data-category="getting-started">
+                <div class="faq-item glass-card-static" data-category="getting-started">
                     <div class="faq-question">
                         <span class="faq-question-text">What equipment do I need?</span>
                         <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -491,7 +440,7 @@
             <div class="faq-section" data-category="privacy">
                 <div class="faq-section-title">Privacy & Safety</div>
 
-                <div class="faq-item" data-category="privacy">
+                <div class="faq-item glass-card-static" data-category="privacy">
                     <div class="faq-question">
                         <span class="faq-question-text">Will anyone I know find out?</span>
                         <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -505,7 +454,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item" data-category="privacy">
+                <div class="faq-item glass-card-static" data-category="privacy">
                     <div class="faq-question">
                         <span class="faq-question-text">How do I know this is not another scam agency?</span>
                         <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -524,7 +473,7 @@
             <div class="faq-section" data-category="getting-started">
                 <div class="faq-section-title">About Aruna Talent</div>
 
-                <div class="faq-item" data-category="getting-started">
+                <div class="faq-item glass-card-static" data-category="getting-started">
                     <div class="faq-question">
                         <span class="faq-question-text">What does Aruna Talent do?</span>
                         <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -538,7 +487,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item" data-category="getting-started">
+                <div class="faq-item glass-card-static" data-category="getting-started">
                     <div class="faq-question">
                         <span class="faq-question-text">What makes Aruna Talent different from other agencies?</span>
                         <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -557,7 +506,7 @@
             <div class="faq-section" data-category="referrals">
                 <div class="faq-section-title">Referral Program</div>
 
-                <div class="faq-item" data-category="referrals">
+                <div class="faq-item glass-card-static" data-category="referrals">
                     <div class="faq-question">
                         <span class="faq-question-text">How does the referral program work?</span>
                         <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -582,7 +531,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item" data-category="referrals">
+                <div class="faq-item glass-card-static" data-category="referrals">
                     <div class="faq-question">
                         <span class="faq-question-text">Who can be a referrer?</span>
                         <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -596,7 +545,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item" data-category="referrals">
+                <div class="faq-item glass-card-static" data-category="referrals">
                     <div class="faq-question">
                         <span class="faq-question-text">When do I get paid for referrals?</span>
                         <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -610,7 +559,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item" data-category="referrals">
+                <div class="faq-item glass-card-static" data-category="referrals">
                     <div class="faq-question">
                         <span class="faq-question-text">How do I view my referral earnings and get my links?</span>
                         <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -631,19 +580,19 @@
         </div>
 
         <div class="no-results" id="noResults" style="display: none;">
-            <div class="no-results-icon">🔍</div>
+            <div class="no-results-icon">&#128269;</div>
             <div class="no-results-text">No results found</div>
             <div class="no-results-subtext">Try different keywords or browse by category</div>
         </div>
 
-        <div class="contact-cta">
+        <div class="contact-cta glass-card-static">
             <h3>Still have questions?</h3>
             <p>Can't find what you're looking for? Book a call with our team.</p>
-            <a href="/book" class="contact-cta-btn">Book a Call</a>
+            <a href="/book" class="cta-btn">Book a Call</a>
         </div>
 
-        <div class="footer">
-            <p><a href="/dashboard">← Back to Dashboard</a></p>
+        <div class="site-footer">
+            <p><a href="/dashboard">&larr; Back to Dashboard</a></p>
         </div>
     </div>
 

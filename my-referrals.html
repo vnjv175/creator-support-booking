@@ -4,17 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Referrals - Aruna Talent</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23F4B4C6'/><text x='50' y='68' font-family='Arial' font-size='45' font-weight='bold' fill='white' text-anchor='middle'>A</text></svg>">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23f96dcc'/><text x='50' y='68' font-family='Arial' font-size='45' font-weight='bold' fill='white' text-anchor='middle'>A</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/theme.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 50%, #fbcfe8 100%);
-            min-height: 100vh; color: #1f2937;
-        }
         .container { max-width: 1100px; margin: 0 auto; padding: 48px 20px; }
 
         /* Access Gate */
@@ -23,25 +18,29 @@
             min-height: 80vh; text-align: center;
         }
         .access-box {
-            background: white; border-radius: 24px; padding: 48px;
-            box-shadow: 0 4px 20px rgba(244, 180, 198, 0.25); max-width: 400px; width: 100%;
+            background: rgba(20, 20, 23, 0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px; padding: 48px; max-width: 400px; width: 100%;
         }
         .access-box .logo { width: 120px; margin-bottom: 24px; }
         .access-box h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
-        .access-box p { color: #6b7280; font-size: 14px; margin-bottom: 24px; }
+        .access-box p { color: var(--text-secondary); font-size: 14px; margin-bottom: 24px; }
         .access-input {
-            width: 100%; padding: 14px 18px; border: 2px solid #e5e7eb; border-radius: 12px;
+            width: 100%; padding: 14px 18px; border: 2px solid rgba(255, 255, 255, 0.08); border-radius: 12px;
             font-size: 16px; text-align: center; letter-spacing: 2px; font-weight: 600;
             margin-bottom: 16px; transition: border-color 0.2s;
+            background: var(--dark-3); color: var(--text-primary);
         }
-        .access-input:focus { outline: none; border-color: #ec4899; }
+        .access-input:focus { outline: none; border-color: var(--accent-pink); }
+        .access-input::placeholder { color: var(--text-muted); }
         .access-btn {
-            width: 100%; padding: 14px; background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
-            color: white; border: none; border-radius: 12px; font-size: 16px; font-weight: 600;
+            width: 100%; padding: 14px; background: linear-gradient(135deg, var(--accent-pink) 0%, #d44fa0 100%);
+            color: white; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 12px; font-size: 16px; font-weight: 600;
             cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 0 20px rgba(249, 109, 204, 0.3);
         }
-        .access-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(236, 72, 153, 0.4); }
-        .access-error { color: #ef4444; font-size: 13px; margin-top: 12px; display: none; }
+        .access-btn:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(249, 109, 204, 0.5); }
+        .access-error { color: #f87171; font-size: 13px; margin-top: 12px; display: none; }
 
         /* Dashboard */
         .dashboard { display: none; }
@@ -51,20 +50,19 @@
         .logo { width: 140px; margin-bottom: 24px; }
         .header h1 {
             font-size: 28px; font-weight: 800; margin-bottom: 8px;
-            background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
-        .header p { color: #6b7280; font-size: 15px; }
+        .header p { color: var(--text-secondary); font-size: 15px; }
 
         /* Profile Card */
         .profile-card {
-            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+            background: rgba(20, 20, 23, 0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 24px; padding: 32px; color: white; margin-bottom: 32px;
         }
         .profile-header { display: flex; align-items: center; gap: 20px; margin-bottom: 20px; }
         .profile-avatar {
             width: 72px; height: 72px; border-radius: 50%;
-            background: linear-gradient(135deg, #f9a8d4 0%, #ec4899 100%);
+            background: linear-gradient(135deg, var(--accent-pink) 0%, #d44fa0 100%);
             display: flex; align-items: center; justify-content: center;
             font-size: 32px; font-weight: 700;
         }
@@ -77,49 +75,51 @@
         .tier-base { background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%); }
         .tier-gold { background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%); color: #1f2937; }
         .tier-diamond { background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%); }
-        .profile-joined { font-size: 13px; color: #9ca3af; }
+        .profile-joined { font-size: 13px; color: var(--text-muted); }
 
         /* Tier Progress */
         .tier-progress { margin-bottom: 24px; }
         .tier-progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-        .tier-progress-label { font-size: 12px; color: #9ca3af; }
-        .tier-progress-value { font-size: 12px; color: #f9a8d4; font-weight: 600; }
-        .tier-progress-bar { height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden; }
+        .tier-progress-label { font-size: 12px; color: var(--text-muted); }
+        .tier-progress-value { font-size: 12px; color: var(--accent-pink); font-weight: 600; }
+        .tier-progress-bar { height: 8px; background: rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; }
         .tier-progress-fill { height: 100%; border-radius: 4px; transition: width 0.5s ease; }
         .progress-to-gold { background: linear-gradient(90deg, #fbbf24, #d97706); }
         .progress-to-diamond { background: linear-gradient(90deg, #60a5fa, #3b82f6); }
 
         .profile-stats { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
         .profile-stat {
-            background: rgba(255,255,255,0.1); border-radius: 16px; padding: 16px; text-align: center;
+            background: rgba(255,255,255,0.06); border-radius: 16px; padding: 16px; text-align: center;
         }
-        .profile-stat.highlight { background: linear-gradient(135deg, rgba(236,72,153,0.3) 0%, rgba(190,24,93,0.3) 100%); border: 1px solid rgba(236,72,153,0.3); }
-        .profile-stat-value { font-size: 18px; font-weight: 800; color: #f9a8d4; }
-        .profile-stat-label { font-size: 9px; color: #d1d5db; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .profile-stat.highlight { background: linear-gradient(135deg, rgba(249,109,204,0.2) 0%, rgba(249,109,204,0.1) 100%); border: 1px solid rgba(249,109,204,0.2); }
+        .profile-stat-value { font-size: 18px; font-weight: 800; color: var(--accent-pink); }
+        .profile-stat-label { font-size: 9px; color: var(--text-secondary); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
 
         /* Models Table */
         .models-section {
-            background: white; border-radius: 20px; overflow: hidden;
-            box-shadow: 0 4px 20px rgba(244, 180, 198, 0.2); margin-bottom: 32px;
+            background: rgba(20, 20, 23, 0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px; overflow: hidden; margin-bottom: 32px;
         }
         .models-header {
-            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+            background: rgba(255, 255, 255, 0.03);
             padding: 20px 24px; color: white;
             display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
         .models-title { font-size: 18px; font-weight: 700; }
         .models-count {
-            background: rgba(255,255,255,0.2); padding: 6px 12px; border-radius: 20px;
+            background: rgba(255,255,255,0.1); padding: 6px 12px; border-radius: 20px;
             font-size: 13px; font-weight: 600;
         }
         .models-table-header {
             display: grid; grid-template-columns: 1fr 100px 130px 130px 70px 130px;
-            padding: 14px 24px; font-size: 11px; font-weight: 600; color: #9ca3af;
-            text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid #e5e7eb;
-            background: #f9fafb;
+            padding: 14px 24px; font-size: 11px; font-weight: 600; color: var(--text-muted);
+            text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.03);
         }
         .model-row {
-            border-bottom: 1px solid #f3f4f6;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
         }
         .model-row:last-child { border-bottom: none; }
         .model-row-main {
@@ -127,92 +127,92 @@
             padding: 16px 24px; align-items: center;
             cursor: pointer; transition: background 0.2s;
         }
-        .model-row-main:hover { background: #fdf2f8; }
-        .model-row.expanded .model-row-main { background: #fdf2f8; }
+        .model-row-main:hover { background: rgba(249, 109, 204, 0.05); }
+        .model-row.expanded .model-row-main { background: rgba(249, 109, 204, 0.05); }
         .model-info { display: flex; align-items: center; gap: 12px; }
         .model-avatar {
             width: 40px; height: 40px; border-radius: 50%;
-            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+            background: rgba(249, 109, 204, 0.08);
             display: flex; align-items: center; justify-content: center; font-size: 16px;
         }
-        .model-name { font-weight: 600; font-size: 14px; }
+        .model-name { font-weight: 600; font-size: 14px; color: var(--text-primary); }
         .model-status { font-size: 11px; }
         .status-active { color: #10b981; }
         .status-inactive { color: #ef4444; }
         .status-new { color: #f59e0b; }
-        .model-cell { font-size: 13px; color: #374151; text-align: center; }
-        .model-cell.earnings { color: #ec4899; font-weight: 700; }
+        .model-cell { font-size: 13px; color: var(--text-secondary); text-align: center; }
+        .model-cell.earnings { color: var(--accent-pink); font-weight: 700; }
         .model-cell.revenue { font-weight: 600; }
-        .model-cell.date { font-size: 12px; color: #6b7280; }
+        .model-cell.date { font-size: 12px; color: var(--text-muted); }
         .expand-icon {
-            color: #9ca3af; font-size: 12px; margin-left: 8px;
+            color: var(--text-muted); font-size: 12px; margin-left: 8px;
             transition: transform 0.2s;
         }
         .model-row.expanded .expand-icon { transform: rotate(180deg); }
 
         /* Monthly Breakdown */
         .monthly-breakdown {
-            display: none; background: #f9fafb; padding: 20px 24px;
-            border-top: 1px solid #e5e7eb;
+            display: none; background: rgba(255, 255, 255, 0.02); padding: 20px 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
         }
         .model-row.expanded .monthly-breakdown { display: block; }
-        .breakdown-title { font-size: 13px; font-weight: 600; color: #6b7280; margin-bottom: 12px; }
+        .breakdown-title { font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 12px; }
         .breakdown-grid {
             display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px;
         }
         .breakdown-item {
-            background: white; border-radius: 10px; padding: 12px;
-            border: 1px solid #e5e7eb;
+            background: rgba(20, 20, 23, 0.6); border-radius: 10px; padding: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
         }
-        .breakdown-month { font-size: 12px; color: #6b7280; margin-bottom: 4px; }
+        .breakdown-month { font-size: 12px; color: var(--text-muted); margin-bottom: 4px; }
         .breakdown-values { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; flex-wrap: wrap; }
-        .breakdown-revenue { font-size: 14px; font-weight: 700; color: #374151; }
-        .breakdown-earning { font-size: 12px; color: #ec4899; font-weight: 600; }
+        .breakdown-revenue { font-size: 14px; font-weight: 700; color: var(--text-primary); }
+        .breakdown-earning { font-size: 12px; color: var(--accent-pink); font-weight: 600; }
 
         /* Summary Row */
         .summary-row {
-            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
-            padding: 20px 24px; border-top: 2px solid #f9a8d4;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 20px 24px; border-top: 2px solid var(--accent-pink);
             display: grid; grid-template-columns: repeat(3, 1fr); align-items: center;
         }
         .summary-label { font-size: 14px; font-weight: 700; color: white; }
         .summary-item { text-align: center; }
-        .summary-item-label { font-size: 11px; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.5px; }
-        .summary-item-value { font-size: 24px; font-weight: 800; color: #f9a8d4; margin-top: 4px; }
+        .summary-item-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+        .summary-item-value { font-size: 24px; font-weight: 800; color: var(--accent-pink); margin-top: 4px; }
 
         /* Commission Note */
         .commission-note {
-            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+            background: rgba(249, 109, 204, 0.06);
+            border: 1px solid rgba(249, 109, 204, 0.1);
             border-radius: 12px; padding: 16px; margin: 16px 24px 24px; text-align: center;
-            font-size: 13px; color: #6b7280;
+            font-size: 13px; color: var(--text-secondary);
         }
-        .commission-note strong { color: #be185d; }
-
-        .footer { text-align: center; margin-top: 40px; color: #9ca3af; font-size: 13px; }
-        .footer a { color: #ec4899; text-decoration: none; }
+        .commission-note strong { color: var(--accent-pink); }
 
         .share-links-btn {
             display: inline-flex; align-items: center; gap: 8px;
-            padding: 12px 20px; background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
-            color: white; border-radius: 12px; font-size: 14px; font-weight: 600;
+            padding: 12px 20px; background: linear-gradient(135deg, var(--accent-pink) 0%, #d44fa0 100%);
+            color: white; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 12px; font-size: 14px; font-weight: 600;
             text-decoration: none; transition: all 0.2s ease; white-space: nowrap;
+            box-shadow: 0 0 20px rgba(249, 109, 204, 0.3);
         }
-        .share-links-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(236, 72, 153, 0.4); }
+        .share-links-btn:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(249, 109, 204, 0.5); }
 
         /* Quick Stats Banner */
         .quick-stats-banner {
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 32px;
         }
         .quick-stat-card {
-            background: white; border-radius: 16px; padding: 20px; text-align: center;
-            box-shadow: 0 4px 20px rgba(244, 180, 198, 0.2);
+            background: rgba(20, 20, 23, 0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px; padding: 20px; text-align: center;
         }
         .quick-stat-icon { font-size: 24px; margin-bottom: 8px; }
-        .quick-stat-value { font-size: 20px; font-weight: 700; color: #1f2937; }
-        .quick-stat-label { font-size: 12px; color: #6b7280; margin-top: 4px; }
+        .quick-stat-value { font-size: 20px; font-weight: 700; color: var(--text-primary); }
+        .quick-stat-label { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
         .quick-stat-change { font-size: 11px; margin-top: 4px; }
         .change-positive { color: #10b981; }
-        .change-neutral { color: #6b7280; }
+        .change-neutral { color: var(--text-muted); }
 
         @media (max-width: 900px) {
             .profile-stats { grid-template-columns: repeat(3, 1fr); }
@@ -239,7 +239,7 @@
         }
     </style>
 </head>
-<body>
+<body class="noise-bg">
     <!-- Access Gate -->
     <div class="access-gate" id="accessGate">
         <div class="access-box">
@@ -257,7 +257,7 @@
         <div class="container">
             <div class="header">
                 <img src="logo.png" alt="Aruna Talent" class="logo">
-                <h1>My Referrals</h1>
+                <h1 class="gradient-text">My Referrals</h1>
                 <p>Track your models and earnings in real-time</p>
             </div>
 
@@ -339,7 +339,7 @@
 
             <!-- Inactive Models -->
             <div class="models-section" id="inactiveSection" style="display: none;">
-                <div class="models-header" style="background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);">
+                <div class="models-header" style="background: rgba(107, 114, 128, 0.15); border-bottom-color: rgba(107, 114, 128, 0.2);">
                     <div class="models-title">Inactive Models</div>
                     <div class="models-count" id="inactiveCount">0 models</div>
                 </div>
@@ -356,7 +356,7 @@
                 </div>
             </div>
 
-            <div class="footer">
+            <div class="site-footer">
                 <p><a href="/leaderboard">View Leaderboard</a> · <a href="/referral-link">Get Your Links</a> · <a href="/">Refer More Creators</a></p>
                 <p style="margin-top: 8px;">Questions? Contact your account manager</p>
             </div>
@@ -366,17 +366,14 @@
     <script>
         // ============================================
         // GOOGLE SHEETS CONFIGURATION
-        // Replace these URLs with your published Google Sheets CSV URLs
         // ============================================
         const SHEETS_CONFIG = {
-            // Set to true to use Google Sheets, false to use demo data
             useGoogleSheets: true,
-            // Your published Google Sheets CSV URLs:
             referrersUrl: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQChUrjw5PJusQ4yKWy7jfiA8Hgs-pX12kGDPxNhRS0wZfdNewbVB8BuT4JRxfenIvqZ5jza1SGJe1K/pub?gid=0&single=true&output=csv',
             modelsUrl: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQChUrjw5PJusQ4yKWy7jfiA8Hgs-pX12kGDPxNhRS0wZfdNewbVB8BuT4JRxfenIvqZ5jza1SGJe1K/pub?gid=86138775&single=true&output=csv'
         };
 
-        // Demo data (used when useGoogleSheets is false)
+        // Demo data
         const DEMO_DATA = {
             'SARAH123': {
                 name: 'Sarah M.',
@@ -428,10 +425,8 @@
                 const referrers = parseCSV(referrersCsv);
                 const models = parseCSV(modelsCsv);
 
-                // Build referrerData from sheets
                 const data = {};
                 referrers.forEach(r => {
-                    // Handle column names: Code, Name, Join Date
                     const code = (r['Code'] || r['code'] || '').toUpperCase();
                     if (code) {
                         data[code] = {
@@ -442,7 +437,6 @@
                     }
                 });
 
-                // Group models by ReferrerCode + ModelName, aggregating monthly revenue
                 const modelMap = {};
                 models.forEach(m => {
                     const code = (m['ReferrerCode'] || m['referrerCode'] || '').toUpperCase();
@@ -460,7 +454,6 @@
                         };
                     }
 
-                    // Add this month's revenue
                     const month = m['Month'] || m['month'] || '';
                     const revenue = parseFloat(m['Revenue'] || m['revenue'] || 0);
                     if (month && revenue) {
@@ -468,7 +461,6 @@
                     }
                 });
 
-                // Add models to their referrers
                 Object.values(modelMap).forEach(model => {
                     if (data[model.code]) {
                         data[model.code].models.push({
@@ -531,7 +523,6 @@
                 }
             }
 
-            // Check URL for code parameter
             const params = new URLSearchParams(window.location.search);
             const urlCode = params.get('code');
             if (urlCode && referrerData[urlCode.toUpperCase()]) {
@@ -568,7 +559,6 @@
             return { name: 'Base', rate: 2.5 };
         }
 
-        // Build a map of month -> total revenue across ALL models
         function buildMonthlyTotals(models) {
             const monthTotals = {};
             models.forEach(model => {
@@ -609,9 +599,8 @@
             model.monthlyRevenue.forEach((m, index) => {
                 let rate;
                 if (index < 3) {
-                    rate = 5; // First 3 months = 5%
+                    rate = 5;
                 } else {
-                    // After month 3, use the tier based on that month's total revenue
                     const monthTotal = monthTotals[m.month] || 0;
                     rate = getTier(monthTotal).rate;
                 }
@@ -633,36 +622,28 @@
             const data = referrerData[code];
             if (!data) return;
 
-            // Profile
             document.getElementById('profileName').textContent = data.name;
             document.getElementById('profileInitial').textContent = data.name.charAt(0);
 
-            // Join date
             const joinDate = new Date(data.joinDate);
             const joinMonth = joinDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
             document.getElementById('profileJoined').textContent = `Partner since ${joinMonth}`;
 
-            // Build monthly totals across ALL models for tier calculations
             const monthTotals = buildMonthlyTotals(data.models);
 
-            // Separate active/inactive
             const activeModels = data.models.filter(m => m.status === 'active');
             const inactiveModels = data.models.filter(m => m.status === 'inactive');
 
-            // Calculate totals
             const currentMonthRevenue = activeModels.reduce((sum, m) => sum + getCurrentMonthRevenue(m), 0);
             const totalRevenue = data.models.reduce((sum, m) => sum + getTotalRevenue(m), 0);
 
-            // Calculate current tier based on this month's total revenue
             const currentTier = getTier(currentMonthRevenue);
 
-            // Update tier badge
             const tierBadge = document.getElementById('profileTierBadge');
             tierBadge.className = 'profile-tier-badge tier-' + currentTier.name.toLowerCase();
             const tierIcon = currentTier.name === 'Diamond' ? '💎' : currentTier.name === 'Gold' ? '⭐' : '🥉';
             tierBadge.textContent = `${tierIcon} ${currentTier.name} · ${currentTier.rate}%`;
 
-            // Tier progress
             const tierProgressDiv = document.getElementById('tierProgress');
             if (currentTier.name === 'Diamond') {
                 tierProgressDiv.style.display = 'none';
@@ -676,11 +657,9 @@
                 document.querySelector('.tier-progress-label').textContent = `Progress to ${nextTier.name} Tier`;
             }
 
-            // Calculate average retention (months active per model)
             const totalMonths = data.models.reduce((sum, m) => sum + m.monthlyRevenue.length, 0);
             const avgRetention = data.models.length > 0 ? Math.round(totalMonths / data.models.length) : 0;
 
-            // Calculate this month's earnings
             let thisMonthEarnings = 0;
             activeModels.forEach(model => {
                 const monthIndex = model.monthlyRevenue.length - 1;
@@ -695,13 +674,11 @@
                 thisMonthEarnings += currentRev * (rate / 100);
             });
 
-            // Calculate total earnings using dynamic tier per month
             let totalEarnings = 0;
             data.models.forEach(model => {
                 totalEarnings += calculateModelEarnings(model, monthTotals);
             });
 
-            // Update stats
             document.getElementById('statActiveModels').textContent = activeModels.length;
             document.getElementById('statInactiveModels').textContent = inactiveModels.length;
             document.getElementById('statAvgRetention').textContent = avgRetention + ' mo';
@@ -724,7 +701,6 @@
                 const currentRev = getCurrentMonthRevenue(model);
                 const modelEarnings = calculateModelEarnings(model, monthTotals);
 
-                // Get current rate for this model
                 const modelMonths = model.monthlyRevenue.length;
                 let currentRate;
                 if (modelMonths <= 3) {
@@ -805,15 +781,15 @@
                             <div class="model-info">
                                 <div class="model-avatar" style="opacity: 0.5;">${model.emoji}</div>
                                 <div>
-                                    <div class="model-name" style="color: #9ca3af;">${model.name} <span class="expand-icon">▼</span></div>
+                                    <div class="model-name" style="color: var(--text-muted);">${model.name} <span class="expand-icon">▼</span></div>
                                     <div class="model-status status-inactive">Churned</div>
                                 </div>
                             </div>
                             <div class="model-cell date">${formatDate(model.startDate)}</div>
                             <div class="model-cell date">${formatDate(model.lastActive)}</div>
-                            <div class="model-cell" style="color: #9ca3af;">${formatCurrency(totalRev)}</div>
-                            <div class="model-cell" style="color: #9ca3af;">${monthsActive} mo</div>
-                            <div class="model-cell" style="color: #9ca3af;">${formatCurrency(modelEarnings)}</div>
+                            <div class="model-cell" style="color: var(--text-muted);">${formatCurrency(totalRev)}</div>
+                            <div class="model-cell" style="color: var(--text-muted);">${monthsActive} mo</div>
+                            <div class="model-cell" style="color: var(--text-muted);">${formatCurrency(modelEarnings)}</div>
                         </div>
                         <div class="monthly-breakdown">
                             <div class="breakdown-title">Monthly Revenue History</div>

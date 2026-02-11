@@ -4,89 +4,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Referrer Leaderboard - Aruna Talent</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23F4B4C6'/><text x='50' y='68' font-family='Arial' font-size='45' font-weight='bold' fill='white' text-anchor='middle'>A</text></svg>">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23f96dcc'/><text x='50' y='68' font-family='Arial' font-size='45' font-weight='bold' fill='white' text-anchor='middle'>A</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/theme.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 50%, #fbcfe8 100%);
-            min-height: 100vh; color: #1f2937;
-        }
         .container { max-width: 1000px; margin: 0 auto; padding: 48px 20px; }
         .header { text-align: center; margin-bottom: 40px; }
         .logo { width: 160px; margin-bottom: 24px; }
         .header h1 {
             font-size: 32px; font-weight: 800; margin-bottom: 12px;
-            background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
-        .header p { color: #6b7280; font-size: 16px; line-height: 1.6; }
+        .header p { font-size: 16px; line-height: 1.6; }
 
         /* Stats Grid */
         .stats-grid {
             display: grid; grid-template-columns: repeat(4, 1fr);
             gap: 16px; margin-bottom: 40px;
         }
-        .stat-card {
-            background: white; border-radius: 16px; padding: 24px; text-align: center;
-            box-shadow: 0 4px 20px rgba(244, 180, 198, 0.2);
-        }
-        .stat-value {
-            font-size: 32px; font-weight: 800; margin-bottom: 4px;
-            background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-        }
-        .stat-label { font-size: 12px; color: #6b7280; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
 
         /* Personal Stats Banner */
         .personal-banner {
-            display: none; background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+            display: none; background: rgba(20, 20, 23, 0.6);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 20px; padding: 32px; margin-bottom: 32px; color: white;
         }
         .personal-banner.active { display: block; }
         .personal-header { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
         .personal-rank {
             width: 56px; height: 56px; border-radius: 50%;
-            background: linear-gradient(135deg, #f9a8d4 0%, #ec4899 100%);
+            background: linear-gradient(135deg, var(--accent-pink) 0%, #d44fa0 100%);
             display: flex; align-items: center; justify-content: center;
             font-size: 24px; font-weight: 700;
         }
         .personal-name { font-size: 24px; font-weight: 700; }
-        .personal-tier { font-size: 14px; color: #f9a8d4; font-weight: 600; }
+        .personal-tier { font-size: 14px; color: var(--accent-pink); font-weight: 600; }
         .personal-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-        .personal-stat { background: rgba(255,255,255,0.1); border-radius: 12px; padding: 16px; text-align: center; }
-        .personal-stat-value { font-size: 24px; font-weight: 700; color: #f9a8d4; }
-        .personal-stat-label { font-size: 11px; color: #d1d5db; margin-top: 4px; text-transform: uppercase; }
+        .personal-stat { background: rgba(255,255,255,0.06); border-radius: 12px; padding: 16px; text-align: center; }
+        .personal-stat-value { font-size: 24px; font-weight: 700; color: var(--accent-pink); }
+        .personal-stat-label { font-size: 11px; color: var(--text-secondary); margin-top: 4px; text-transform: uppercase; }
 
         /* Leaderboard */
         .leaderboard {
-            background: white; border-radius: 20px; overflow: hidden;
-            box-shadow: 0 4px 20px rgba(244, 180, 198, 0.25); margin-bottom: 40px;
+            background: rgba(20, 20, 23, 0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px; overflow: hidden; margin-bottom: 40px;
         }
         .leaderboard-header-bar {
-            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+            background: rgba(255, 255, 255, 0.03);
             padding: 20px 24px; color: white;
             display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
         .leaderboard-title { font-size: 18px; font-weight: 700; }
-        .leaderboard-subtitle { font-size: 13px; color: #9ca3af; }
+        .leaderboard-subtitle { font-size: 13px; color: var(--text-muted); }
         .leaderboard-table { width: 100%; }
         .leaderboard-table-header {
             display: grid; grid-template-columns: 60px 1fr 100px 100px 120px 100px 100px;
-            padding: 14px 24px; font-size: 11px; font-weight: 600; color: #9ca3af;
-            text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid #e5e7eb;
-            background: #f9fafb;
+            padding: 14px 24px; font-size: 11px; font-weight: 600; color: var(--text-muted);
+            text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.03);
         }
         .leaderboard-row {
             display: grid; grid-template-columns: 60px 1fr 100px 100px 120px 100px 100px;
-            padding: 16px 24px; align-items: center; border-bottom: 1px solid #f3f4f6;
+            padding: 16px 24px; align-items: center; border-bottom: 1px solid rgba(255, 255, 255, 0.04);
             transition: all 0.2s ease;
         }
-        .leaderboard-row:hover { background: #fdf2f8; }
-        .leaderboard-row.highlighted { background: #fdf2f8; border-left: 4px solid #ec4899; }
+        .leaderboard-row:hover { background: rgba(249, 109, 204, 0.05); }
+        .leaderboard-row.highlighted { background: rgba(249, 109, 204, 0.08); border-left: 4px solid var(--accent-pink); }
         .leaderboard-row:last-child { border-bottom: none; }
 
         .rank {
@@ -96,134 +83,78 @@
         .rank-1 { background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); color: white; }
         .rank-2 { background: linear-gradient(135deg, #d1d5db 0%, #9ca3af 100%); color: white; }
         .rank-3 { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; }
-        .rank-other { background: #f3f4f6; color: #6b7280; }
+        .rank-other { background: rgba(255, 255, 255, 0.06); color: var(--text-muted); }
 
         .referrer-info { display: flex; align-items: center; gap: 12px; }
         .referrer-avatar {
             width: 40px; height: 40px; border-radius: 50%;
-            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+            background: rgba(249, 109, 204, 0.08);
             display: flex; align-items: center; justify-content: center; font-size: 18px;
         }
-        .referrer-name { font-weight: 600; font-size: 14px; }
+        .referrer-name { font-weight: 600; font-size: 14px; color: var(--text-primary); }
         .referrer-tier { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
-        .tier-base { color: #6b7280; }
+        .tier-base { color: var(--text-muted); }
         .tier-gold { color: #f59e0b; }
-        .tier-diamond { color: #ec4899; }
+        .tier-diamond { color: var(--accent-pink); }
 
-        .stat-cell { font-size: 14px; font-weight: 600; color: #374151; text-align: center; }
+        .stat-cell { font-size: 14px; font-weight: 600; color: var(--text-secondary); text-align: center; }
         .stat-cell.highlight { color: #10b981; }
-        .stat-cell.earnings { color: #ec4899; font-weight: 700; }
+        .stat-cell.earnings { color: var(--accent-pink); font-weight: 700; }
 
         /* Tier Cards */
         .tiers-section { margin-bottom: 40px; }
         .tiers-header { text-align: center; margin-bottom: 24px; }
         .tiers-title { font-size: 24px; font-weight: 800; margin-bottom: 8px; }
-        .tiers-subtitle { font-size: 14px; color: #6b7280; }
-        .tiers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        .tier-card {
-            background: white; border-radius: 20px; padding: 32px; text-align: center;
-            box-shadow: 0 4px 20px rgba(244, 180, 198, 0.2); border: 3px solid transparent;
-            position: relative; overflow: hidden;
-        }
-        .tier-card.base { border-color: #e5e7eb; }
-        .tier-card.gold { border-color: #f59e0b; background: linear-gradient(180deg, #fffbeb 0%, white 30%); }
-        .tier-card.diamond { border-color: #ec4899; background: linear-gradient(180deg, #fdf2f8 0%, white 30%); }
-        .tier-badge {
-            position: absolute; top: 16px; right: 16px; padding: 4px 10px;
-            border-radius: 12px; font-size: 10px; font-weight: 700; text-transform: uppercase;
-        }
-        .tier-card.gold .tier-badge { background: #fef3c7; color: #b45309; }
-        .tier-card.diamond .tier-badge { background: #fce7f3; color: #be185d; }
-        .tier-icon { font-size: 48px; margin-bottom: 16px; }
-        .tier-name { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
-        .tier-rate { font-size: 36px; font-weight: 800; color: #ec4899; margin-bottom: 4px; }
-        .tier-rate-label { font-size: 13px; color: #6b7280; margin-bottom: 16px; }
-        .tier-requirement {
-            background: #f3f4f6; border-radius: 10px; padding: 12px;
-            font-size: 13px; color: #374151; margin-bottom: 16px;
-        }
-        .tier-card.gold .tier-requirement { background: #fef3c7; }
-        .tier-card.diamond .tier-requirement { background: #fce7f3; }
-        .tier-earnings { font-size: 14px; color: #6b7280; }
-        .tier-earnings strong { color: #1f2937; }
+        .tiers-subtitle { font-size: 14px; color: var(--text-secondary); }
 
-        /* Path to 50K */
+        .tier-cards-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+        }
+        .tier-card-item {
+            background: rgba(20, 20, 23, 0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border: 2px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px; padding: 24px; text-align: center;
+        }
+        .tier-gold-card {
+            border-color: rgba(245, 158, 11, 0.3);
+        }
+        .tier-diamond-card {
+            border-color: rgba(249, 109, 204, 0.3);
+        }
+
+        .commission-header-rates {
+            display: flex; justify-content: center; align-items: center;
+            gap: 32px; flex-wrap: wrap;
+        }
+        .commission-rate-box { text-align: center; }
+        .commission-rate {
+            font-size: 64px; font-weight: 800; line-height: 1;
+            background: linear-gradient(135deg, var(--accent-pink) 0%, #ff8fd4 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .commission-arrow { font-size: 24px; color: var(--text-muted); }
+
+        /* Path to Earnings */
         .path-section {
-            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+            background: rgba(20, 20, 23, 0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 20px; padding: 40px; color: white; text-align: center; margin-bottom: 40px;
         }
         .path-title { font-size: 28px; font-weight: 800; margin-bottom: 12px; }
-        .path-subtitle { font-size: 16px; color: #d1d5db; margin-bottom: 32px; }
-        .path-steps { display: flex; justify-content: center; align-items: center; gap: 24px; flex-wrap: wrap; }
-        .path-step {
-            background: rgba(255,255,255,0.1); border-radius: 16px; padding: 24px;
-            min-width: 200px;
-        }
-        .path-step-number { font-size: 12px; color: #f9a8d4; font-weight: 600; margin-bottom: 8px; }
-        .path-step-value { font-size: 24px; font-weight: 800; margin-bottom: 4px; }
-        .path-step-label { font-size: 13px; color: #9ca3af; }
-        .path-arrow { font-size: 24px; color: #f9a8d4; }
-
-        .footer { text-align: center; margin-top: 40px; color: #9ca3af; font-size: 13px; }
-        .footer a { color: #ec4899; text-decoration: none; }
+        .path-subtitle { font-size: 16px; color: var(--text-secondary); margin-bottom: 32px; }
 
         /* Filter Selects */
         .leaderboard-filters { display: flex; gap: 12px; }
         .filter-select {
-            padding: 8px 16px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+            padding: 8px 16px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
             border-radius: 8px; color: white; font-size: 13px; font-weight: 500;
             cursor: pointer; appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23999999'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
             background-repeat: no-repeat; background-position: right 8px center; background-size: 16px;
             padding-right: 32px;
         }
-        .filter-select:focus { outline: none; border-color: #f9a8d4; }
-        .filter-select option { background: #1f2937; color: white; }
-
-        .tier-cards-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-        }
-        .tier-card-item {
-            background: linear-gradient(180deg, #f9fafb 0%, #ffffff 100%);
-            border: 2px solid #e5e7eb;
-            border-radius: 16px;
-            padding: 24px;
-            text-align: center;
-        }
-        .tier-gold-card {
-            background: linear-gradient(180deg, #fffbeb 0%, #ffffff 100%);
-            border-color: #f59e0b;
-        }
-        .tier-diamond-card {
-            background: linear-gradient(180deg, #fdf2f8 0%, #ffffff 100%);
-            border-color: #ec4899;
-        }
-
-        .commission-header-rates {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 32px;
-            flex-wrap: wrap;
-        }
-        .commission-rate-box {
-            text-align: center;
-        }
-        .commission-rate {
-            font-size: 64px;
-            font-weight: 800;
-            line-height: 1;
-            background: linear-gradient(135deg, #f9a8d4 0%, #ec4899 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .commission-arrow {
-            font-size: 24px;
-            color: #4b5563;
-        }
+        .filter-select:focus { outline: none; border-color: var(--accent-pink); }
+        .filter-select option { background: var(--dark-3); color: white; }
 
         @media (max-width: 900px) {
             .leaderboard-filters { flex-wrap: wrap; }
@@ -239,7 +170,6 @@
             .leaderboard-row > *:nth-child(6),
             .leaderboard-row > *:nth-child(7) { display: none; }
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
-            .tiers-grid { grid-template-columns: 1fr; }
             .personal-stats { grid-template-columns: repeat(2, 1fr); }
             .earning-paths-grid { grid-template-columns: repeat(2, 1fr) !important; }
             .tier-cards-grid { grid-template-columns: 1fr !important; }
@@ -256,12 +186,12 @@
         }
     </style>
 </head>
-<body>
+<body class="noise-bg">
     <div class="container">
         <div class="header">
             <img src="logo.png" alt="Aruna Talent" class="logo">
-            <h1>Referrer Leaderboard</h1>
-            <p>Top performers ranked by revenue generated. Climb the tiers, earn more.</p>
+            <h1 class="gradient-text">Referrer Leaderboard</h1>
+            <p class="text-secondary">Top performers ranked by revenue generated. Climb the tiers, earn more.</p>
         </div>
 
         <!-- Personal Stats (shown when ?referrer=Name) -->
@@ -351,22 +281,22 @@
         </div>
 
         <!-- Commission Section -->
-        <div style="background: white; border-radius: 24px; overflow: hidden; margin-bottom: 40px; box-shadow: 0 4px 20px rgba(244, 180, 198, 0.25);">
+        <div style="background: rgba(20, 20, 23, 0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 24px; overflow: hidden; margin-bottom: 40px;">
             <!-- Header -->
-            <div style="background: linear-gradient(135deg, #1f2937 0%, #374151 100%); padding: 32px; text-align: center; color: white;">
-                <div style="font-size: 12px; font-weight: 600; color: #9ca3af; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px;">Your Commission</div>
+            <div style="background: rgba(255, 255, 255, 0.03); padding: 32px; text-align: center; color: white; border-bottom: 1px solid rgba(255, 255, 255, 0.08);">
+                <div style="font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px;">Your Commission</div>
                 <div class="commission-header-rates">
                     <div class="commission-rate-box">
                         <div class="commission-rate">5%</div>
-                        <div style="font-size: 14px; color: #d1d5db; margin-top: 8px;">Each creator's first 3 months</div>
+                        <div style="font-size: 14px; color: var(--text-secondary); margin-top: 8px;">Each creator's first 3 months</div>
                     </div>
                     <div class="commission-arrow">→</div>
                     <div class="commission-rate-box">
                         <div class="commission-rate">2.5-3%</div>
-                        <div style="font-size: 14px; color: #d1d5db; margin-top: 8px;">Lifetime (based on your tier)</div>
+                        <div style="font-size: 14px; color: var(--text-secondary); margin-top: 8px;">Lifetime (based on your tier)</div>
                     </div>
                 </div>
-                <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 14px; color: #9ca3af;">
+                <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 14px; color: var(--text-muted);">
                     Paid monthly · No cap on earnings<br>Higher volume = higher rate
                 </div>
             </div>
@@ -374,30 +304,30 @@
             <!-- Tier Cards -->
             <div style="padding: 32px;">
                 <div style="text-align: center; margin-bottom: 24px;">
-                    <div style="font-size: 18px; font-weight: 700; color: #1f2937;">Lifetime Tier Structure</div>
-                    <div style="font-size: 13px; color: #6b7280; margin-top: 4px;">Based on total monthly revenue from your referrals</div>
+                    <div style="font-size: 18px; font-weight: 700; color: var(--text-primary);">Lifetime Tier Structure</div>
+                    <div style="font-size: 13px; color: var(--text-secondary); margin-top: 4px;">Based on total monthly revenue from your referrals</div>
                 </div>
                 <div class="tier-cards-grid">
                     <!-- Base -->
                     <div class="tier-card-item">
                         <div style="font-size: 36px; margin-bottom: 12px;">🥉</div>
-                        <div style="font-size: 13px; font-weight: 700; color: #6b7280; text-transform: uppercase; letter-spacing: 1px;">Base</div>
-                        <div style="font-size: 40px; font-weight: 800; color: #ec4899; margin: 8px 0;">2.5%</div>
-                        <div style="font-size: 13px; color: #6b7280;">&lt; $500K revenue</div>
+                        <div style="font-size: 13px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Base</div>
+                        <div style="font-size: 40px; font-weight: 800; color: var(--accent-pink); margin: 8px 0;">2.5%</div>
+                        <div style="font-size: 13px; color: var(--text-secondary);">&lt; $500K revenue</div>
                     </div>
                     <!-- Gold -->
                     <div class="tier-card-item tier-gold-card">
                         <div style="font-size: 36px; margin-bottom: 12px;">🥇</div>
-                        <div style="font-size: 13px; font-weight: 700; color: #b45309; text-transform: uppercase; letter-spacing: 1px;">Gold</div>
-                        <div style="font-size: 40px; font-weight: 800; color: #ec4899; margin: 8px 0;">2.75%</div>
-                        <div style="font-size: 13px; color: #6b7280;">$500K - $2M revenue</div>
+                        <div style="font-size: 13px; font-weight: 700; color: #f59e0b; text-transform: uppercase; letter-spacing: 1px;">Gold</div>
+                        <div style="font-size: 40px; font-weight: 800; color: var(--accent-pink); margin: 8px 0;">2.75%</div>
+                        <div style="font-size: 13px; color: var(--text-secondary);">$500K - $2M revenue</div>
                     </div>
                     <!-- Diamond -->
                     <div class="tier-card-item tier-diamond-card">
                         <div style="font-size: 36px; margin-bottom: 12px;">💎</div>
-                        <div style="font-size: 13px; font-weight: 700; color: #be185d; text-transform: uppercase; letter-spacing: 1px;">Diamond</div>
-                        <div style="font-size: 40px; font-weight: 800; color: #ec4899; margin: 8px 0;">3%</div>
-                        <div style="font-size: 13px; color: #6b7280;">$2M+ revenue</div>
+                        <div style="font-size: 13px; font-weight: 700; color: var(--accent-pink); text-transform: uppercase; letter-spacing: 1px;">Diamond</div>
+                        <div style="font-size: 40px; font-weight: 800; color: var(--accent-pink); margin: 8px 0;">3%</div>
+                        <div style="font-size: 13px; color: var(--text-secondary);">$2M+ revenue</div>
                     </div>
                 </div>
             </div>
@@ -409,49 +339,49 @@
             <div class="path-subtitle">Here's exactly what it takes at each level</div>
             <div class="earning-paths-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 32px;">
                 <!-- $10K Path -->
-                <div style="background: rgba(255,255,255,0.1); border-radius: 16px; padding: 20px; text-align: center;">
-                    <div style="font-size: 28px; font-weight: 800; color: #f9a8d4; margin-bottom: 4px;">$10K</div>
-                    <div style="font-size: 11px; color: #9ca3af; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;">Per Month</div>
-                    <div style="background: rgba(255,255,255,0.1); border-radius: 10px; padding: 12px; margin-bottom: 10px;">
+                <div style="background: rgba(255,255,255,0.06); border-radius: 16px; padding: 20px; text-align: center;">
+                    <div style="font-size: 28px; font-weight: 800; color: var(--accent-pink); margin-bottom: 4px;">$10K</div>
+                    <div style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;">Per Month</div>
+                    <div style="background: rgba(255,255,255,0.06); border-radius: 10px; padding: 12px; margin-bottom: 10px;">
                         <div style="font-size: 18px; font-weight: 700;">$400K</div>
-                        <div style="font-size: 10px; color: #9ca3af;">Monthly Revenue</div>
+                        <div style="font-size: 10px; color: var(--text-muted);">Monthly Revenue</div>
                     </div>
-                    <div style="font-size: 12px; color: #d1d5db;">Base · 2.5%</div>
+                    <div style="font-size: 12px; color: var(--text-secondary);">Base · 2.5%</div>
                 </div>
                 <!-- $25K Path -->
-                <div style="background: rgba(255,255,255,0.1); border-radius: 16px; padding: 20px; text-align: center; border: 1px solid rgba(249, 168, 212, 0.2);">
-                    <div style="font-size: 28px; font-weight: 800; color: #f9a8d4; margin-bottom: 4px;">$25K</div>
-                    <div style="font-size: 11px; color: #9ca3af; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;">Per Month</div>
-                    <div style="background: rgba(255,255,255,0.1); border-radius: 10px; padding: 12px; margin-bottom: 10px;">
+                <div style="background: rgba(255,255,255,0.06); border-radius: 16px; padding: 20px; text-align: center; border: 1px solid rgba(249, 109, 204, 0.15);">
+                    <div style="font-size: 28px; font-weight: 800; color: var(--accent-pink); margin-bottom: 4px;">$25K</div>
+                    <div style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;">Per Month</div>
+                    <div style="background: rgba(255,255,255,0.06); border-radius: 10px; padding: 12px; margin-bottom: 10px;">
                         <div style="font-size: 18px; font-weight: 700;">$910K</div>
-                        <div style="font-size: 10px; color: #9ca3af;">Monthly Revenue</div>
+                        <div style="font-size: 10px; color: var(--text-muted);">Monthly Revenue</div>
                     </div>
-                    <div style="font-size: 12px; color: #d1d5db;">Gold · 2.75%</div>
+                    <div style="font-size: 12px; color: var(--text-secondary);">Gold · 2.75%</div>
                 </div>
                 <!-- $50K Path -->
-                <div style="background: rgba(255,255,255,0.15); border-radius: 16px; padding: 20px; text-align: center; border: 1px solid rgba(249, 168, 212, 0.3);">
-                    <div style="font-size: 28px; font-weight: 800; color: #f9a8d4; margin-bottom: 4px;">$50K</div>
-                    <div style="font-size: 11px; color: #9ca3af; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;">Per Month</div>
-                    <div style="background: rgba(255,255,255,0.1); border-radius: 10px; padding: 12px; margin-bottom: 10px;">
+                <div style="background: rgba(255,255,255,0.08); border-radius: 16px; padding: 20px; text-align: center; border: 1px solid rgba(249, 109, 204, 0.2);">
+                    <div style="font-size: 28px; font-weight: 800; color: var(--accent-pink); margin-bottom: 4px;">$50K</div>
+                    <div style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;">Per Month</div>
+                    <div style="background: rgba(255,255,255,0.06); border-radius: 10px; padding: 12px; margin-bottom: 10px;">
                         <div style="font-size: 18px; font-weight: 700;">$1.82M</div>
-                        <div style="font-size: 10px; color: #9ca3af;">Monthly Revenue</div>
+                        <div style="font-size: 10px; color: var(--text-muted);">Monthly Revenue</div>
                     </div>
-                    <div style="font-size: 12px; color: #d1d5db;">Gold · 2.75%</div>
+                    <div style="font-size: 12px; color: var(--text-secondary);">Gold · 2.75%</div>
                 </div>
                 <!-- $100K Path -->
-                <div style="background: linear-gradient(135deg, rgba(236,72,153,0.2) 0%, rgba(190,24,93,0.2) 100%); border-radius: 16px; padding: 20px; text-align: center; border: 2px solid #ec4899;">
+                <div style="background: linear-gradient(135deg, rgba(249,109,204,0.15) 0%, rgba(249,109,204,0.08) 100%); border-radius: 16px; padding: 20px; text-align: center; border: 2px solid var(--accent-pink);">
                     <div style="font-size: 28px; font-weight: 800; color: white; margin-bottom: 4px;">$100K</div>
-                    <div style="font-size: 11px; color: #f9a8d4; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;">Per Month</div>
-                    <div style="background: rgba(255,255,255,0.1); border-radius: 10px; padding: 12px; margin-bottom: 10px;">
+                    <div style="font-size: 11px; color: var(--accent-pink); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;">Per Month</div>
+                    <div style="background: rgba(255,255,255,0.06); border-radius: 10px; padding: 12px; margin-bottom: 10px;">
                         <div style="font-size: 18px; font-weight: 700;">$3.33M</div>
-                        <div style="font-size: 10px; color: #9ca3af;">Monthly Revenue</div>
+                        <div style="font-size: 10px; color: var(--text-muted);">Monthly Revenue</div>
                     </div>
-                    <div style="font-size: 12px; color: #d1d5db;">Diamond · 3%</div>
+                    <div style="font-size: 12px; color: var(--text-secondary);">Diamond · 3%</div>
                 </div>
             </div>
         </div>
 
-        <div class="footer">
+        <div class="site-footer">
             <p>Want to join? <a href="/">Become a referrer</a></p>
             <p style="margin-top: 8px;"><a href="/dashboard">← Back to Dashboard</a></p>
         </div>
@@ -459,33 +389,25 @@
 
     <script>
         // Google Sheets Integration
-        // To use: Create a Google Sheet with columns: Name, Emoji, Models, Retention, AvgPerModel, Revenue, Earnings
-        // Publish as CSV: File > Share > Publish to web > CSV
-        // Replace the URL below with your published CSV URL
-
         const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQChUrjw5PJusQ4yKWy7jfiA8Hgs-pX12kGDPxNhRS0wZfdNewbVB8BuT4JRxfenIvqZ5jza1SGJe1K/pub?gid=2139152553&single=true&output=csv';
 
-        // Sample data - will be replaced when Google Sheets is connected
-        // retention = average months models stay active
         const sampleData = [
-            { name: 'Sarah M.', emoji: '👑', models: 24, retention: 14, avgPerModel: 103847.29, revenue: 2492334.96, code: 'SARAH123' },  // Diamond
-            { name: 'James K.', emoji: '⭐', models: 14, retention: 11, avgPerModel: 64891.34, revenue: 908478.76, code: 'JAMES456' },    // Gold
-            { name: 'Alex R.', emoji: '🔥', models: 8, retention: 9, avgPerModel: 44123.67, revenue: 352989.36, code: 'ALEX789' },       // Base
-            { name: 'Morgan L.', emoji: '✨', models: 6, retention: 8, avgPerModel: 41892.54, revenue: 251355.24 },     // Base
-            { name: 'Casey P.', emoji: '💫', models: 5, retention: 10, avgPerModel: 36478.92, revenue: 182394.60 },     // Base
-            { name: 'Riley W.', emoji: '🌟', models: 4, retention: 7, avgPerModel: 33217.85, revenue: 132871.40 },      // Base
-            { name: 'Jordan B.', emoji: '💖', models: 3, retention: 6, avgPerModel: 27834.19, revenue: 83502.57 },      // Base
-            { name: 'Chris D.', emoji: '🦋', models: 2, retention: 5, avgPerModel: 23156.78, revenue: 46313.56 },       // Base
+            { name: 'Sarah M.', emoji: '👑', models: 24, retention: 14, avgPerModel: 103847.29, revenue: 2492334.96, code: 'SARAH123' },
+            { name: 'James K.', emoji: '⭐', models: 14, retention: 11, avgPerModel: 64891.34, revenue: 908478.76, code: 'JAMES456' },
+            { name: 'Alex R.', emoji: '🔥', models: 8, retention: 9, avgPerModel: 44123.67, revenue: 352989.36, code: 'ALEX789' },
+            { name: 'Morgan L.', emoji: '✨', models: 6, retention: 8, avgPerModel: 41892.54, revenue: 251355.24 },
+            { name: 'Casey P.', emoji: '💫', models: 5, retention: 10, avgPerModel: 36478.92, revenue: 182394.60 },
+            { name: 'Riley W.', emoji: '🌟', models: 4, retention: 7, avgPerModel: 33217.85, revenue: 132871.40 },
+            { name: 'Jordan B.', emoji: '💖', models: 3, retention: 6, avgPerModel: 27834.19, revenue: 83502.57 },
+            { name: 'Chris D.', emoji: '🦋', models: 2, retention: 5, avgPerModel: 23156.78, revenue: 46313.56 },
         ];
 
-        // Tier calculation
         function getTier(revenue) {
             if (revenue >= 2000000) return { name: 'Diamond', rate: 3, class: 'tier-diamond' };
             if (revenue >= 500000) return { name: 'Gold', rate: 2.75, class: 'tier-gold' };
             return { name: 'Base', rate: 2.5, class: 'tier-base' };
         }
 
-        // Format currency
         function formatCurrency(amount, abbreviated = false) {
             if (abbreviated) {
                 if (amount >= 1000000) return '$' + (amount / 1000000).toFixed(2) + 'M';
@@ -494,12 +416,9 @@
             return '$' + amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         }
 
-
-        // URL parameter for personalization
         const params = new URLSearchParams(window.location.search);
         const referrerParam = params.get('referrer');
 
-        // Load data (from Google Sheets or sample)
         async function loadData() {
             let data = sampleData;
 
@@ -527,7 +446,6 @@
 
             currentData = data;
 
-            // Calculate stats
             const totalModels = data.reduce((sum, r) => sum + r.models, 0);
             const totalRevenue = data.reduce((sum, r) => sum + r.revenue, 0);
             const avgRetention = Math.round(data.reduce((sum, r) => sum + r.retention, 0) / data.length);
@@ -560,7 +478,6 @@
         function renderLeaderboard() {
             let data = [...currentData];
 
-            // Filter
             if (currentFilter !== 'all') {
                 data = data.filter(r => {
                     const tier = getTier(r.revenue).name.toLowerCase();
@@ -568,7 +485,6 @@
                 });
             }
 
-            // Sort
             data.sort((a, b) => {
                 switch(currentSort) {
                     case 'models': return b.models - a.models;

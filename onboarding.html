@@ -4,131 +4,135 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Creator Onboarding - Aruna Talent</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23F4B4C6'/><text x='50' y='68' font-family='Arial' font-size='45' font-weight='bold' fill='white' text-anchor='middle'>A</text></svg>">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23f96dcc'/><text x='50' y='68' font-family='Arial' font-size='45' font-weight='bold' fill='white' text-anchor='middle'>A</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/theme.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 50%, #fbcfe8 100%);
-            min-height: 100vh;
-            color: #1f2937;
-        }
         .container { max-width: 800px; margin: 0 auto; padding: 48px 20px; }
         .header { text-align: center; margin-bottom: 40px; }
         .logo { width: 160px; margin-bottom: 24px; }
         .header h1 {
             font-size: 32px; font-weight: 700; margin-bottom: 12px;
-            background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
+            background: linear-gradient(135deg, var(--accent-pink) 0%, #ff8fd4 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
-        .header p { color: #6b7280; font-size: 16px; line-height: 1.6; }
+        .header p { color: var(--text-secondary); font-size: 16px; line-height: 1.6; }
 
         .welcome-banner {
-            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+            background: linear-gradient(135deg, var(--dark-2) 0%, var(--dark-3) 100%);
+            border: 1px solid var(--border-subtle);
             border-radius: 20px; padding: 32px; margin-bottom: 32px; color: white; text-align: center;
         }
         .welcome-emoji { font-size: 48px; margin-bottom: 16px; }
         .welcome-title { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
-        .welcome-text { font-size: 15px; color: #d1d5db; max-width: 600px; margin: 0 auto; line-height: 1.6; }
+        .welcome-text { font-size: 15px; color: var(--text-secondary); max-width: 600px; margin: 0 auto; line-height: 1.6; }
 
         .values-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-top: 20px; }
         .value-item {
-            background: rgba(255,255,255,0.1); border-radius: 10px; padding: 12px; text-align: center;
-            font-size: 13px; color: #f9a8d4;
+            background: rgba(255,255,255,0.06); border: 1px solid var(--border-subtle);
+            border-radius: 10px; padding: 12px; text-align: center;
+            font-size: 13px; color: var(--text-secondary);
         }
-        .value-item strong { display: block; color: white; margin-bottom: 4px; }
+        .value-item strong { display: block; color: var(--accent-pink); margin-bottom: 4px; }
 
         .progress-overview {
-            background: white; border-radius: 16px; padding: 24px; margin-bottom: 32px;
-            box-shadow: 0 4px 20px rgba(244, 180, 198, 0.25);
+            background: rgba(20, 20, 23, 0.6); backdrop-filter: blur(12px);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px; padding: 24px; margin-bottom: 32px;
         }
         .progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
         .progress-title { font-size: 16px; font-weight: 600; }
-        .progress-percent { font-size: 14px; color: #ec4899; font-weight: 600; }
-        .progress-bar { height: 10px; background: #e5e7eb; border-radius: 5px; overflow: hidden; }
-        .progress-fill {
-            height: 100%; background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
-            border-radius: 5px; transition: width 0.5s ease;
-        }
+        .progress-percent { font-size: 14px; color: var(--accent-pink); font-weight: 600; }
 
         .section {
-            background: white; border-radius: 20px; padding: 32px; margin-bottom: 24px;
-            box-shadow: 0 4px 20px rgba(244, 180, 198, 0.25);
+            background: rgba(20, 20, 23, 0.6); backdrop-filter: blur(12px);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px; padding: 32px; margin-bottom: 24px;
         }
         .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
         .section-icon {
             width: 44px; height: 44px;
-            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+            background: rgba(249, 109, 204, 0.12);
             border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px;
         }
         .section-title { font-size: 18px; font-weight: 700; }
-        .section-subtitle { font-size: 13px; color: #6b7280; }
+        .section-subtitle { font-size: 13px; color: var(--text-muted); }
         .time-estimate {
-            display: inline-block; padding: 2px 8px; background: #fdf2f8;
-            border-radius: 10px; font-size: 11px; color: #ec4899; font-weight: 600;
+            display: inline-block; padding: 2px 8px; background: rgba(249, 109, 204, 0.12);
+            border-radius: 10px; font-size: 11px; color: var(--accent-pink); font-weight: 600;
             margin-left: 8px;
         }
 
         .checklist { display: flex; flex-direction: column; gap: 12px; }
         .checklist-item {
             display: flex; align-items: flex-start; gap: 14px; padding: 16px;
-            background: #f9fafb; border-radius: 12px; cursor: pointer; transition: all 0.2s ease;
+            background: rgba(255,255,255,0.04); border: 1px solid var(--border-subtle);
+            border-radius: 12px; cursor: pointer; transition: all 0.2s ease;
         }
-        .checklist-item:hover { background: #fdf2f8; }
-        .checklist-item.completed { background: #ecfdf5; }
+        .checklist-item:hover { background: rgba(249, 109, 204, 0.06); border-color: rgba(249, 109, 204, 0.15); }
+        .checklist-item.completed { background: rgba(16, 185, 129, 0.08); border-color: rgba(16, 185, 129, 0.2); }
         .checkbox {
-            width: 24px; height: 24px; border: 2px solid #d1d5db; border-radius: 6px;
+            width: 24px; height: 24px; border: 2px solid rgba(255,255,255,0.2); border-radius: 6px;
             display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.2s ease;
         }
         .checklist-item.completed .checkbox { background: #10b981; border-color: #10b981; color: white; }
         .checkbox svg { width: 14px; height: 14px; opacity: 0; }
         .checklist-item.completed .checkbox svg { opacity: 1; }
         .checklist-content { flex: 1; }
-        .checklist-title { font-size: 15px; font-weight: 600; color: #1f2937; margin-bottom: 4px; }
-        .checklist-item.completed .checklist-title { text-decoration: line-through; color: #6b7280; }
-        .checklist-description { font-size: 13px; color: #6b7280; line-height: 1.5; }
-        .checklist-link { color: #ec4899; text-decoration: none; font-weight: 500; }
+        .checklist-title { font-size: 15px; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; }
+        .checklist-item.completed .checklist-title { text-decoration: line-through; color: var(--text-muted); }
+        .checklist-description { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+        .checklist-link { color: var(--accent-pink); text-decoration: none; font-weight: 500; }
         .checklist-link:hover { text-decoration: underline; }
 
         .info-box {
-            background: #fdf2f8; border-left: 4px solid #ec4899; padding: 16px; border-radius: 0 12px 12px 0;
-            margin-top: 16px; font-size: 13px; color: #6b7280; line-height: 1.6;
+            background: rgba(249, 109, 204, 0.08); border-left: 4px solid var(--accent-pink);
+            padding: 16px; border-radius: 0 12px 12px 0;
+            margin-top: 16px; font-size: 13px; color: var(--text-secondary); line-height: 1.6;
         }
-        .info-box strong { color: #be185d; }
+        .info-box strong { color: var(--accent-pink); }
 
         .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
         .team-card {
-            padding: 20px; background: #f9fafb; border-radius: 12px; text-align: center; transition: all 0.2s ease;
+            padding: 20px; background: rgba(255,255,255,0.04); border: 1px solid var(--border-subtle);
+            border-radius: 12px; text-align: center; transition: all 0.2s ease;
         }
-        .team-card:hover { background: #fdf2f8; transform: translateY(-2px); }
+        .team-card:hover { background: rgba(249, 109, 204, 0.06); border-color: rgba(249, 109, 204, 0.15); transform: translateY(-2px); }
         .team-avatar {
-            width: 56px; height: 56px; background: linear-gradient(135deg, #f9a8d4 0%, #f472b6 100%);
+            width: 56px; height: 56px; background: linear-gradient(135deg, var(--accent-pink) 0%, #d44fa0 100%);
             border-radius: 50%; display: flex; align-items: center; justify-content: center;
             margin: 0 auto 12px; font-size: 24px;
         }
         .team-name { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
-        .team-role { font-size: 12px; color: #ec4899; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
-        .team-description { font-size: 13px; color: #6b7280; margin-bottom: 12px; }
+        .team-role { font-size: 12px; color: var(--accent-pink); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+        .team-description { font-size: 13px; color: var(--text-muted); margin-bottom: 12px; }
         .team-book {
-            display: inline-block; padding: 8px 16px; background: white; border: 1px solid #e5e7eb;
-            border-radius: 8px; font-size: 13px; font-weight: 500; color: #374151; text-decoration: none; transition: all 0.2s ease;
+            display: inline-block; padding: 8px 16px; background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px; font-size: 13px; font-weight: 500; color: var(--text-secondary); text-decoration: none; transition: all 0.2s ease;
         }
-        .team-book:hover { border-color: #ec4899; color: #ec4899; }
+        .team-book:hover { border-color: var(--accent-pink); color: var(--accent-pink); }
 
         .quick-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
         .quick-link {
-            display: flex; align-items: center; gap: 10px; padding: 16px; background: #f9fafb;
-            border-radius: 12px; text-decoration: none; color: #374151; transition: all 0.2s ease;
+            display: flex; align-items: center; gap: 10px; padding: 16px;
+            background: rgba(255,255,255,0.04); border: 1px solid var(--border-subtle);
+            border-radius: 12px; text-decoration: none; color: var(--text-secondary); transition: all 0.2s ease;
         }
-        .quick-link:hover { background: #fdf2f8; transform: translateY(-2px); }
+        .quick-link:hover { background: rgba(249, 109, 204, 0.06); border-color: rgba(249, 109, 204, 0.15); transform: translateY(-2px); }
         .quick-link-icon { font-size: 20px; }
         .quick-link-text { font-size: 14px; font-weight: 500; }
 
-        .footer { text-align: center; margin-top: 40px; color: #9ca3af; font-size: 13px; }
-        .footer a { color: #ec4899; text-decoration: none; }
+        .launch-section {
+            background: linear-gradient(135deg, var(--dark-3) 0%, var(--dark-4) 100%);
+            border: 1px solid rgba(249, 109, 204, 0.2);
+        }
+        .launch-section .checklist-item { background: rgba(255,255,255,0.06); }
+        .launch-section .checklist-title { color: white; }
+        .launch-section .checklist-description { color: var(--text-secondary); }
+        .launch-section .section-subtitle { color: var(--text-secondary); }
 
         @media (max-width: 600px) {
             .container { padding: 24px 16px; }
@@ -139,7 +143,7 @@
         }
     </style>
 </head>
-<body>
+<body class="noise-bg">
     <div class="container">
         <div class="header">
             <img src="logo.png" alt="Aruna Talent" class="logo">
@@ -151,7 +155,7 @@
             <div class="welcome-emoji">🎉</div>
             <div class="welcome-title">Welcome<span id="creatorGreeting"></span> to Aruna Talent</div>
             <div class="welcome-text">This is where your journey officially begins. Follow this page from top to bottom — we'll guide you through everything you need before launch.</div>
-            <div id="managerNotice" style="display: none; margin-top: 16px; padding: 12px 20px; background: rgba(244, 114, 182, 0.3); border-radius: 10px; font-size: 14px;">
+            <div id="managerNotice" style="display: none; margin-top: 16px; padding: 12px 20px; background: rgba(249, 109, 204, 0.2); border-radius: 10px; font-size: 14px;">
                 Your talent manager is <strong id="managerName"></strong> — reach out anytime!
             </div>
             <div class="values-grid">
@@ -386,20 +390,20 @@
         </div>
 
         <!-- Launch Ready -->
-        <div class="section" style="background: linear-gradient(135deg, #1f2937 0%, #374151 100%); color: white;">
+        <div class="section launch-section">
             <div class="section-header">
-                <div class="section-icon" style="background: rgba(255,255,255,0.2);">🚀</div>
+                <div class="section-icon" style="background: rgba(249, 109, 204, 0.2);">🚀</div>
                 <div>
-                    <div class="section-title" style="color: white;">Ready to Launch</div>
-                    <div class="section-subtitle" style="color: #d1d5db;">Final confirmation</div>
+                    <div class="section-title">Ready to Launch</div>
+                    <div class="section-subtitle">Final confirmation</div>
                 </div>
             </div>
             <div class="checklist" data-section="launch">
-                <div class="checklist-item" data-task="all-complete" style="background: rgba(255,255,255,0.1);">
+                <div class="checklist-item" data-task="all-complete">
                     <div class="checkbox"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg></div>
                     <div class="checklist-content">
-                        <div class="checklist-title" style="color: white;">Message: "All onboarding tasks completed — ready to start!"</div>
-                        <div class="checklist-description" style="color: #d1d5db;">Once everything above is done, post this in #general. Then we scale you.</div>
+                        <div class="checklist-title">Message: "All onboarding tasks completed — ready to start!"</div>
+                        <div class="checklist-description">Once everything above is done, post this in #general. Then we scale you.</div>
                     </div>
                 </div>
             </div>
@@ -463,7 +467,7 @@
             </div>
         </div>
 
-        <div class="footer">
+        <div class="site-footer">
             <p>You're not doing this alone. We're here for every step, question, doubt, and win.</p>
             <p style="margin-top: 8px;"><a href="/dashboard">← Back to Dashboard</a></p>
         </div>
