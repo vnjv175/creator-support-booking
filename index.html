@@ -7,12 +7,18 @@
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23f96dcc'/><text x='50' y='68' font-family='Arial' font-size='45' font-weight='bold' fill='white' text-anchor='middle'>A</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/theme.css">
     <style>
-        /* Page-specific layout */
+        /* Hero Section */
+        .hero-wrapper {
+            position: relative;
+            overflow: hidden;
+            padding-bottom: 20px;
+        }
+
         .hero {
-            padding: 60px 20px 40px;
+            padding: 60px 20px 32px;
             text-align: center;
             max-width: 800px;
             margin: 0 auto;
@@ -22,80 +28,33 @@
 
         .logo {
             width: 160px;
-            margin-bottom: 32px;
+            margin-bottom: 24px;
         }
 
         .hero h1 {
-            font-size: 42px;
-            line-height: 1.2;
+            font-size: 48px;
+            line-height: 1.15;
             margin-bottom: 16px;
+            font-weight: 800;
+        }
+
+        .hero h1 .dollar-highlight {
+            display: block;
+            font-size: 56px;
         }
 
         .hero p {
             font-size: 18px;
             line-height: 1.6;
-            max-width: 600px;
-            margin: 0 auto;
+            max-width: 580px;
+            margin: 0 auto 28px;
         }
 
-        /* VSL Section */
-        .vsl-section {
-            max-width: 800px;
-            margin: 0 auto 48px;
-            padding: 0 20px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .vsl-container {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
-        }
-
-        .vsl-placeholder {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+        .hero-cta-row {
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
-            color: white;
-        }
-
-        .play-button {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--accent-pink) 0%, #d44fa0 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 16px;
-            cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .play-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 30px rgba(249, 109, 204, 0.5);
-        }
-
-        .play-button svg {
-            width: 32px;
-            height: 32px;
-            margin-left: 4px;
-        }
-
-        .vsl-placeholder p {
-            color: var(--text-muted);
-            font-size: 14px;
+            gap: 16px;
+            flex-wrap: wrap;
         }
 
         /* Content Section */
@@ -268,7 +227,14 @@
             font-size: 40px;
             font-weight: 800;
             color: var(--accent-pink);
-            margin: 12px 0 8px;
+            margin: 12px 0 4px;
+        }
+
+        .tier-dollar-example {
+            font-size: 13px;
+            color: var(--accent-champagne);
+            margin-bottom: 8px;
+            font-weight: 500;
         }
 
         .tier-revenue {
@@ -304,31 +270,6 @@
 
         .info-card h3 span {
             font-size: 24px;
-        }
-
-        .info-list {
-            list-style: none;
-        }
-
-        .info-list li {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            margin-bottom: 12px;
-            font-size: 14px;
-            color: var(--text-secondary);
-            line-height: 1.5;
-        }
-
-        .info-list li:last-child {
-            margin-bottom: 0;
-        }
-
-        .check-icon {
-            color: #10b981;
-            font-size: 16px;
-            flex-shrink: 0;
-            margin-top: 2px;
         }
 
         /* Steps */
@@ -419,10 +360,22 @@
             margin-bottom: 8px;
         }
 
+        /* Social Proof Grid */
+        .proof-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 32px;
+            }
+
+            .hero h1 .dollar-highlight {
+                font-size: 38px;
             }
 
             .hero p {
@@ -457,38 +410,75 @@
             .tier-cards-grid {
                 grid-template-columns: 1fr;
             }
+
+            .proof-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
-<body class="noise-bg">
-    <!-- Hero -->
-    <div class="hero">
-        <img src="logo.png" alt="Aruna Talent" class="logo">
-        <h1 class="gradient-text">Earn Money Referring Creators</h1>
-        <p class="text-secondary">Know someone who'd be perfect for our roster? Join our referral program and earn commissions on every creator you bring in.</p>
-    </div>
-
-    <!-- VSL -->
-    <div class="vsl-section">
-        <div class="vsl-container glass-card-static">
-            <div class="vsl-placeholder">
-                <div class="play-button">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24">
-                        <path d="M8 5v14l11-7z"/>
-                    </svg>
-                </div>
-                <p>Video coming soon</p>
+<body class="noise-bg has-sticky-cta">
+    <!-- Hero with Mesh Gradient -->
+    <div class="hero-wrapper">
+        <div class="hero-mesh"></div>
+        <div class="hero">
+            <img src="logo.png" alt="Aruna Talent" class="logo">
+            <div class="proof-chip">
+                <span class="chip-dot"></span>
+                9 active referrers earning commissions right now
             </div>
-            <!-- Replace the above with your video embed:
-            <iframe src="YOUR_YOUTUBE_OR_VIMEO_EMBED_URL" frameborder="0" allow="autoplay; fullscreen" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
-            -->
+            <h1>
+                <span class="gradient-text dollar-highlight">Earn $250+/mo</span>
+                Referring Creators You Already Know
+            </h1>
+            <p class="text-secondary">Refer creators to Aruna Talent and earn 2.5&ndash;5% of their revenue every single month. No selling. No calls. Just introductions.</p>
+            <div class="hero-cta-row">
+                <a href="#apply" class="cta-btn">Apply Now &rarr;</a>
+                <a href="#tiers" class="btn-secondary">See Commission Tiers</a>
+            </div>
         </div>
     </div>
 
+    <!-- Stats Bar (replaces "Video coming soon") -->
+    <div class="stats-bar">
+        <div class="stat-item">
+            <div class="stat-number">19</div>
+            <div class="stat-desc">Creators Referred</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">5%</div>
+            <div class="stat-desc">Intro Rate (3 months)</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">$0</div>
+            <div class="stat-desc">Cost to Join</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">&infin;</div>
+            <div class="stat-desc">No Earnings Cap</div>
+        </div>
+    </div>
+
+    <div class="section-divider" style="max-width: 900px; margin: 0 auto 40px;"></div>
+
     <!-- Content -->
     <div class="content">
+
+        <!-- Urgency Bar -->
+        <div class="urgency-bar" style="margin-bottom: 32px;">
+            <div class="urgency-dot"></div>
+            <div class="urgency-text">
+                <strong>Limited spots:</strong> We're accepting <strong>20 referrers</strong> this quarter. 11 spots remaining.
+            </div>
+            <div class="urgency-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 45%;"></div>
+                </div>
+            </div>
+        </div>
+
         <!-- Commission Section -->
-        <div class="commission-section">
+        <div class="commission-section" id="tiers">
             <!-- Header -->
             <div class="commission-header">
                 <div class="commission-header-label">Your Commission</div>
@@ -522,36 +512,61 @@
                         <div class="tier-emoji">&#129353;</div>
                         <div class="tier-label-badge badge-base">Base</div>
                         <div class="tier-percent">2.5%</div>
-                        <div class="tier-revenue">&lt; $500K revenue</div>
+                        <div class="tier-dollar-example">$10K/mo creator = $250/mo for you</div>
+                        <div class="tier-revenue">&lt; $500K total revenue</div>
                     </div>
                     <!-- Gold -->
                     <div class="tier-card-item tier-gold">
                         <div class="tier-emoji">&#129351;</div>
                         <div class="tier-label-badge badge-gold">Gold</div>
                         <div class="tier-percent">2.75%</div>
-                        <div class="tier-revenue">$500K - $2M revenue</div>
+                        <div class="tier-dollar-example">$10K/mo creator = $275/mo for you</div>
+                        <div class="tier-revenue">$500K - $2M total revenue</div>
                     </div>
                     <!-- Diamond -->
                     <div class="tier-card-item tier-diamond">
                         <div class="tier-emoji">&#128142;</div>
                         <div class="tier-label-badge badge-diamond">Diamond</div>
                         <div class="tier-percent">3%</div>
-                        <div class="tier-revenue">$2M+ revenue</div>
+                        <div class="tier-dollar-example">$10K/mo creator = $300/mo for you</div>
+                        <div class="tier-revenue">$2M+ total revenue</div>
                     </div>
+                </div>
+
+                <div class="cta-row">
+                    <a href="#apply" class="cta-btn" style="padding: 12px 32px; font-size: 15px;">Start Earning &rarr;</a>
                 </div>
             </div>
         </div>
 
-        <!-- Two Column Info -->
+        <div class="section-divider" style="margin-bottom: 40px;"></div>
+
+        <!-- Who Can Join (persona-based) + How It Works -->
         <div class="two-col">
             <div class="info-card glass-card">
-                <h3><span>&#128100;</span> Who Can Join</h3>
-                <ul class="info-list">
-                    <li><span class="check-icon">&#10003;</span> Current Aruna creators</li>
-                    <li><span class="check-icon">&#10003;</span> Appointment setters</li>
-                    <li><span class="check-icon">&#10003;</span> Affiliate marketers</li>
-                    <li><span class="check-icon">&#10003;</span> Anyone with the right network</li>
-                </ul>
+                <h3><span>&#128100;</span> Who This Is For</h3>
+                <div class="persona-grid">
+                    <div class="persona-card glass-card-static">
+                        <div class="persona-emoji">&#127775;</div>
+                        <div class="persona-title">Current Creators</div>
+                        <div class="persona-desc">Already on our roster? Refer friends and earn on top of your content income.</div>
+                    </div>
+                    <div class="persona-card glass-card-static">
+                        <div class="persona-emoji">&#128172;</div>
+                        <div class="persona-title">Appointment Setters</div>
+                        <div class="persona-desc">You already talk to creators daily. Now get paid for warm intros.</div>
+                    </div>
+                    <div class="persona-card glass-card-static">
+                        <div class="persona-emoji">&#128176;</div>
+                        <div class="persona-title">Affiliate Marketers</div>
+                        <div class="persona-desc">Lifetime recurring commissions. Way better than one-time payouts.</div>
+                    </div>
+                    <div class="persona-card glass-card-static">
+                        <div class="persona-emoji">&#127760;</div>
+                        <div class="persona-title">Connected People</div>
+                        <div class="persona-desc">Know creators through social circles, forums, or the industry? That's all you need.</div>
+                    </div>
+                </div>
             </div>
 
             <div class="info-card glass-card card-steps">
@@ -560,32 +575,56 @@
                     <div class="step-number">1</div>
                     <div class="step-content">
                         <h4>Apply Below</h4>
-                        <p>Tell us about yourself and your network</p>
+                        <p>Takes 60 seconds. Tell us about yourself and your network.</p>
                     </div>
                 </div>
                 <div class="step">
                     <div class="step-number">2</div>
                     <div class="step-content">
-                        <h4>Get Your Link</h4>
-                        <p>We'll send you a unique application link to share</p>
+                        <h4>Get Your Unique Link</h4>
+                        <p>We'll send you a personal referral link within 24-48 hours.</p>
                     </div>
                 </div>
                 <div class="step">
                     <div class="step-number">3</div>
                     <div class="step-content">
-                        <h4>Earn Commissions</h4>
-                        <p>Get paid when your referrals start earning</p>
+                        <h4>Share &amp; Earn</h4>
+                        <p>When your referrals start earning, you get paid monthly. Forever.</p>
                     </div>
+                </div>
+                <div style="margin-top: 24px;">
+                    <a href="#apply" class="cta-btn" style="width: 100%; padding: 12px; font-size: 15px;">Apply in 60 Seconds &rarr;</a>
                 </div>
             </div>
         </div>
 
+        <div class="section-divider" style="margin-bottom: 40px;"></div>
+
+        <!-- Social Proof -->
+        <div style="text-align: center; margin-bottom: 24px;">
+            <div style="font-size: 12px; font-weight: 600; color: var(--accent-pink); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px;">What Our Referrers Say</div>
+            <h2 style="font-size: 24px; font-weight: 700;">Real People, Real Earnings</h2>
+        </div>
+        <div class="proof-grid">
+            <div class="proof-quote glass-card-static">
+                <div class="quote-mark">&ldquo;</div>
+                <div class="quote-text">I referred two creators from my network and now I'm earning passive income every single month without doing anything else. Easiest money I've ever made.</div>
+                <div class="quote-author">Active Referrer <span class="quote-role">&middot; Affiliate Marketer</span></div>
+            </div>
+            <div class="proof-quote glass-card-static">
+                <div class="quote-mark">&ldquo;</div>
+                <div class="quote-text">As an existing creator with Aruna, referring my friends was a no-brainer. They get great management and I get a monthly bonus. Win-win.</div>
+                <div class="quote-author">Active Referrer <span class="quote-role">&middot; Current Aruna Creator</span></div>
+            </div>
+        </div>
+
+        <div class="section-divider" style="margin-bottom: 40px;"></div>
+
         <!-- Form Section -->
         <div class="form-section glass-card-static" id="apply">
             <h2>Apply to Become a Referrer</h2>
-            <p class="form-subtitle">Fill out the form below and we'll get back to you with your unique referral link.</p>
+            <p class="form-subtitle">Takes 60 seconds. We'll get back to you with your unique referral link within 24-48 hours.</p>
 
-            <!-- CLICKUP FORM EMBED: Replace this form with your ClickUp form -->
             <form id="referrerForm">
                 <div class="form-row">
                     <div class="form-group">
@@ -644,7 +683,6 @@
                 <button type="submit" class="cta-btn" style="width: 100%; margin-top: 8px;">Submit Application</button>
                 <p class="form-note">We'll review your application and get back to you within 24-48 hours.</p>
             </form>
-            <!-- END CLICKUP FORM EMBED -->
 
             <div class="alt-link">
                 <p>Already a referrer?</p>
@@ -659,6 +697,11 @@
     <div class="site-footer">
         <p>Questions? <a href="/book">Book a call with our team</a></p>
         <p style="margin-top: 8px;"><a href="/dashboard">&larr; Back to Dashboard</a></p>
+    </div>
+
+    <!-- Sticky Mobile CTA -->
+    <div class="sticky-mobile-cta">
+        <a href="#apply" class="cta-btn">Apply Now &rarr;</a>
     </div>
 
     <script>
@@ -724,6 +767,17 @@
             btn.textContent = 'Submit Application';
             btn.disabled = false;
         });
+
+        // Hide sticky CTA when form is visible
+        const stickyEl = document.querySelector('.sticky-mobile-cta');
+        const formEl = document.getElementById('apply');
+        if (stickyEl && formEl) {
+            const observer = new IntersectionObserver(([entry]) => {
+                stickyEl.style.transform = entry.isIntersecting ? 'translateY(100%)' : 'translateY(0)';
+                stickyEl.style.transition = 'transform 0.3s ease';
+            }, { threshold: 0.1 });
+            observer.observe(formEl);
+        }
     </script>
 </body>
 </html>
