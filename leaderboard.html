@@ -111,16 +111,36 @@
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
         }
         .tier-card-item {
-            background: rgba(20, 20, 23, 0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-            border: 2px solid rgba(255, 255, 255, 0.08);
             border-radius: 16px; padding: 24px; text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .tier-gold-card {
-            border-color: rgba(245, 158, 11, 0.3);
+        .tier-card-item:hover { transform: translateY(-4px); }
+
+        .tier-card-base {
+            background: linear-gradient(180deg, rgba(100, 116, 139, 0.1) 0%, rgba(20, 20, 23, 0.6) 100%);
+            border: 2px solid rgba(100, 116, 139, 0.2);
         }
-        .tier-diamond-card {
-            border-color: rgba(249, 109, 204, 0.3);
+        .tier-card-base:hover { box-shadow: 0 12px 32px rgba(100, 116, 139, 0.12), 0 4px 12px rgba(0, 0, 0, 0.3); border-color: rgba(100, 116, 139, 0.35); }
+
+        .tier-card-gold {
+            background: linear-gradient(180deg, rgba(245, 158, 11, 0.12) 0%, rgba(20, 20, 23, 0.6) 100%);
+            border: 2px solid rgba(245, 158, 11, 0.35);
         }
+        .tier-card-gold:hover { box-shadow: 0 12px 32px rgba(245, 158, 11, 0.15), 0 4px 12px rgba(0, 0, 0, 0.3); border-color: rgba(245, 158, 11, 0.55); }
+
+        .tier-card-diamond {
+            background: linear-gradient(180deg, rgba(249, 109, 204, 0.12) 0%, rgba(20, 20, 23, 0.6) 100%);
+            border: 2px solid rgba(249, 109, 204, 0.35);
+        }
+        .tier-card-diamond:hover { box-shadow: 0 12px 32px rgba(249, 109, 204, 0.18), 0 4px 12px rgba(0, 0, 0, 0.3); border-color: rgba(249, 109, 204, 0.55); }
+
+        .tier-label-badge {
+            display: inline-block; font-size: 11px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 1.5px; padding: 4px 12px; border-radius: 6px;
+        }
+        .badge-base { background: rgba(100, 116, 139, 0.15); color: #94a3b8; border: 1px solid rgba(100, 116, 139, 0.25); }
+        .badge-gold { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+        .badge-diamond { background: rgba(249, 109, 204, 0.15); color: var(--accent-pink); border: 1px solid rgba(249, 109, 204, 0.3); }
 
         .commission-header-rates {
             display: flex; justify-content: center; align-items: center;
@@ -281,10 +301,10 @@
         </div>
 
         <!-- Commission Section -->
-        <div style="background: rgba(20, 20, 23, 0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 24px; overflow: hidden; margin-bottom: 40px;">
+        <div style="border-radius: 24px; overflow: hidden; margin-bottom: 40px; box-shadow: 0 8px 40px rgba(249, 109, 204, 0.1), 0 4px 20px rgba(0, 0, 0, 0.4); border: 1px solid rgba(249, 109, 204, 0.12);">
             <!-- Header -->
-            <div style="background: rgba(255, 255, 255, 0.03); padding: 32px; text-align: center; color: white; border-bottom: 1px solid rgba(255, 255, 255, 0.08);">
-                <div style="font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px;">Your Commission</div>
+            <div style="background: linear-gradient(135deg, #16161a 0%, #1a1a22 100%); padding: 40px 32px; text-align: center; color: white; border-bottom: 1px solid rgba(249, 109, 204, 0.15);">
+                <div style="font-size: 12px; font-weight: 600; color: var(--accent-pink); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px;">Your Commission</div>
                 <div class="commission-header-rates">
                     <div class="commission-rate-box">
                         <div class="commission-rate">5%</div>
@@ -296,37 +316,37 @@
                         <div style="font-size: 14px; color: var(--text-secondary); margin-top: 8px;">Lifetime (based on your tier)</div>
                     </div>
                 </div>
-                <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 14px; color: var(--text-muted);">
+                <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.06); font-size: 14px; color: var(--text-muted);">
                     Paid monthly · No cap on earnings<br>Higher volume = higher rate
                 </div>
             </div>
 
             <!-- Tier Cards -->
-            <div style="padding: 32px;">
+            <div style="padding: 32px; background: rgba(255, 255, 255, 0.015);">
                 <div style="text-align: center; margin-bottom: 24px;">
                     <div style="font-size: 18px; font-weight: 700; color: var(--text-primary);">Lifetime Tier Structure</div>
                     <div style="font-size: 13px; color: var(--text-secondary); margin-top: 4px;">Based on total monthly revenue from your referrals</div>
                 </div>
                 <div class="tier-cards-grid">
                     <!-- Base -->
-                    <div class="tier-card-item">
+                    <div class="tier-card-item tier-card-base">
                         <div style="font-size: 36px; margin-bottom: 12px;">🥉</div>
-                        <div style="font-size: 13px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Base</div>
-                        <div style="font-size: 40px; font-weight: 800; color: var(--accent-pink); margin: 8px 0;">2.5%</div>
+                        <div class="tier-label-badge badge-base">Base</div>
+                        <div style="font-size: 40px; font-weight: 800; color: var(--accent-pink); margin: 12px 0 8px;">2.5%</div>
                         <div style="font-size: 13px; color: var(--text-secondary);">&lt; $500K revenue</div>
                     </div>
                     <!-- Gold -->
-                    <div class="tier-card-item tier-gold-card">
+                    <div class="tier-card-item tier-card-gold">
                         <div style="font-size: 36px; margin-bottom: 12px;">🥇</div>
-                        <div style="font-size: 13px; font-weight: 700; color: #f59e0b; text-transform: uppercase; letter-spacing: 1px;">Gold</div>
-                        <div style="font-size: 40px; font-weight: 800; color: var(--accent-pink); margin: 8px 0;">2.75%</div>
+                        <div class="tier-label-badge badge-gold">Gold</div>
+                        <div style="font-size: 40px; font-weight: 800; color: var(--accent-pink); margin: 12px 0 8px;">2.75%</div>
                         <div style="font-size: 13px; color: var(--text-secondary);">$500K - $2M revenue</div>
                     </div>
                     <!-- Diamond -->
-                    <div class="tier-card-item tier-diamond-card">
+                    <div class="tier-card-item tier-card-diamond">
                         <div style="font-size: 36px; margin-bottom: 12px;">💎</div>
-                        <div style="font-size: 13px; font-weight: 700; color: var(--accent-pink); text-transform: uppercase; letter-spacing: 1px;">Diamond</div>
-                        <div style="font-size: 40px; font-weight: 800; color: var(--accent-pink); margin: 8px 0;">3%</div>
+                        <div class="tier-label-badge badge-diamond">Diamond</div>
+                        <div style="font-size: 40px; font-weight: 800; color: var(--accent-pink); margin: 12px 0 8px;">3%</div>
                         <div style="font-size: 13px; color: var(--text-secondary);">$2M+ revenue</div>
                     </div>
                 </div>

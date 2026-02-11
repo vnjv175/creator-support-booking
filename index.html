@@ -112,17 +112,21 @@
             border-radius: 24px;
             overflow: hidden;
             margin-bottom: 40px;
+            box-shadow: 0 8px 40px rgba(249, 109, 204, 0.1), 0 4px 20px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(249, 109, 204, 0.12);
         }
 
         .commission-header {
-            padding: 32px;
+            background: linear-gradient(135deg, #16161a 0%, #1a1a22 100%);
+            padding: 40px 32px;
             text-align: center;
+            border-bottom: 1px solid rgba(249, 109, 204, 0.15);
         }
 
         .commission-header-label {
             font-size: 12px;
             font-weight: 600;
-            color: var(--text-muted);
+            color: var(--accent-pink);
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 16px;
@@ -160,7 +164,7 @@
         .commission-footer-note {
             margin-top: 24px;
             padding-top: 20px;
-            border-top: 1px solid var(--border-subtle);
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
             font-size: 14px;
             color: var(--text-muted);
         }
@@ -168,6 +172,7 @@
         /* Tier Cards */
         .tier-section {
             padding: 32px;
+            background: rgba(255, 255, 255, 0.015);
         }
 
         .tier-section-title {
@@ -191,6 +196,42 @@
         .tier-card-item {
             padding: 24px;
             text-align: center;
+            border-radius: 16px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .tier-card-item:hover {
+            transform: translateY(-4px);
+        }
+
+        /* Base tier */
+        .tier-base {
+            background: linear-gradient(180deg, rgba(100, 116, 139, 0.1) 0%, rgba(20, 20, 23, 0.6) 100%);
+            border: 2px solid rgba(100, 116, 139, 0.2);
+        }
+        .tier-base:hover {
+            box-shadow: 0 12px 32px rgba(100, 116, 139, 0.12), 0 4px 12px rgba(0, 0, 0, 0.3);
+            border-color: rgba(100, 116, 139, 0.35);
+        }
+
+        /* Gold tier */
+        .tier-gold {
+            background: linear-gradient(180deg, rgba(245, 158, 11, 0.12) 0%, rgba(20, 20, 23, 0.6) 100%);
+            border: 2px solid rgba(245, 158, 11, 0.35);
+        }
+        .tier-gold:hover {
+            box-shadow: 0 12px 32px rgba(245, 158, 11, 0.15), 0 4px 12px rgba(0, 0, 0, 0.3);
+            border-color: rgba(245, 158, 11, 0.55);
+        }
+
+        /* Diamond tier */
+        .tier-diamond {
+            background: linear-gradient(180deg, rgba(249, 109, 204, 0.12) 0%, rgba(20, 20, 23, 0.6) 100%);
+            border: 2px solid rgba(249, 109, 204, 0.35);
+        }
+        .tier-diamond:hover {
+            box-shadow: 0 12px 32px rgba(249, 109, 204, 0.18), 0 4px 12px rgba(0, 0, 0, 0.3);
+            border-color: rgba(249, 109, 204, 0.55);
         }
 
         .tier-emoji {
@@ -198,18 +239,36 @@
             margin-bottom: 12px;
         }
 
-        .tier-label-text {
-            font-size: 13px;
+        .tier-label-badge {
+            display: inline-block;
+            font-size: 11px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+            padding: 4px 12px;
+            border-radius: 6px;
+        }
+        .tier-label-badge.badge-base {
+            background: rgba(100, 116, 139, 0.15);
+            color: #94a3b8;
+            border: 1px solid rgba(100, 116, 139, 0.25);
+        }
+        .tier-label-badge.badge-gold {
+            background: rgba(245, 158, 11, 0.15);
+            color: #fbbf24;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+        .tier-label-badge.badge-diamond {
+            background: rgba(249, 109, 204, 0.15);
+            color: var(--accent-pink);
+            border: 1px solid rgba(249, 109, 204, 0.3);
         }
 
         .tier-percent {
             font-size: 40px;
             font-weight: 800;
             color: var(--accent-pink);
-            margin: 8px 0;
+            margin: 12px 0 8px;
         }
 
         .tier-revenue {
@@ -227,6 +286,11 @@
 
         .info-card {
             padding: 32px;
+        }
+
+        .info-card.card-steps {
+            background: linear-gradient(135deg, #16161a 0%, #1a1a22 100%);
+            border-color: rgba(249, 109, 204, 0.15);
         }
 
         .info-card h3 {
@@ -307,6 +371,7 @@
         /* Form Section */
         .form-section {
             padding: 40px;
+            box-shadow: 0 8px 40px rgba(249, 109, 204, 0.08), 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
         .form-section h2 {
@@ -423,7 +488,7 @@
     <!-- Content -->
     <div class="content">
         <!-- Commission Section -->
-        <div class="commission-section glass-card-static">
+        <div class="commission-section">
             <!-- Header -->
             <div class="commission-header">
                 <div class="commission-header-label">Your Commission</div>
@@ -453,23 +518,23 @@
                 </div>
                 <div class="tier-cards-grid">
                     <!-- Base -->
-                    <div class="tier-card-item glass-card">
+                    <div class="tier-card-item tier-base">
                         <div class="tier-emoji">&#129353;</div>
-                        <div class="tier-label-text text-muted">Base</div>
+                        <div class="tier-label-badge badge-base">Base</div>
                         <div class="tier-percent">2.5%</div>
                         <div class="tier-revenue">&lt; $500K revenue</div>
                     </div>
                     <!-- Gold -->
-                    <div class="tier-card-item glass-card glass-card-gold">
+                    <div class="tier-card-item tier-gold">
                         <div class="tier-emoji">&#129351;</div>
-                        <div class="tier-label-text" style="color: var(--accent-champagne);">Gold</div>
+                        <div class="tier-label-badge badge-gold">Gold</div>
                         <div class="tier-percent">2.75%</div>
                         <div class="tier-revenue">$500K - $2M revenue</div>
                     </div>
                     <!-- Diamond -->
-                    <div class="tier-card-item glass-card glass-card-diamond">
+                    <div class="tier-card-item tier-diamond">
                         <div class="tier-emoji">&#128142;</div>
-                        <div class="tier-label-text" style="color: var(--accent-pink);">Diamond</div>
+                        <div class="tier-label-badge badge-diamond">Diamond</div>
                         <div class="tier-percent">3%</div>
                         <div class="tier-revenue">$2M+ revenue</div>
                     </div>
@@ -489,7 +554,7 @@
                 </ul>
             </div>
 
-            <div class="info-card glass-card">
+            <div class="info-card glass-card card-steps">
                 <h3><span>&#9889;</span> How It Works</h3>
                 <div class="step">
                     <div class="step-number">1</div>
