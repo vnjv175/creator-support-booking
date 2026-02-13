@@ -10,6 +10,38 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/theme.css">
     <style>
+        /* Sticky Desktop Nav */
+        .sticky-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(11, 11, 13, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(249, 109, 204, 0.1);
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+        }
+        .sticky-nav.visible { transform: translateY(0); }
+        .sticky-nav img { height: 28px; }
+        .sticky-nav .nav-cta {
+            background: linear-gradient(135deg, var(--accent-pink) 0%, #d44fa0 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+        .sticky-nav .nav-cta:hover { opacity: 0.9; }
+
         /* Hero Section */
         .hero-wrapper {
             position: relative;
@@ -27,8 +59,8 @@
         }
 
         .logo {
-            width: 180px;
-            margin-bottom: 24px;
+            width: 160px;
+            margin-bottom: 20px;
         }
 
         .hero h1 {
@@ -47,7 +79,14 @@
             font-size: 18px;
             line-height: 1.6;
             max-width: 580px;
-            margin: 0 auto 28px;
+            margin: 0 auto 20px;
+        }
+
+        .hero-bridge {
+            font-size: 14px;
+            color: var(--accent-champagne);
+            margin-bottom: 24px;
+            font-weight: 600;
         }
 
         .hero-cta-row {
@@ -99,26 +138,10 @@
             flex-wrap: wrap;
         }
 
-        .commission-rate-box {
-            text-align: center;
-        }
-
-        .commission-rate {
-            font-size: 64px;
-            font-weight: 800;
-            line-height: 1;
-        }
-
-        .commission-rate-sub {
-            font-size: 14px;
-            color: var(--text-secondary);
-            margin-top: 8px;
-        }
-
-        .commission-arrow {
-            font-size: 24px;
-            color: var(--text-muted);
-        }
+        .commission-rate-box { text-align: center; }
+        .commission-rate { font-size: 64px; font-weight: 800; line-height: 1; }
+        .commission-rate-sub { font-size: 14px; color: var(--text-secondary); margin-top: 8px; }
+        .commission-arrow { font-size: 24px; color: var(--text-muted); }
 
         .commission-footer-note {
             margin-top: 24px;
@@ -129,28 +152,10 @@
         }
 
         /* Tier Cards */
-        .tier-section {
-            padding: 32px;
-            background: rgba(255, 255, 255, 0.015);
-        }
-
-        .tier-section-title {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-
-        .tier-section-sub {
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-bottom: 24px;
-        }
-
-        .tier-cards-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-        }
+        .tier-section { padding: 32px; background: rgba(255, 255, 255, 0.015); }
+        .tier-section-title { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+        .tier-section-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 24px; }
+        .tier-cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 
         .tier-card-item {
             padding: 24px;
@@ -158,298 +163,275 @@
             border-radius: 16px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+        .tier-card-item:hover { transform: translateY(-4px); }
 
-        .tier-card-item:hover {
-            transform: translateY(-4px);
-        }
-
-        /* Base tier */
         .tier-base {
             background: linear-gradient(180deg, rgba(100, 116, 139, 0.1) 0%, rgba(20, 20, 23, 0.6) 100%);
             border: 2px solid rgba(100, 116, 139, 0.2);
         }
-        .tier-base:hover {
-            box-shadow: 0 12px 32px rgba(100, 116, 139, 0.12), 0 4px 12px rgba(0, 0, 0, 0.3);
-            border-color: rgba(100, 116, 139, 0.35);
-        }
-
-        /* Gold tier */
+        .tier-base:hover { box-shadow: 0 12px 32px rgba(100, 116, 139, 0.12); border-color: rgba(100, 116, 139, 0.35); }
         .tier-gold {
             background: linear-gradient(180deg, rgba(245, 158, 11, 0.12) 0%, rgba(20, 20, 23, 0.6) 100%);
             border: 2px solid rgba(245, 158, 11, 0.35);
         }
-        .tier-gold:hover {
-            box-shadow: 0 12px 32px rgba(245, 158, 11, 0.15), 0 4px 12px rgba(0, 0, 0, 0.3);
-            border-color: rgba(245, 158, 11, 0.55);
-        }
-
-        /* Diamond tier */
+        .tier-gold:hover { box-shadow: 0 12px 32px rgba(245, 158, 11, 0.15); border-color: rgba(245, 158, 11, 0.55); }
         .tier-diamond {
             background: linear-gradient(180deg, rgba(249, 109, 204, 0.12) 0%, rgba(20, 20, 23, 0.6) 100%);
             border: 2px solid rgba(249, 109, 204, 0.35);
         }
-        .tier-diamond:hover {
-            box-shadow: 0 12px 32px rgba(249, 109, 204, 0.18), 0 4px 12px rgba(0, 0, 0, 0.3);
-            border-color: rgba(249, 109, 204, 0.55);
-        }
+        .tier-diamond:hover { box-shadow: 0 12px 32px rgba(249, 109, 204, 0.18); border-color: rgba(249, 109, 204, 0.55); }
 
-        .tier-emoji {
-            font-size: 36px;
-            margin-bottom: 12px;
-        }
+        .tier-emoji { font-size: 36px; margin-bottom: 12px; }
+        .tier-label-badge { display: inline-block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; padding: 4px 12px; border-radius: 6px; }
+        .tier-label-badge.badge-base { background: rgba(100, 116, 139, 0.15); color: #94a3b8; border: 1px solid rgba(100, 116, 139, 0.25); }
+        .tier-label-badge.badge-gold { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+        .tier-label-badge.badge-diamond { background: rgba(249, 109, 204, 0.15); color: var(--accent-pink); border: 1px solid rgba(249, 109, 204, 0.3); }
+        .tier-percent { font-size: 40px; font-weight: 800; color: var(--accent-pink); margin: 12px 0 4px; }
+        .tier-dollar-example { font-size: 14px; color: var(--accent-champagne); margin-bottom: 6px; font-weight: 600; }
+        .tier-scenario { font-size: 12px; color: var(--text-muted); line-height: 1.5; margin-bottom: 8px; padding: 8px; background: rgba(0, 0, 0, 0.2); border-radius: 8px; }
+        .tier-revenue { font-size: 12px; color: var(--text-muted); opacity: 0.7; }
 
-        .tier-label-badge {
-            display: inline-block;
-            font-size: 11px;
-            font-weight: 700;
+        /* Calculator */
+        .calc-wrapper {
+            padding: 32px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        .calc-inputs {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+        .calc-field label {
+            font-size: 12px;
+            color: var(--text-muted);
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            padding: 4px 12px;
-            border-radius: 6px;
-        }
-        .tier-label-badge.badge-base {
-            background: rgba(100, 116, 139, 0.15);
-            color: #94a3b8;
-            border: 1px solid rgba(100, 116, 139, 0.25);
-        }
-        .tier-label-badge.badge-gold {
-            background: rgba(245, 158, 11, 0.15);
-            color: #fbbf24;
-            border: 1px solid rgba(245, 158, 11, 0.3);
-        }
-        .tier-label-badge.badge-diamond {
-            background: rgba(249, 109, 204, 0.15);
-            color: var(--accent-pink);
-            border: 1px solid rgba(249, 109, 204, 0.3);
-        }
-
-        .tier-percent {
-            font-size: 40px;
-            font-weight: 800;
-            color: var(--accent-pink);
-            margin: 12px 0 4px;
-        }
-
-        .tier-dollar-example {
-            font-size: 14px;
-            color: var(--accent-champagne);
+            letter-spacing: 1px;
+            display: block;
             margin-bottom: 6px;
-            font-weight: 600;
         }
-
-        .tier-scenario {
-            font-size: 12px;
-            color: var(--text-muted);
-            line-height: 1.5;
-            margin-bottom: 8px;
-            padding: 8px;
-            background: rgba(0, 0, 0, 0.2);
+        .calc-field input, .calc-field select {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: white;
+            padding: 10px 16px;
             border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            text-align: center;
+            width: 120px;
+            font-family: inherit;
         }
-
-        .tier-revenue {
-            font-size: 12px;
-            color: var(--text-muted);
-            opacity: 0.7;
+        .calc-field select { width: 160px; cursor: pointer; }
+        .calc-results {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
         }
+        .calc-result-item {
+            padding: 16px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+        .calc-result-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+        .calc-result-value { font-size: 28px; font-weight: 800; }
+        .calc-result-sub { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
 
         /* Two Column Layout */
-        .two-col {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-            margin-bottom: 40px;
-        }
-
-        .info-card {
-            padding: 32px;
-        }
-
-        .info-card.card-steps {
-            background: linear-gradient(135deg, #16161a 0%, #1a1a22 100%);
-            border-color: rgba(249, 109, 204, 0.15);
-        }
-
-        .info-card h3 {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .info-card h3 span {
-            font-size: 24px;
-        }
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 40px; }
+        .info-card { padding: 32px; }
+        .info-card.card-steps { background: linear-gradient(135deg, #16161a 0%, #1a1a22 100%); border-color: rgba(249, 109, 204, 0.15); }
+        .info-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .info-card h3 span { font-size: 24px; }
 
         /* Steps */
-        .step {
+        .step { display: flex; gap: 16px; margin-bottom: 20px; }
+        .step:last-child { margin-bottom: 0; }
+        .step-number { width: 28px; height: 28px; background: linear-gradient(135deg, var(--accent-pink) 0%, #d44fa0 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 13px; flex-shrink: 0; }
+        .step-content h4 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+        .step-content p { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+        /* Testimonials */
+        .testimonial-card {
+            padding: 28px;
+            position: relative;
+        }
+        .testimonial-header {
             display: flex;
-            gap: 16px;
-            margin-bottom: 20px;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
         }
-
-        .step:last-child {
-            margin-bottom: 0;
-        }
-
-        .step-number {
-            width: 28px;
-            height: 28px;
-            background: linear-gradient(135deg, var(--accent-pink) 0%, #d44fa0 100%);
+        .testimonial-avatar {
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-pink) 0%, #d44fa0 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-weight: 700;
-            font-size: 13px;
+            font-size: 16px;
             flex-shrink: 0;
         }
-
-        .step-content h4 {
+        .testimonial-name { font-size: 14px; font-weight: 700; color: white; }
+        .testimonial-role { font-size: 12px; color: var(--text-muted); }
+        .testimonial-earning {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            color: #10b981;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-top: 4px;
+        }
+        .testimonial-text {
             font-size: 15px;
-            font-weight: 600;
-            margin-bottom: 4px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
         }
 
-        .step-content p {
-            font-size: 13px;
-            color: var(--text-muted);
-            line-height: 1.5;
+        /* FAQ Accordion */
+        .faq-item {
+            margin-bottom: 8px;
+            border-radius: 12px;
+            overflow: hidden;
         }
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 20px 24px;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            font-family: inherit;
+        }
+        .faq-question:hover { background: rgba(255,255,255,0.02); }
+        .faq-chevron {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+            color: var(--accent-pink);
+        }
+        .faq-item.open .faq-chevron { transform: rotate(180deg); }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .faq-answer-inner {
+            padding: 0 24px 20px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        .faq-item.open .faq-answer { max-height: 300px; }
 
         /* Form Section */
-        .form-section {
-            padding: 40px;
-            box-shadow: 0 8px 40px rgba(249, 109, 204, 0.08), 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .form-section h2 {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            text-align: center;
-        }
-
-        .form-subtitle {
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: 15px;
-            margin-bottom: 32px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .form-note {
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 13px;
-            margin-top: 16px;
-        }
+        .form-section { padding: 40px; box-shadow: 0 8px 40px rgba(249, 109, 204, 0.08), 0 4px 20px rgba(0, 0, 0, 0.3); }
+        .form-section h2 { font-size: 24px; font-weight: 700; margin-bottom: 8px; text-align: center; }
+        .form-subtitle { text-align: center; color: var(--text-secondary); font-size: 15px; margin-bottom: 32px; }
+        .form-group { margin-bottom: 20px; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .form-note { text-align: center; color: var(--text-muted); font-size: 13px; margin-top: 16px; }
 
         /* Alt Link */
-        .alt-link {
-            text-align: center;
-            margin-top: 32px;
-            padding-top: 32px;
-            border-top: 1px solid var(--border-subtle);
-        }
-
-        .alt-link p {
-            color: var(--text-secondary);
-            font-size: 14px;
-            margin-bottom: 8px;
-        }
+        .alt-link { text-align: center; margin-top: 32px; padding-top: 32px; border-top: 1px solid var(--border-subtle); }
+        .alt-link p { color: var(--text-secondary); font-size: 14px; margin-bottom: 8px; }
 
         /* Social Proof Grid */
-        .proof-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-            margin-bottom: 40px;
+        .proof-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 40px; }
+
+        /* Comparison cards */
+        .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+
+        /* Toolkit toggle */
+        .toolkit-toggle {
+            width: 100%;
+            background: none;
+            border: none;
+            color: var(--accent-pink);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 12px;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
+        .toolkit-toggle:hover { text-decoration: underline; }
+        .toolkit-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+        .toolkit-content.open { max-height: 2000px; }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 32px;
-            }
+            .sticky-nav { padding: 10px 16px; }
+            .hero h1 { font-size: 32px; }
+            .hero h1 .dollar-highlight { font-size: 38px; }
+            .hero p { font-size: 16px; }
+            .two-col { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .form-section { padding: 24px; }
+            .commission-header-rates { flex-direction: column; gap: 16px; }
+            .commission-rate { font-size: 48px; }
+            .commission-arrow { transform: rotate(90deg); }
+            .tier-cards-grid { grid-template-columns: 1fr; }
+            .calc-results { grid-template-columns: 1fr; }
+            .compare-grid { grid-template-columns: 1fr; }
+            .proof-grid { grid-template-columns: 1fr; }
+        }
 
-            .hero h1 .dollar-highlight {
-                font-size: 38px;
-            }
-
-            .hero p {
-                font-size: 16px;
-            }
-
-            .two-col {
-                grid-template-columns: 1fr;
-            }
-
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-
-            .form-section {
-                padding: 24px;
-            }
-
-            .commission-header-rates {
-                flex-direction: column;
-                gap: 16px;
-            }
-
-            .commission-rate {
-                font-size: 48px;
-            }
-
-            .commission-arrow {
-                transform: rotate(90deg);
-            }
-
-            .tier-cards-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .math-grid-responsive {
-                grid-template-columns: 1fr !important;
-                gap: 16px !important;
-            }
-
-            .proof-grid {
-                grid-template-columns: 1fr;
-            }
+        @media (min-width: 769px) {
+            .sticky-mobile-cta { display: none !important; }
         }
     </style>
 </head>
 <body class="noise-bg has-sticky-cta">
+    <!-- Sticky Desktop Nav -->
+    <div class="sticky-nav" id="stickyNav">
+        <img src="logo.png" alt="Aruna Talent">
+        <a href="#apply" class="nav-cta">Apply Now &rarr;</a>
+    </div>
+
     <!-- Hero with Mesh Gradient -->
-    <div class="hero-wrapper">
+    <div class="hero-wrapper" id="heroSection">
         <div class="hero-mesh"></div>
         <div class="hero">
             <img src="logo.png" alt="Aruna Talent" class="logo">
+            <div class="proof-chip" style="margin-bottom: 20px;">
+                <span class="chip-dot"></span>
+                50+ active referrers earning commissions right now
+            </div>
             <h1>
                 <span class="gradient-text dollar-highlight">Earn $30,000+/mo</span>
                 Referring Creators You Already Know
             </h1>
-            <p class="text-secondary">Our creators earn $50K-$300K+/mo. A handful of introductions puts $30,000+/mo in your pocket &mdash; and it keeps paying, forever. No selling. No calls. No content. Just introduce people you already know.</p>
-            <div class="proof-chip" style="margin-bottom: 24px;">
-                <span class="chip-dot"></span>
-                50+ active referrers earning commissions right now
-            </div>
+            <p class="text-secondary">Our creators earn $50K-$300K+/mo. Your network is worth more than you think. No selling. No calls. No content. Just introduce people you already know &mdash; and get paid every month, forever.</p>
+            <div class="hero-bridge">Refer 6 creators averaging $100K/mo and you're there. Most referrers start with just one.</div>
             <div class="hero-cta-row">
-                <a href="#apply" class="cta-btn">Apply Now &rarr;</a>
+                <a href="#apply" class="cta-btn">Get My Referral Link &rarr;</a>
                 <a href="#tiers" class="btn-secondary">See Commission Tiers</a>
             </div>
         </div>
@@ -480,22 +462,8 @@
     <!-- Content -->
     <div class="content">
 
-        <!-- Urgency Bar -->
-        <div class="urgency-bar" style="margin-bottom: 32px;">
-            <div class="urgency-dot"></div>
-            <div class="urgency-text">
-                <strong>Limited spots:</strong> We're accepting <strong>50 referrers</strong> this quarter. 12 spots remaining.
-            </div>
-            <div class="urgency-progress">
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 76%;"></div>
-                </div>
-            </div>
-        </div>
-
         <!-- Commission Section -->
         <div class="commission-section" id="tiers">
-            <!-- Header -->
             <div class="commission-header">
                 <div class="commission-header-label">Your Commission</div>
                 <div class="commission-header-rates">
@@ -538,8 +506,8 @@
                         <div class="tier-emoji">&#129351;</div>
                         <div class="tier-label-badge badge-gold">Gold</div>
                         <div class="tier-percent">2.75%</div>
-                        <div class="tier-dollar-example">$55,000/mo from 20 creators</div>
-                        <div class="tier-scenario">20 creators averaging $100K/mo = $2M/mo<br>= <strong style="color: var(--text-primary);">$55,000/mo</strong> &middot; $660K/yr passive</div>
+                        <div class="tier-dollar-example">$27,500/mo from 10 creators</div>
+                        <div class="tier-scenario">10 creators averaging $100K/mo = $1M/mo<br>= <strong style="color: var(--text-primary);">$27,500/mo</strong> &middot; $330K/yr passive</div>
                         <div class="tier-revenue">$500K&ndash;$2M/mo in referred revenue</div>
                     </div>
                     <!-- Diamond -->
@@ -547,34 +515,9 @@
                         <div class="tier-emoji">&#128142;</div>
                         <div class="tier-label-badge badge-diamond">Diamond</div>
                         <div class="tier-percent">3%</div>
-                        <div class="tier-dollar-example">$60,000/mo from your portfolio</div>
-                        <div class="tier-scenario">10 creators averaging $200K/mo = $2M/mo<br>= <strong style="color: var(--text-primary);">$60,000/mo</strong> &middot; $720K/yr passive</div>
+                        <div class="tier-dollar-example">$75,000/mo from 25 creators</div>
+                        <div class="tier-scenario">25 creators averaging $100K/mo = $2.5M/mo<br>= <strong style="color: var(--text-primary);">$75,000/mo</strong> &middot; $900K/yr passive</div>
                         <div class="tier-revenue">$2M+/mo in referred revenue</div>
-                    </div>
-                </div>
-
-                <!-- The Math Section -->
-                <div style="margin-top: 24px; padding: 24px; background: rgba(249, 109, 204, 0.04); border: 1px solid rgba(249, 109, 204, 0.1); border-radius: 12px;">
-                    <div style="font-size: 14px; font-weight: 700; color: var(--text-primary); text-align: center; margin-bottom: 16px;">Here's what it actually looks like over time</div>
-                    <div class="math-grid-responsive" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; text-align: center;">
-                        <div>
-                            <div style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">Month 1-3 (Intro)</div>
-                            <div style="font-size: 24px; font-weight: 800; color: var(--accent-pink);">$5,000</div>
-                            <div style="font-size: 12px; color: var(--text-muted);">/mo from one $100K creator</div>
-                        </div>
-                        <div>
-                            <div style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">Month 4+ (Lifetime)</div>
-                            <div style="font-size: 24px; font-weight: 800; color: var(--accent-champagne);">$2,500</div>
-                            <div style="font-size: 12px; color: var(--text-muted);">/mo &mdash; every month, forever</div>
-                        </div>
-                        <div>
-                            <div style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">Year 1 Total</div>
-                            <div style="font-size: 24px; font-weight: 800; color: #10b981;">$37,500</div>
-                            <div style="font-size: 12px; color: var(--text-muted);">from a single referral</div>
-                        </div>
-                    </div>
-                    <div style="text-align: center; margin-top: 16px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.06);">
-                        <span style="font-size: 14px; color: var(--text-secondary);">Now imagine 3 referrals. Or 5. <strong style="color: var(--accent-pink);">It compounds.</strong></span>
                     </div>
                 </div>
 
@@ -586,44 +529,96 @@
 
         <div class="section-divider" style="margin-bottom: 40px;"></div>
 
-        <!-- How We Compare -->
-        <div style="margin-bottom: 40px;">
-            <div style="text-align: center; margin-bottom: 24px;">
-                <div style="font-size: 12px; font-weight: 600; color: var(--accent-pink); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px;">Don't Be Fooled by "10%" Programs</div>
-                <h2 style="font-size: 24px; font-weight: 700;">What You Actually Take Home</h2>
-            </div>
-            <div class="glass-card-static" style="padding: 32px;">
-                <p style="color: var(--text-secondary); font-size: 15px; line-height: 1.7; margin-bottom: 24px;">Other agencies advertise "10% referral commissions." Sounds higher than 5%, right? But their 10% is calculated on a much smaller number. When you compare what actually hits your bank account, the result is the same &mdash; or better with us.</p>
-
-                <div class="math-grid-responsive" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px;">
-                    <div style="padding: 24px; background: rgba(255,255,255,0.03); border-radius: 16px; border: 1px solid rgba(255,255,255,0.06);">
-                        <div style="font-size: 13px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;">Other Agency "10%"</div>
-                        <div style="font-size: 15px; color: var(--text-secondary); line-height: 1.8;">
-                            Creator earns <strong style="color: white;">$100K/mo</strong><br>
-                            Their "10%" is on a smaller base<br>
-                            <strong style="color: var(--accent-champagne); font-size: 20px;">= $5,000/mo</strong>
-                        </div>
-                    </div>
-                    <div style="padding: 24px; background: rgba(249,109,204,0.04); border-radius: 16px; border: 1px solid rgba(249,109,204,0.15);">
-                        <div style="font-size: 13px; font-weight: 700; color: var(--accent-pink); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;">Aruna 5% (On Gross Revenue)</div>
-                        <div style="font-size: 15px; color: var(--text-secondary); line-height: 1.8;">
-                            Creator earns <strong style="color: white;">$100K/mo</strong><br>
-                            5% calculated on the full amount<br>
-                            <strong style="color: var(--accent-pink); font-size: 20px;">= $5,000/mo</strong>
-                        </div>
-                    </div>
+        <!-- Earnings Calculator -->
+        <div class="calc-wrapper glass-card-static" id="calculator">
+            <div style="font-size: 12px; font-weight: 600; color: var(--accent-pink); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px;">Earnings Calculator</div>
+            <h2 style="font-size: 24px; font-weight: 700; margin-bottom: 24px;">How Much Could You Earn?</h2>
+            <div class="calc-inputs">
+                <div class="calc-field">
+                    <label>Creators You Refer</label>
+                    <input type="number" id="calcCreators" value="3" min="1" max="50">
                 </div>
-
-                <div style="text-align: center; padding: 20px; background: rgba(249,109,204,0.06); border-radius: 12px; border: 1px solid rgba(249,109,204,0.1);">
-                    <p style="font-size: 16px; color: white; font-weight: 700; margin-bottom: 4px;">Same money in your pocket. Simpler math. Full transparency.</p>
-                    <p style="font-size: 13px; color: var(--text-muted);">Our creators earn more and stay longer &mdash; which means your commissions last longer too.</p>
+                <div style="font-size: 20px; color: var(--text-muted); padding-top: 20px;">&times;</div>
+                <div class="calc-field">
+                    <label>Avg Monthly Revenue</label>
+                    <select id="calcRevenue">
+                        <option value="50000">$50K/mo</option>
+                        <option value="100000" selected>$100K/mo</option>
+                        <option value="150000">$150K/mo</option>
+                        <option value="200000">$200K/mo</option>
+                        <option value="300000">$300K/mo</option>
+                    </select>
+                </div>
+            </div>
+            <div class="calc-results">
+                <div class="calc-result-item">
+                    <div class="calc-result-label">Month 1-3 (5%)</div>
+                    <div class="calc-result-value gradient-text" id="calcIntro">$15,000</div>
+                    <div class="calc-result-sub">/mo for 3 months</div>
+                </div>
+                <div class="calc-result-item">
+                    <div class="calc-result-label">Month 4+ (Lifetime)</div>
+                    <div class="calc-result-value" style="color: var(--accent-champagne);" id="calcLifetime">$7,500</div>
+                    <div class="calc-result-sub">/mo &mdash; every month, forever</div>
+                </div>
+                <div class="calc-result-item">
+                    <div class="calc-result-label">Year 1 Total</div>
+                    <div class="calc-result-value" style="color: #10b981;" id="calcYear1">$112,500</div>
+                    <div class="calc-result-sub">from <span id="calcCreatorsLabel">3</span> referrals</div>
                 </div>
             </div>
         </div>
 
         <div class="section-divider" style="margin-bottom: 40px;"></div>
 
-        <!-- Who Can Join (persona-based) + How It Works -->
+        <!-- How We Compare — Lifetime Value -->
+        <div style="margin-bottom: 40px;">
+            <div style="text-align: center; margin-bottom: 24px;">
+                <div style="font-size: 12px; font-weight: 600; color: var(--accent-pink); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px;">Don't Be Fooled by "10%" Programs</div>
+                <h2 style="font-size: 24px; font-weight: 700;">What You Actually Take Home</h2>
+            </div>
+            <div class="glass-card-static" style="padding: 32px;">
+                <p style="color: var(--text-secondary); font-size: 15px; line-height: 1.7; margin-bottom: 24px;">Other agencies advertise "10% referral commissions." Sounds higher, right? But their 10% is on a smaller base &mdash; and their creators churn faster. Here's what actually matters: <strong style="color: white;">total money in your pocket over time.</strong></p>
+
+                <div class="compare-grid">
+                    <div style="padding: 24px; background: rgba(255,255,255,0.03); border-radius: 16px; border: 1px solid rgba(255,255,255,0.06);">
+                        <div style="font-size: 13px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;">Other Agency "10%"</div>
+                        <div style="font-size: 15px; color: var(--text-secondary); line-height: 2;">
+                            Creator earns <strong style="color: white;">$100K/mo</strong><br>
+                            "10%" on their smaller base = $5,000/mo<br>
+                            Avg creator stays <strong style="color: #ef4444;">6 months</strong><br>
+                        </div>
+                        <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.06);">
+                            <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 4px;">Your total earnings</div>
+                            <strong style="color: var(--accent-champagne); font-size: 24px;">$30,000</strong>
+                            <div style="font-size: 12px; color: var(--text-muted);">then it stops</div>
+                        </div>
+                    </div>
+                    <div style="padding: 24px; background: rgba(249,109,204,0.04); border-radius: 16px; border: 1px solid rgba(249,109,204,0.15);">
+                        <div style="font-size: 13px; font-weight: 700; color: var(--accent-pink); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;">Aruna 5% (Gross Revenue)</div>
+                        <div style="font-size: 15px; color: var(--text-secondary); line-height: 2;">
+                            Creator earns <strong style="color: white;">$100K/mo</strong><br>
+                            5% on gross = $5,000/mo (intro), $2,500/mo (lifetime)<br>
+                            Avg creator stays <strong style="color: #10b981;">2+ years</strong><br>
+                        </div>
+                        <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(249,109,204,0.1);">
+                            <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 4px;">Your total earnings (2 years)</div>
+                            <strong style="color: var(--accent-pink); font-size: 24px;">$67,500</strong>
+                            <div style="font-size: 12px; color: #10b981; font-weight: 600;">and it keeps growing</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align: center; padding: 20px; background: rgba(16,185,129,0.06); border-radius: 12px; border: 1px solid rgba(16,185,129,0.15);">
+                    <p style="font-size: 16px; color: white; font-weight: 700; margin-bottom: 4px;">2.25x more money. Same number of referrals.</p>
+                    <p style="font-size: 13px; color: var(--text-muted);">Our creators earn more, stay longer, and grow faster &mdash; which means your commissions compound instead of expiring.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider" style="margin-bottom: 40px;"></div>
+
+        <!-- Who Can Join + How It Works -->
         <div class="two-col">
             <div class="info-card glass-card">
                 <h3><span>&#128100;</span> Who This Is For</h3>
@@ -657,7 +652,7 @@
                     <div class="step-number">1</div>
                     <div class="step-content">
                         <h4>Apply Below</h4>
-                        <p>Takes 60 seconds. Tell us about yourself and your network.</p>
+                        <p>30 seconds. Just your name, email, and phone.</p>
                     </div>
                 </div>
                 <div class="step">
@@ -675,28 +670,51 @@
                     </div>
                 </div>
                 <div style="margin-top: 24px;">
-                    <a href="#apply" class="cta-btn" style="width: 100%; padding: 12px; font-size: 15px;">Apply in 60 Seconds &rarr;</a>
+                    <a href="#apply" class="cta-btn" style="width: 100%; padding: 12px; font-size: 15px;">Apply in 30 Seconds &rarr;</a>
                 </div>
             </div>
         </div>
 
         <div class="section-divider" style="margin-bottom: 40px;"></div>
 
-        <!-- Social Proof -->
+        <!-- Testimonials -->
         <div style="text-align: center; margin-bottom: 24px;">
             <div style="font-size: 12px; font-weight: 600; color: var(--accent-pink); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px;">What Our Referrers Say</div>
             <h2 style="font-size: 24px; font-weight: 700;">Real People, Real Earnings</h2>
         </div>
         <div class="proof-grid">
-            <div class="proof-quote glass-card-static">
-                <div class="quote-mark">&ldquo;</div>
-                <div class="quote-text">I sent one DM to a girl I knew from Twitter. She signed up, started earning, and now I get a commission check every single month. I've referred two more since then &mdash; the income stacks and I literally do nothing.</div>
-                <div class="quote-author">Active Referrer <span class="quote-role">&middot; Affiliate Marketer</span></div>
+            <div class="testimonial-card glass-card-static">
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar">SM</div>
+                    <div>
+                        <div class="testimonial-name">Sarah M.</div>
+                        <div class="testimonial-role">Affiliate Marketer</div>
+                        <div class="testimonial-earning">$4,200/mo from 3 referrals</div>
+                    </div>
+                </div>
+                <div class="testimonial-text">I sent one DM to a girl I knew from Twitter. She signed up, started earning, and now I get a commission check every single month. I've referred two more since then &mdash; the income stacks and I literally do nothing.</div>
             </div>
-            <div class="proof-quote glass-card-static">
-                <div class="quote-mark">&ldquo;</div>
-                <div class="quote-text">I'm already a creator with Aruna, so referring friends was obvious. Three of them signed up. Now I have a second income stream on top of my own content earnings &mdash; and it's completely passive. Best decision I made.</div>
-                <div class="quote-author">Active Referrer <span class="quote-role">&middot; Current Aruna Creator</span></div>
+            <div class="testimonial-card glass-card-static">
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar" style="background: linear-gradient(135deg, #eaa879 0%, #d4943a 100%);">JK</div>
+                    <div>
+                        <div class="testimonial-name">Jason K.</div>
+                        <div class="testimonial-role">Appointment Setter</div>
+                        <div class="testimonial-earning">$8,500/mo from 5 referrals</div>
+                    </div>
+                </div>
+                <div class="testimonial-text">I was already talking to creators every day for work. Figured I'd start sending them to Aruna when they asked about agencies. Five referrals later, I've got a second income stream that's almost matching my main job. Wild.</div>
+            </div>
+            <div class="testimonial-card glass-card-static">
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">TR</div>
+                    <div>
+                        <div class="testimonial-name">Tina R.</div>
+                        <div class="testimonial-role">Current Aruna Creator</div>
+                        <div class="testimonial-earning">$2,800/mo passive income</div>
+                    </div>
+                </div>
+                <div class="testimonial-text">I'm already a creator with Aruna, so referring friends was obvious. Three of them signed up. Now I have a second income stream on top of my own content earnings &mdash; completely passive. Best decision I made.</div>
             </div>
         </div>
 
@@ -704,7 +722,7 @@
         <div class="glass-card-static" style="padding: 32px; margin-bottom: 40px; text-align: center; border-color: rgba(16, 185, 129, 0.2);">
             <div style="font-size: 36px; margin-bottom: 12px;">&#9989;</div>
             <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 8px; color: white;">Zero Risk for the Creators You Refer</h3>
-            <p style="font-size: 15px; color: var(--text-secondary); line-height: 1.7; max-width: 600px; margin: 0 auto;">No lock-in contracts. No upfront costs. No hidden fees. Creators can leave anytime. That makes your referral an easy sell — you're not asking anyone to take a risk, just to have a conversation.</p>
+            <p style="font-size: 15px; color: var(--text-secondary); line-height: 1.7; max-width: 600px; margin: 0 auto;">No lock-in contracts. No upfront costs. No hidden fees. Creators can leave anytime. That makes your referral an easy sell &mdash; you're not asking anyone to take a risk, just to have a conversation.</p>
         </div>
 
         <div class="section-divider" style="margin-bottom: 40px;"></div>
@@ -716,87 +734,59 @@
                 <h2 style="font-size: 24px; font-weight: 700;">Referral Program FAQ</h2>
             </div>
 
-            <div style="display: flex; flex-direction: column; gap: 12px;">
-                <div class="glass-card-static" style="padding: 24px;">
-                    <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 8px; color: white;">How are commissions calculated and verified?</h3>
-                    <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.7;">Commissions are calculated as a percentage of your referred creator's gross monthly revenue (before any splits). We use OnlyFans' built-in analytics and FansMetric for verification. You can see real-time earnings in your referrer dashboard.</p>
-                </div>
-                <div class="glass-card-static" style="padding: 24px;">
-                    <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 8px; color: white;">When and how do I get paid?</h3>
-                    <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.7;">Commissions are paid monthly, within the first 10 business days of each month for the previous month's earnings. We pay via bank transfer (ACH/wire) or PayPal — your choice. No minimum payout threshold.</p>
-                </div>
-                <div class="glass-card-static" style="padding: 24px;">
-                    <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 8px; color: white;">What happens if my referral leaves Aruna?</h3>
-                    <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.7;">You earn commissions for as long as your referred creator is active with Aruna. If they leave and later return, your referral credit is still attached — you'll start earning again when they reactivate.</p>
-                </div>
-                <div class="glass-card-static" style="padding: 24px;">
-                    <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 8px; color: white;">Can I refer creators who are already with another agency?</h3>
-                    <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.7;">Yes. Many of our highest-earning referrals come from creators switching agencies. As long as they sign with Aruna through your referral link or direct introduction, you get credit. We handle the transition process.</p>
-                </div>
-                <div class="glass-card-static" style="padding: 24px;">
-                    <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 8px; color: white;">Is there a minimum payout threshold?</h3>
-                    <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.7;">No. We pay every dollar you earn, every month. No minimums, no holdbacks, no hidden fees.</p>
-                </div>
-                <div class="glass-card-static" style="padding: 24px;">
-                    <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 8px; color: white;">How do I track my referrals and earnings?</h3>
-                    <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.7;">Every referrer gets access to a personal dashboard showing active referrals, monthly revenue, commission earnings, and payout history. You'll also receive monthly summary emails with detailed breakdowns.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="section-divider" style="margin-bottom: 40px;"></div>
-
-        <!-- Quick-Start Resources -->
-        <div style="margin-bottom: 40px;">
-            <div style="text-align: center; margin-bottom: 24px;">
-                <div style="font-size: 12px; font-weight: 600; color: var(--accent-pink); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px;">Referrer Toolkit</div>
-                <h2 style="font-size: 24px; font-weight: 700;">Everything You Need to Start Referring</h2>
-            </div>
-
-            <div style="display: grid; grid-template-columns: 1fr; gap: 16px;">
-                <!-- DM Scripts -->
-                <div class="glass-card-static" style="padding: 24px;">
-                    <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 12px; color: white;">Sample DM Scripts</h3>
-                    <div style="display: flex; flex-direction: column; gap: 12px;">
-                        <div style="padding: 16px; background: rgba(0,0,0,0.3); border-radius: 10px; border-left: 3px solid var(--accent-pink);">
-                            <div style="font-size: 11px; font-weight: 600; color: var(--accent-pink); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;">For Friends / People You Know</div>
-                            <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.6; font-style: italic;">"Hey! I've been working with this management agency called Aruna Talent — they handle everything from marketing to chatting to DMCA protection. Their creators are pulling $50K-$300K/mo. I know you've been thinking about scaling up — want me to introduce you? No pressure, just think it could be a good fit."</p>
-                        </div>
-                        <div style="padding: 16px; background: rgba(0,0,0,0.3); border-radius: 10px; border-left: 3px solid var(--accent-champagne);">
-                            <div style="font-size: 11px; font-weight: 600; color: var(--accent-champagne); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;">For Creators You Find Online</div>
-                            <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.6; font-style: italic;">"Hey, I came across your page and your content is fire. I work with an agency called Aruna Talent that's helping creators like you scale to $100K+/mo — they handle marketing, chatting, content strategy, everything. Would you be open to a quick call to see if it's a fit? No commitment."</p>
-                        </div>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+                <div class="faq-item glass-card-static">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        How are commissions calculated and verified?
+                        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">Commissions are calculated as a percentage of your referred creator's gross monthly revenue (before any splits). We use OnlyFans' built-in analytics and FansMetric for verification. You can see real-time earnings in your referrer dashboard.</div>
                     </div>
                 </div>
-
-                <!-- Value Props / Talking Points -->
-                <div class="glass-card-static" style="padding: 24px;">
-                    <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 12px; color: white;">Key Talking Points</h3>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;" class="math-grid-responsive">
-                        <div style="padding: 12px; background: rgba(0,0,0,0.2); border-radius: 8px;">
-                            <div style="font-size: 13px; font-weight: 600; color: white; margin-bottom: 4px;">100+ Employees</div>
-                            <div style="font-size: 12px; color: var(--text-muted);">Dedicated team — not one person doing everything</div>
-                        </div>
-                        <div style="padding: 12px; background: rgba(0,0,0,0.2); border-radius: 8px;">
-                            <div style="font-size: 13px; font-weight: 600; color: white; margin-bottom: 4px;">$50M+ Creator Revenue</div>
-                            <div style="font-size: 12px; color: var(--text-muted);">Proven track record with real numbers</div>
-                        </div>
-                        <div style="padding: 12px; background: rgba(0,0,0,0.2); border-radius: 8px;">
-                            <div style="font-size: 13px; font-weight: 600; color: white; margin-bottom: 4px;">$50K-$300K+/mo Creators</div>
-                            <div style="font-size: 12px; color: var(--text-muted);">Our creators earn serious money</div>
-                        </div>
-                        <div style="padding: 12px; background: rgba(0,0,0,0.2); border-radius: 8px;">
-                            <div style="font-size: 13px; font-weight: 600; color: white; margin-bottom: 4px;">Integrated Chatting</div>
-                            <div style="font-size: 12px; color: var(--text-muted);">Included — not a separate paid service</div>
-                        </div>
-                        <div style="padding: 12px; background: rgba(0,0,0,0.2); border-radius: 8px;">
-                            <div style="font-size: 13px; font-weight: 600; color: white; margin-bottom: 4px;">24/7 DMCA Protection</div>
-                            <div style="font-size: 12px; color: var(--text-muted);">200+ sites monitored, rapid takedowns</div>
-                        </div>
-                        <div style="padding: 12px; background: rgba(0,0,0,0.2); border-radius: 8px;">
-                            <div style="font-size: 13px; font-weight: 600; color: white; margin-bottom: 4px;">No Lock-In Contracts</div>
-                            <div style="font-size: 12px; color: var(--text-muted);">Flexible terms — creators stay because they want to</div>
-                        </div>
+                <div class="faq-item glass-card-static">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        When and how do I get paid?
+                        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">Commissions are paid monthly, within the first 10 business days of each month for the previous month's earnings. We pay via bank transfer (ACH/wire) or PayPal &mdash; your choice. No minimum payout threshold.</div>
+                    </div>
+                </div>
+                <div class="faq-item glass-card-static">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        What happens if my referral leaves Aruna?
+                        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">You earn commissions for as long as your referred creator is active with Aruna. If they leave and later return, your referral credit is still attached &mdash; you'll start earning again when they reactivate.</div>
+                    </div>
+                </div>
+                <div class="faq-item glass-card-static">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        Can I refer creators who are already with another agency?
+                        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">Yes. Many of our highest-earning referrals come from creators switching agencies. As long as they sign with Aruna through your referral link or direct introduction, you get credit. We handle the transition process.</div>
+                    </div>
+                </div>
+                <div class="faq-item glass-card-static">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        Is there a minimum payout threshold?
+                        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">No. We pay every dollar you earn, every month. No minimums, no holdbacks, no hidden fees.</div>
+                    </div>
+                </div>
+                <div class="faq-item glass-card-static">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        How do I track my referrals and earnings?
+                        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">Every referrer gets access to a personal dashboard showing active referrals, monthly revenue, commission earnings, and payout history. You'll also receive monthly summary emails with detailed breakdowns.</div>
                     </div>
                 </div>
             </div>
@@ -804,10 +794,65 @@
 
         <div class="section-divider" style="margin-bottom: 40px;"></div>
 
-        <!-- Form Section -->
+        <!-- Referrer Toolkit (collapsible) -->
+        <div style="margin-bottom: 40px; text-align: center;">
+            <button class="toolkit-toggle" id="toolkitToggle" onclick="document.getElementById('toolkitContent').classList.toggle('open'); this.querySelector('span').textContent = document.getElementById('toolkitContent').classList.contains('open') ? 'Hide' : 'Show';">
+                <span>Show</span> Referrer Toolkit (DM Scripts &amp; Talking Points) &#8595;
+            </button>
+            <div class="toolkit-content" id="toolkitContent">
+                <div style="display: grid; grid-template-columns: 1fr; gap: 16px; padding-top: 16px; text-align: left;">
+                    <div class="glass-card-static" style="padding: 24px;">
+                        <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 12px; color: white;">Sample DM Scripts</h3>
+                        <div style="display: flex; flex-direction: column; gap: 12px;">
+                            <div style="padding: 16px; background: rgba(0,0,0,0.3); border-radius: 10px; border-left: 3px solid var(--accent-pink);">
+                                <div style="font-size: 11px; font-weight: 600; color: var(--accent-pink); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;">For Friends / People You Know</div>
+                                <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.6; font-style: italic;">"Hey! I've been working with this management agency called Aruna Talent &mdash; they handle everything from marketing to chatting to DMCA protection. Their creators are pulling $50K-$300K/mo. I know you've been thinking about scaling up &mdash; want me to introduce you? No pressure, just think it could be a good fit."</p>
+                            </div>
+                            <div style="padding: 16px; background: rgba(0,0,0,0.3); border-radius: 10px; border-left: 3px solid var(--accent-champagne);">
+                                <div style="font-size: 11px; font-weight: 600; color: var(--accent-champagne); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;">For Creators You Find Online</div>
+                                <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.6; font-style: italic;">"Hey, I came across your page and your content is fire. I work with an agency called Aruna Talent that's helping creators like you scale to $100K+/mo &mdash; they handle marketing, chatting, content strategy, everything. Would you be open to a quick chat to see if it's a fit? No commitment."</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-card-static" style="padding: 24px;">
+                        <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 12px; color: white;">Key Talking Points</h3>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;" class="math-grid-responsive">
+                            <div style="padding: 12px; background: rgba(0,0,0,0.2); border-radius: 8px;">
+                                <div style="font-size: 13px; font-weight: 600; color: white; margin-bottom: 4px;">100+ Employees</div>
+                                <div style="font-size: 12px; color: var(--text-muted);">Dedicated team &mdash; not one person doing everything</div>
+                            </div>
+                            <div style="padding: 12px; background: rgba(0,0,0,0.2); border-radius: 8px;">
+                                <div style="font-size: 13px; font-weight: 600; color: white; margin-bottom: 4px;">$50M+ Creator Revenue</div>
+                                <div style="font-size: 12px; color: var(--text-muted);">Proven track record with real numbers</div>
+                            </div>
+                            <div style="padding: 12px; background: rgba(0,0,0,0.2); border-radius: 8px;">
+                                <div style="font-size: 13px; font-weight: 600; color: white; margin-bottom: 4px;">$50K-$300K+/mo Creators</div>
+                                <div style="font-size: 12px; color: var(--text-muted);">Our creators earn serious money</div>
+                            </div>
+                            <div style="padding: 12px; background: rgba(0,0,0,0.2); border-radius: 8px;">
+                                <div style="font-size: 13px; font-weight: 600; color: white; margin-bottom: 4px;">Integrated Chatting</div>
+                                <div style="font-size: 12px; color: var(--text-muted);">Included &mdash; not a separate paid service</div>
+                            </div>
+                            <div style="padding: 12px; background: rgba(0,0,0,0.2); border-radius: 8px;">
+                                <div style="font-size: 13px; font-weight: 600; color: white; margin-bottom: 4px;">24/7 DMCA Protection</div>
+                                <div style="font-size: 12px; color: var(--text-muted);">200+ sites monitored, rapid takedowns</div>
+                            </div>
+                            <div style="padding: 12px; background: rgba(0,0,0,0.2); border-radius: 8px;">
+                                <div style="font-size: 13px; font-weight: 600; color: white; margin-bottom: 4px;">No Lock-In Contracts</div>
+                                <div style="font-size: 12px; color: var(--text-muted);">Flexible terms &mdash; creators stay because they want to</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider" style="margin-bottom: 40px;"></div>
+
+        <!-- Form Section (Reduced) -->
         <div class="form-section glass-card-static" id="apply">
-            <h2>Apply to Become a Referrer</h2>
-            <p class="form-subtitle">Takes 60 seconds. We'll get back to you with your unique referral link within 24-48 hours.</p>
+            <h2>Get Your Referral Link</h2>
+            <p class="form-subtitle">30 seconds. We'll get back to you with your unique link within 24-48 hours.</p>
 
             <form id="referrerForm">
                 <div class="form-row">
@@ -827,47 +872,21 @@
                         <input type="tel" class="form-input" id="phone" name="phone" required>
                     </div>
                     <div class="form-group">
-                        <label class="form-label" for="instagram">Instagram Handle</label>
-                        <input type="text" class="form-input" id="instagram" name="instagram" placeholder="@username">
+                        <label class="form-label" for="background">What's your background? *</label>
+                        <select class="form-input" id="background" name="background" required>
+                            <option value="" disabled selected>Select an option</option>
+                            <option value="creator">Current Aruna Creator</option>
+                            <option value="other_creator">Creator (other agency/independent)</option>
+                            <option value="appointment_setter">Appointment Setter</option>
+                            <option value="affiliate">Affiliate Marketer</option>
+                            <option value="recruiter">Recruiter / Talent Scout</option>
+                            <option value="other">Other</option>
+                        </select>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label class="form-label" for="background">What's your background? *</label>
-                    <select class="form-input" id="background" name="background" required onchange="toggleOtherField('background', 'backgroundOther')">
-                        <option value="" disabled selected>Select an option</option>
-                        <option value="creator">Current Aruna Creator</option>
-                        <option value="other_creator">Creator (other agency/independent)</option>
-                        <option value="appointment_setter">Appointment Setter</option>
-                        <option value="affiliate">Affiliate Marketer</option>
-                        <option value="recruiter">Recruiter / Talent Scout</option>
-                        <option value="other">Other</option>
-                    </select>
-                    <input type="text" class="form-input" id="backgroundOther" name="background_other" placeholder="Please specify..." style="display: none; margin-top: 10px;">
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label" for="howHeard">How did you hear about our referral program?</label>
-                    <select class="form-input" id="howHeard" name="how_heard" onchange="toggleOtherField('howHeard', 'howHeardOther')">
-                        <option value="" disabled selected>Select an option</option>
-                        <option value="instagram_dm">Instagram DM / ManyChat</option>
-                        <option value="instagram_ad">Instagram / Facebook Ad</option>
-                        <option value="current_creator">From a current creator</option>
-                        <option value="social_media">Social media (organic)</option>
-                        <option value="friend">Friend / Word of mouth</option>
-                        <option value="search">Google / Search</option>
-                        <option value="other">Other</option>
-                    </select>
-                    <input type="text" class="form-input" id="howHeardOther" name="how_heard_other" placeholder="Please specify..." style="display: none; margin-top: 10px;">
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label" for="network">Tell us about your network and how you plan to refer creators *</label>
-                    <textarea class="form-input" id="network" name="network" placeholder="e.g., I know several models from my previous work, I have a large social media following, I'm part of creator communities..." required></textarea>
-                </div>
-
-                <button type="submit" class="cta-btn" style="width: 100%; margin-top: 8px;">Submit Application</button>
-                <p class="form-note">We'll review your application and get back to you within 24-48 hours.</p>
+                <button type="submit" class="cta-btn" style="width: 100%; margin-top: 8px;">Get My Referral Link &rarr;</button>
+                <p class="form-note">We'll review your application and send your unique link within 24-48 hours.</p>
             </form>
 
             <div class="alt-link">
@@ -882,30 +901,50 @@
     <!-- Footer -->
     <div class="site-footer">
         <p>Questions? Email us at <a href="mailto:support@arunatalent.com">support@arunatalent.com</a></p>
-        <p style="margin-top: 8px;"><a href="/dashboard">&larr; Back to Dashboard</a></p>
     </div>
 
     <!-- Sticky Mobile CTA -->
     <div class="sticky-mobile-cta">
-        <a href="#apply" class="cta-btn">Apply Now &rarr;</a>
+        <a href="#apply" class="cta-btn">Get My Referral Link &rarr;</a>
     </div>
 
     <script>
         const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwxHZjtRkCnsFnZbYZFJRjtY0ArWacoRntz5HkODOU2ptHeNTN3PJAxRmT6Scbby7Mn/exec';
 
-        function toggleOtherField(selectId, inputId) {
-            var select = document.getElementById(selectId);
-            var input = document.getElementById(inputId);
-            if (select.value === 'other') {
-                input.style.display = 'block';
-                input.required = true;
-            } else {
-                input.style.display = 'none';
-                input.required = false;
-                input.value = '';
-            }
+        // FAQ Accordion
+        function toggleFaq(btn) {
+            const item = btn.parentElement;
+            const wasOpen = item.classList.contains('open');
+            // Close all
+            document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+            // Toggle clicked
+            if (!wasOpen) item.classList.add('open');
         }
 
+        // Earnings Calculator
+        function updateCalc() {
+            const creators = parseInt(document.getElementById('calcCreators').value) || 1;
+            const revenue = parseInt(document.getElementById('calcRevenue').value);
+            const totalRevenue = creators * revenue;
+
+            // Determine lifetime rate based on tier
+            let lifetimeRate = 0.025;
+            if (totalRevenue >= 2000000) lifetimeRate = 0.03;
+            else if (totalRevenue >= 500000) lifetimeRate = 0.0275;
+
+            const introMonthly = totalRevenue * 0.05;
+            const lifetimeMonthly = totalRevenue * lifetimeRate;
+            const year1 = (introMonthly * 3) + (lifetimeMonthly * 9);
+
+            document.getElementById('calcIntro').textContent = '$' + introMonthly.toLocaleString();
+            document.getElementById('calcLifetime').textContent = '$' + lifetimeMonthly.toLocaleString();
+            document.getElementById('calcYear1').textContent = '$' + Math.round(year1).toLocaleString();
+            document.getElementById('calcCreatorsLabel').textContent = creators;
+        }
+        document.getElementById('calcCreators').addEventListener('input', updateCalc);
+        document.getElementById('calcRevenue').addEventListener('change', updateCalc);
+
+        // Form submission
         document.getElementById('referrerForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             const btn = this.querySelector('.cta-btn');
@@ -914,24 +953,15 @@
 
             const params = new URLSearchParams(window.location.search);
 
-            var backgroundVal = document.getElementById('background').value;
-            var howHeardVal = document.getElementById('howHeard').value;
-            if (backgroundVal === 'other') {
-                backgroundVal = 'Other: ' + document.getElementById('backgroundOther').value;
-            }
-            if (howHeardVal === 'other') {
-                howHeardVal = 'Other: ' + document.getElementById('howHeardOther').value;
-            }
-
             const data = {
                 formType: 'referrer_application',
                 fullName: document.getElementById('fullName').value,
                 email: document.getElementById('email').value,
                 phone: document.getElementById('phone').value,
-                instagram: document.getElementById('instagram').value,
-                background: backgroundVal,
-                howHeard: howHeardVal,
-                network: document.getElementById('network').value,
+                instagram: '',
+                background: document.getElementById('background').value,
+                howHeard: '',
+                network: '',
                 refCode: params.get('ref') || '',
                 utm_source: params.get('utm_source') || '',
                 utm_medium: params.get('utm_medium') || '',
@@ -946,30 +976,28 @@
                     body: JSON.stringify(data)
                 });
 
-                alert('Thanks for applying! We\'ll be in touch within 24-48 hours.');
+                alert('Thanks for applying! We\'ll be in touch within 24-48 hours with your referral link.');
                 this.reset();
             } catch (error) {
                 alert('Something went wrong. Please try again or email us directly.');
                 console.error(error);
             }
 
-            btn.textContent = 'Submit Application';
+            btn.textContent = 'Get My Referral Link \u2192';
             btn.disabled = false;
         });
 
-        // Auto-select "how heard" based on UTM params
-        (function() {
-            const p = new URLSearchParams(window.location.search);
-            const src = p.get('utm_source');
-            const med = p.get('utm_medium');
-            if (src === 'manychat' || src === 'instagram_dm') {
-                document.getElementById('howHeard').value = 'instagram_dm';
-            } else if (src === 'facebook' || src === 'instagram' || med === 'paid' || med === 'cpc') {
-                document.getElementById('howHeard').value = 'instagram_ad';
-            }
-        })();
+        // Sticky nav — show when hero scrolls out of view
+        const stickyNavEl = document.getElementById('stickyNav');
+        const heroEl = document.getElementById('heroSection');
+        if (stickyNavEl && heroEl) {
+            const heroObserver = new IntersectionObserver(([entry]) => {
+                stickyNavEl.classList.toggle('visible', !entry.isIntersecting);
+            }, { threshold: 0 });
+            heroObserver.observe(heroEl);
+        }
 
-        // Hide sticky CTA when form is visible
+        // Hide sticky mobile CTA when form is visible
         const stickyEl = document.querySelector('.sticky-mobile-cta');
         const formEl = document.getElementById('apply');
         if (stickyEl && formEl) {
