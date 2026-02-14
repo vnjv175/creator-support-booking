@@ -64,16 +64,20 @@
         }
 
         .hero h1 {
-            font-size: 48px;
-            line-height: 1.15;
+            font-size: clamp(32px, 7vw, 56px);
+            line-height: 1.1;
             margin-bottom: 16px;
             font-weight: 800;
+            white-space: nowrap;
         }
 
-        .hero h1 .dollar-highlight {
+        .hero h1 .subline {
             display: block;
-            font-size: clamp(28px, 6vw, 52px);
-            white-space: nowrap;
+            font-size: clamp(18px, 3.5vw, 28px);
+            font-weight: 600;
+            color: var(--text-secondary);
+            white-space: normal;
+            margin-top: 8px;
         }
 
         .hero p {
@@ -83,12 +87,6 @@
             margin: 0 auto 20px;
         }
 
-        .hero-bridge {
-            font-size: 14px;
-            color: var(--accent-champagne);
-            margin-bottom: 24px;
-            font-weight: 600;
-        }
 
         .hero-cta-row {
             display: flex;
@@ -389,8 +387,6 @@
         /* Responsive */
         @media (max-width: 768px) {
             .sticky-nav { padding: 10px 16px; }
-            .hero h1 { font-size: 32px; }
-            .hero h1 .dollar-highlight { font-size: 32px; }
             .hero p { font-size: 16px; }
             .two-col { grid-template-columns: 1fr; }
             .form-row { grid-template-columns: 1fr; }
@@ -426,11 +422,10 @@
                 50+ active referrers earning commissions right now
             </div>
             <h1>
-                <span class="gradient-text dollar-highlight">Earn $30,000+/mo</span>
-                Referring Creators You Already Know
+                <span class="gradient-text">Earn $30,000+/mo</span>
+                <span class="subline">Referring Creators You Already Know</span>
             </h1>
-            <p class="text-secondary">Our creators earn $50K-$300K+/mo. Your network is worth more than you think. No selling. No calls. No content. Just introduce people you already know &mdash; and get paid every month, forever.</p>
-            <div class="hero-bridge">Our top referrers send 5-10 creators and earn $12K-$30K/mo. Most start with just one.</div>
+            <p class="text-secondary">Our creators earn $50K-$300K+/mo. No selling. No calls. No content. Just introduce people you already know &mdash; and get paid every month, forever. Most referrers start with just one.</p>
             <div class="hero-cta-row">
                 <a href="#apply" class="cta-btn">Get My Referral Link &rarr;</a>
                 <a href="#tiers" class="btn-secondary">See Commission Tiers</a>
